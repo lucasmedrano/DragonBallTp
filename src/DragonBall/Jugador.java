@@ -1,22 +1,35 @@
 package DragonBall;
 
-import java.util.ArrayList;
-
 public class Jugador {
-    private ArrayList<Personaje> personajes;
+    private Personaje personaje_1;
+    private Personaje personaje_2;
+    private Personaje personaje_3;
     
     public Jugador(){
-        this.personajes = new ArrayList<Personaje>();
+        
     }
     
-    public void asignarPersonajes(Personaje personaje1, Personaje personaje2, Personaje personaje3){
-        this.personajes.add(personaje1);
-        this.personajes.add(personaje2);
-        this.personajes.add(personaje3);
+    public void asignarPersonaje1(Personaje personaje){
+        this.personaje_1 = personaje;
     }
     
-    public ArrayList<Personaje> obtenerPersonajes(){
-        ArrayList<Personaje> lista_a_devolver = (ArrayList<Personaje>) this.personajes.clone();
-        return lista_a_devolver;
+    public void asignarPersonaje2(Personaje personaje){
+        this.personaje_2 = personaje;
+    }
+    
+    public void asignarPersonaje3(Personaje personaje){
+        this.personaje_3 = personaje;
+    }
+    
+    public Personaje obtenerPersonaje1(){
+        return this.personaje_1;
+    }
+    
+    public Personaje obtenerPersonaje2(){
+        return this.personaje_2;
+    }
+    
+    public Personaje obtenerPersonaje3(){
+        return this.personaje_3;
     }
 }

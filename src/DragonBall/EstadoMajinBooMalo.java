@@ -1,8 +1,8 @@
 package DragonBall;
 
-public class MajinBooMalo extends MajinBoo{
+public class EstadoMajinBooMalo extends Estado{
 	
-	public MajinBooMalo(){
+	public EstadoMajinBooMalo(){
 		this.poder_pelea = 50;
 		this.distancia_ataque = 2;
 		this.velocidad = 3;
