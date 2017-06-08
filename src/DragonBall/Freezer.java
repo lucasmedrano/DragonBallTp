@@ -10,22 +10,24 @@ public class Freezer extends Personaje{
 		this.estado = new EstadoFreezerNormal();
 	}
 	
-	public void transformar(int forma) throws IncapacidadParaTransformacion{
-		Estado nuevo_estado;
+	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		
-		if (forma == 1 && this.ki >= this.costo_transformacion_1){
-			nuevo_estado = new EstadoFreezerSegundaForma();
+		if (this.ki >= costo_de_transformacion){
 			this.estado = nuevo_estado;
-			this.ki = this.ki - this.costo_transformacion_1;
+			this.ki = this.ki - costo_de_transformacion;
 		}
-		else {
-			if (forma == 2 && this.ki >= this.costo_transformacion_2){
-				nuevo_estado = new EstadoFreezerDefinitivo();
-				this.estado = nuevo_estado;
-				this.ki = this.ki - this.costo_transformacion_2;
-			}
 			else throw new IncapacidadParaTransformacion();
-		}
+	}
+	
+	public void transformar_1() throws IncapacidadParaTransformacion{
 		
+		EstadoFreezerSegundaForma nuevo_estado = new EstadoFreezerSegundaForma();
+		this.transformar(this.costo_transformacion_1, nuevo_estado);
+	}
+	
+	public void transformar_2() throws IncapacidadParaTransformacion{
+		
+		EstadoFreezerDefinitivo nuevo_estado = new EstadoFreezerDefinitivo();
+		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
 }

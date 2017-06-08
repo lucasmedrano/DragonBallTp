@@ -134,7 +134,7 @@ public class DragonBallTests {
 			Assert.fail("No se ubicó el personaje");
 		}
 		try{
-			goku.transformar(1);//se intenta transformar a Kaio-Ken que es su primer transformacion
+			goku.transformar_1();//se intenta transformar a Kaio-Ken que es su primer transformacion
 		}
 		catch (IncapacidadParaTransformacion e){
 			Assert.assertTrue("No se pudo transformar", 20 == goku.obtenerPoderDePelea());
@@ -153,7 +153,7 @@ public class DragonBallTests {
 		}
 		goku.aumentarKi(50);
 		try{
-			goku.transformar(1);
+			goku.transformar_1();
 		}
 		catch (IncapacidadParaTransformacion e){
 			Assert.fail("No se pudo transformar");
@@ -174,7 +174,7 @@ public class DragonBallTests {
 		}
 		goku.aumentarKi(50);
 		try {
-				goku.transformar(2);
+				goku.transformar_2();
 		} 
 		catch (IncapacidadParaTransformacion e){
 			Assert.fail("Fallo la transfomracion");
@@ -201,7 +201,7 @@ public class DragonBallTests {
 		}
 		goku.aumentarKi(50);
 		try {
-				goku.transformar(2);
+				goku.transformar_2();
 		} 
 		catch (IncapacidadParaTransformacion e){
 			Assert.fail("Fallo la transfomracion");
