@@ -11,9 +11,7 @@ public class Juego {
     	this.jugador2 = new Jugador();
     }
     
-    public Tablero obtenerTablero(){
-    	return this.tablero;
-    }
+
     
     public Jugador obtenerJugador1(){
         return this.jugador1;
