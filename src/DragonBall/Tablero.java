@@ -11,11 +11,11 @@ public class Tablero {
 	}
 	
 	public void nuevaUbicacion(Personaje personaje, int x, int y){
-			this.tablero[x][y] = personaje;
+			this.tablero[y][x] = personaje;
 	}
 	
 	public boolean noEstaOcupada(int x, int y){
-		if (this.tablero[x][y] == null){
+		if (this.tablero[y][x] == null){
 			return true;
 		}	
 		else return false;
