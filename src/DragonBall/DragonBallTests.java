@@ -14,7 +14,7 @@ public class DragonBallTests {
 		try{
 			goku.ubicarEn(7,5);
 		}catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal fallo",7, ubicacion.obtenerUbicacionHorizontal());
@@ -30,7 +30,7 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			boo.ubicarEn(7,5);
@@ -48,7 +48,7 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			goku.moverArriba();
@@ -72,7 +72,7 @@ public class DragonBallTests {
 			goku.ubicarEn(5,29);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			goku.moverArriba();
@@ -97,14 +97,14 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		MajinBoo boo = new MajinBoo(tablero);
 		try{
 			boo.ubicarEn(8,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			boo.moverIzquierda();
@@ -131,7 +131,7 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			goku.transformar(1);//se intenta transformar a Kaio-Ken que es su primer transformacion
@@ -149,7 +149,7 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		goku.aumentarKi(50);
 		try{
@@ -170,7 +170,7 @@ public class DragonBallTests {
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		goku.aumentarKi(50);
 		try {
@@ -197,7 +197,7 @@ public class DragonBallTests {
 			goku.ubicarEn(29,5);
 		}
 		catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		goku.aumentarKi(50);
 		try {
@@ -220,14 +220,10 @@ public class DragonBallTests {
 	@Test
 	public void integracion1() {
 		Juego juego = new Juego();
-		Tablero tablero = new Tablero();
+		Tablero tablero = juego.obtenerTablero();
+		Jugador jugador1 = juego.obtenerJugador1();
+		Jugador jugador2 = juego.obtenerJugador2();
 		int tamanio = tablero.obtenerTamanio();
-		Jugador jugador1 = new Jugador();
-		Jugador jugador2 = new Jugador();
-		
-		juego.asignarTablero(tablero);
-		juego.asignarJugador1(jugador1);
-		juego.asignarJugador2(jugador2);
 		
 		Goku goku = new Goku(tablero);
 		Gohan gohan = new Gohan(tablero);
@@ -283,12 +279,12 @@ public class DragonBallTests {
 		try{
 			goku.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			cell.ubicarEn(2,2);
 		}catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		
 		try{
@@ -316,12 +312,12 @@ public class DragonBallTests {
 		try{
 			goku.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		try{
 			cell.ubicarEn(10,10);
 		}catch (PosicionInadecuada e){
-			Assert.fail("No se ubicó el personaje");
+			Assert.fail("No se ubicï¿½ el personaje");
 		}
 		
 		try{

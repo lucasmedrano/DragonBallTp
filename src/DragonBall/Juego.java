@@ -6,18 +6,13 @@ public class Juego {
     Jugador jugador2;
     
     public Juego(){
+    	this.tablero = new Tablero();
+    	this.jugador1 = new Jugador();
+    	this.jugador2 = new Jugador();
     }
     
-    public void asignarTablero(Tablero un_tablero){
-        this.tablero = un_tablero;
-    }
-    
-    public void asignarJugador1(Jugador jugador){
-        this.jugador1 = jugador;
-    }
-    
-    public void asignarJugador2(Jugador jugador){
-        this.jugador2 = jugador;
+    public Tablero obtenerTablero(){
+    	return this.tablero;
     }
     
     public Jugador obtenerJugador1(){
