@@ -13,20 +13,23 @@ public class Cell extends Personaje{
 		this.estado = new EstadoCellNormal();
 	}
 	
-	public void transformar(int forma) throws IncapacidadParaTransformacion{
-		Estado nuevo_estado;
+	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		
-		if (forma == 1 && this.vidas_absorbidas >= this.costo_transformacion_1){
-			nuevo_estado = new EstadoGokuKaioKen();
+		if (this.vidas_absorbidas >= costo_de_transformacion){
 			this.estado = nuevo_estado;
 		}
-		else {
-			if (forma == 2 && this.vidas_absorbidas >= this.costo_transformacion_2){
-				nuevo_estado = new EstadoGokuSuperSayajin();
-				this.estado = nuevo_estado;
-			}
 			else throw new IncapacidadParaTransformacion();
-		}
+	}
+	
+	public void transformar_1() throws IncapacidadParaTransformacion{
 		
+		EstadoCellSemiPerfecto nuevo_estado = new EstadoCellSemiPerfecto();
+		this.transformar(this.costo_transformacion_1, nuevo_estado);
+	}
+	
+	public void transformar_2() throws IncapacidadParaTransformacion{
+		
+		EstadoCellPerfecto nuevo_estado = new EstadoCellPerfecto();
+		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
 }

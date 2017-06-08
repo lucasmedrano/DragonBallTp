@@ -11,22 +11,24 @@ public class Goku extends Personaje {
 	}
 	
 	
-	public void transformar(int forma) throws IncapacidadParaTransformacion{
-		Estado nuevo_estado;
+	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		
-		if (forma == 1 && this.ki >= this.costo_transformacion_1){
-			nuevo_estado = new EstadoGokuKaioKen();
+		if (this.ki >= costo_de_transformacion){
 			this.estado = nuevo_estado;
-			this.ki = this.ki - this.costo_transformacion_1;
+			this.ki = this.ki - costo_de_transformacion;
 		}
-		else {
-			if (forma == 2 && this.ki >= this.costo_transformacion_2){
-				nuevo_estado = new EstadoGokuSuperSayajin();
-				this.estado = nuevo_estado;
-				this.ki = this.ki - this.costo_transformacion_2;
-			}
 			else throw new IncapacidadParaTransformacion();
-		}
+	}
+	
+	public void transformar_1() throws IncapacidadParaTransformacion{
 		
+		EstadoGokuKaioKen nuevo_estado = new EstadoGokuKaioKen();
+		this.transformar(this.costo_transformacion_1, nuevo_estado);
+	}
+	
+	public void transformar_2() throws IncapacidadParaTransformacion{
+		
+		EstadoGokuSuperSayajin nuevo_estado = new EstadoGokuSuperSayajin();
+		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
 }
