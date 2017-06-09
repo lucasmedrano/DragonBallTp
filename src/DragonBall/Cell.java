@@ -13,14 +13,6 @@ public class Cell extends Personaje{
 		this.estado = new EstadoCellNormal();
 	}
 	
-	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
-		
-		if (this.vidas_absorbidas >= costo_de_transformacion){
-			this.estado = nuevo_estado;
-		}
-			else throw new IncapacidadParaTransformacion();
-	}
-	
 	public void transformar_1() throws IncapacidadParaTransformacion{
 		
 		EstadoCellSemiPerfecto nuevo_estado = new EstadoCellSemiPerfecto();
