@@ -336,5 +336,225 @@ public class DragonBallTests {
 		Assert.assertEquals(500, cell.obtenerVida());
 	}
 
-
+	@Test
+	public void llevar_gohan_primera_transformacion(){
+		Tablero tablero = new Tablero();
+		Goku goku = new Goku(tablero);
+		Piccolo piccolo = new Piccolo(tablero);
+		Gohan gohan = new Gohan(tablero);
+		try{
+			goku.ubicarEn(1,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			piccolo.ubicarEn(1,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			gohan.ubicarEn(1,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		gohan.aumentarKi(15);
+		try{
+			gohan.transformar_1();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("Fallo la transfomracion");
+		}
+		try{
+			gohan.transformar_2();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.assertTrue("No se pudo transformar", true);
+		}
+	}
+	
+	@Test
+	public void llevar_gohan_segunda_transformacion(){
+		Tablero tablero = new Tablero();
+		Goku goku = new Goku(tablero);
+		Piccolo piccolo = new Piccolo(tablero);
+		Gohan gohan = new Gohan(tablero);
+		try{
+			goku.ubicarEn(1,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			piccolo.ubicarEn(1,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			gohan.ubicarEn(1,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		gohan.aumentarKi(50);
+		try{
+			gohan.transformar_2();//solo necesita el ki para transformarse.
+		}catch (IncapacidadParaTransformacion e){//La vida de los otros es para atacar mas fuerte
+			Assert.fail("Fallo la transfomracion");//mirarlo!!!!
+		}
+		
+	}
+	
+	@Test
+	public void llevar_piccolo_primera_transformacion(){
+		Tablero tablero = new Tablero();
+		Piccolo piccolo = new Piccolo(tablero);
+		Gohan gohan = new Gohan(tablero);
+		try{
+			piccolo.ubicarEn(1,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			gohan.ubicarEn(2,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		piccolo.aumentarKi(20);
+		try{
+			piccolo.transformar_1();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("Fallo la transfomracion");
+		}
+		try{
+			piccolo.transformar_2();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.assertTrue("No se pudo transformar", true);
+		}
+	}
+	
+	@Test
+	public void llevar_piccolo_segunda_transformacion(){
+		Tablero tablero = new Tablero();
+		Piccolo piccolo = new Piccolo(tablero);
+		Gohan gohan = new Gohan(tablero);
+		try{
+			piccolo.ubicarEn(1,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			gohan.ubicarEn(2,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		gohan.vida=60;//fuerzo que gohan tenga el 20% de su vida
+		try{
+			if(gohan.vida <= ((gohan.vida*20)/100)){//está bien esto ?? mirarlo!!!
+				piccolo.transformar_2();
+			}
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("Fallo la Transformacion");
+		}
+		
+	}
+	
+	@Test
+	public void cell_no_puede_transformarse(){
+		Tablero tablero = new Tablero();
+		Cell cell = new Cell(tablero);
+		try{
+			cell.ubicarEn(10,11);
+		}catch(PosicionInadecuada e){
+			Assert.fail("No se ubicó el personaje");
+		}
+		try{
+			cell.transformar_1();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.assertTrue("No se pudo Transformar", true);
+		}
+		try{
+			cell.transformar_2();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.assertTrue("No se pudo Transformar", true);
+		}
+	}
+	
+	@Test
+	public void cell_puede_absorver_vida(){
+		Tablero tablero = new Tablero();
+		Cell cell = new Cell(tablero);
+		Goku goku = new Goku(tablero);
+		try{
+			cell.ubicarEn(1,5);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			goku.ubicarEn(2,5);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		int primeraVidaCell = cell.obtenerVida();
+		int primeraVidaGoku = goku.obtenerVida();
+		cell.aumentarKi(5);
+		try{
+				cell.ataqueEspecial(goku);
+				int absorver = cell.obtenerPoderDePeleaEspecial();
+				cell.vida = cell.vida + absorver;
+		}catch (IncapacidadDeAtacar e){
+				Assert.fail("No pudo atacar");
+		}
+		int nuevaVidaCell=cell.obtenerVida();
+		int nuevaVidaGoku=goku.obtenerVida();
+		Assert.assertTrue(nuevaVidaCell > primeraVidaCell);
+		Assert.assertTrue(primeraVidaGoku > nuevaVidaGoku);
+		
+	}
+	
+	@Test
+	public void cell_puede_absorver_vidas_y_transformase(){
+		Tablero tablero = new Tablero();
+		Cell cell = new Cell(tablero);
+		Goku goku = new Goku(tablero);
+		try{
+			cell.ubicarEn(5,5);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			goku.ubicarEn(5,4);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		cell.aumentarKi(40);
+		int primeraVidaCell = cell.obtenerVida();
+		int primeraVidaGoku = goku.obtenerVida();
+		try{
+			for(int i=0;i<8;i++){
+				cell.ataqueEspecial(goku);
+				int absorver = cell.obtenerPoderDePeleaEspecial();
+				cell.vida = cell.vida + absorver;
+			}
+		}catch (IncapacidadDeAtacar e ){
+			Assert.fail("No pudo atacar");
+		}
+		int segundaVidaCell= cell.obtenerVida();
+		int segundaVidaGoku = goku.obtenerVida();
+		try{
+			cell.transformar_1();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("No se pudo Transformar");
+		}
+		try{
+			cell.transformar_2();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("No se pudo Transformar");
+		}
+		Assert.assertTrue(segundaVidaCell > primeraVidaCell);
+		Assert.assertTrue(primeraVidaGoku > segundaVidaGoku);
+	}
+	
+	
+	
+	
 }
+
+
+		
+	

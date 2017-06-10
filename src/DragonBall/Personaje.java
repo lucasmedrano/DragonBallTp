@@ -28,6 +28,9 @@ public abstract class Personaje {
     public int obtenerPoderDePelea(){
     	return this.estado.obtenerPoderDePelea();
     }
+    public int obtenerPoderDePeleaEspecial(){
+    	return this.estado.obtenerPoderDePeleaEspecial();
+    }
     
     public int obtenerVida(){
     	return this.vida;
@@ -103,7 +106,15 @@ public abstract class Personaje {
     		enemigo.vida = enemigo.vida - ataque_basico;
     	}else throw new IncapacidadDeAtacar();
     }
-
+    
+    public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
+    	
+    	if(this.tablero.estanARangoDeAtaque(this, enemigo)){
+    		int ataque_especial = this.obtenerPoderDePeleaEspecial();
+    		enemigo.vida= enemigo.vida - ataque_especial;
+    	}else throw new IncapacidadDeAtacar();
+    }
+    
 	public int distanciaDeAtaque() {
 		
 		return this.estado.obtenerDistanciaDeAtaque();

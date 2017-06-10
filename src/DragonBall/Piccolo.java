@@ -10,4 +10,19 @@ public class Piccolo extends Personaje{
 		this.costo_transformacion_2= 0;
 		this.estado = new EstadoPiccoloNormal();
 	}
+	
+	public void transformar_1() throws IncapacidadParaTransformacion{
+		
+		EstadoPiccoloFortalecido nuevo_estado = new EstadoPiccoloFortalecido();
+		this.transformar(this.costo_transformacion_1, nuevo_estado);
+	}
+	
+	public void transformar_2() throws IncapacidadParaTransformacion{
+		
+		EstadoPiccoloProtector nuevo_estado = new EstadoPiccoloProtector();
+		//Deberiamos Poner aca la condicion de Gohan?
+		this.transformar(this.costo_transformacion_2, nuevo_estado);
+		
+		
+	}
 }

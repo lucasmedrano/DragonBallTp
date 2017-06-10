@@ -10,7 +10,9 @@ public abstract class Estado {
 	 public int obtenerPoderDePelea(){
 	    	return this.poder_pelea;
 	    }
-	 
+	 public int obtenerPoderDePeleaEspecial(){
+		 return this.poder_especial;
+	 }
 	 public int obtenerVelocidad(){
 		 return this.velocidad;
 	 }
