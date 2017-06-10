@@ -550,10 +550,48 @@ public class DragonBallTests {
 		Assert.assertTrue(primeraVidaGoku > segundaVidaGoku);
 	}
 	
+	public void	convertirEnChocolateInvalidaAGokuAAtacar(){
+		//Suponemos que los personajes saben como posicionarse inicialmente o delegan a un objeto que sepa//
+		Tablero tablero = new Tablero();		
+		Goku goku = new Goku(tablero);
+		MajinBoo majinBoo = new MajinBoo(tablero);
+		MajinBoo maginBoo.convertirEnChocolate(goku);
+
+		try {
+				goku.ataqueBasico(majinBoo);
+			  } catch (InhabilitadoError e) {
+			    fail("Personaje Inutilizable");
+			  }
+			}
+	}
+
+	@Test
 	
+	public void	convertirEnChocolateInvalidaAGokuAMoverse(){
+		
+		Tablero tablero = new Tablero();		
+		Goku goku = new Goku(tablero);
+		MajinBoo majinBoo = new MajinBoo(tablero);
+		MajinBoo maginBoo.convertirEnChocolate(goku);
+		
+		try {
+				goku.moverAleatoriamente();
+		  	} catch (InhabilitadoError e) {
+		  		fail("Personaje Inutilizable");
+		  		}
+			}
+		
+	}
+	public void convertirEnChocolateInvalidaAGokuAMoversePorTresTurnos{
+	}
+	
+	public void convertirEnChocolateInvalidaAGokuASumarKi{
+	}
+}
 	
 	
 }
+
 
 
 		
