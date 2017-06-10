@@ -120,4 +120,9 @@ public abstract class Personaje {
 		return this.estado.obtenerDistanciaDeAtaque();
 	}
 	
+	public void disminuirVida(int disminucion_de_vida) {
+		
+		this.vida -= disminucion_de_vida;
+	}
+	
 }

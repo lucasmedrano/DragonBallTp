@@ -30,4 +30,5 @@ public class Goku extends Personaje {
 		EstadoGokuSuperSayajin nuevo_estado = new EstadoGokuSuperSayajin();
 		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
+
 }

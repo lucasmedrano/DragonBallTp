@@ -393,11 +393,15 @@ public class DragonBallTests {
 			Assert.fail("No se ubicó el personaje");
 		}
 		gohan.aumentarKi(50);
+		goku.disminuirVida(400);
+		piccolo.disminuirVida(400);
 		try{
-			gohan.transformar_2();//solo necesita el ki para transformarse.
-		}catch (IncapacidadParaTransformacion e){//La vida de los otros es para atacar mas fuerte
-			Assert.fail("Fallo la transfomracion");//mirarlo!!!!
+			gohan.transformar_2();
+		}catch (IncapacidadParaTransformacion e){
+			Assert.fail("Fallo la transfomracion");
 		}
+		
+		Assert.assertTrue("No se pudo transformar", 100 == gohan.obtenerPoderDePelea());
 		
 	}
 	
@@ -444,14 +448,14 @@ public class DragonBallTests {
 		}catch (PosicionInadecuada e){
 			Assert.fail("No se ubicó el personaje");
 		}
-		gohan.vida=60;//fuerzo que gohan tenga el 20% de su vida
+		gohan.disminuirVida(250);
 		try{
-			if(gohan.vida <= ((gohan.vida*20)/100)){//está bien esto ?? mirarlo!!!
-				piccolo.transformar_2();
-			}
+			piccolo.transformar_2();
 		}catch (IncapacidadParaTransformacion e){
 			Assert.fail("Fallo la Transformacion");
 		}
+		
+		Assert.assertTrue("No se pudo transformar", 60 == piccolo.obtenerPoderDePelea());
 		
 	}
 	
@@ -477,7 +481,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void cell_puede_absorver_vida(){
+	public void cell_puede_absorber_vida(){
 		Tablero tablero = new Tablero();
 		Cell cell = new Cell(tablero);
 		Goku goku = new Goku(tablero);
@@ -491,25 +495,26 @@ public class DragonBallTests {
 		}catch (PosicionInadecuada e){
 			Assert.fail("No se ubico el personaje");
 		}
-		int primeraVidaCell = cell.obtenerVida();
 		int primeraVidaGoku = goku.obtenerVida();
 		cell.aumentarKi(5);
+		cell.disminuirVida(200);
+		int primeraVidaCell = cell.obtenerVida();
+		
 		try{
 				cell.ataqueEspecial(goku);
-				int absorver = cell.obtenerPoderDePeleaEspecial();
-				cell.vida = cell.vida + absorver;
 		}catch (IncapacidadDeAtacar e){
 				Assert.fail("No pudo atacar");
 		}
+		int poder_especial = cell.obtenerPoderDePeleaEspecial();
 		int nuevaVidaCell=cell.obtenerVida();
 		int nuevaVidaGoku=goku.obtenerVida();
-		Assert.assertTrue(nuevaVidaCell > primeraVidaCell);
-		Assert.assertTrue(primeraVidaGoku > nuevaVidaGoku);
+		Assert.assertTrue("No realizo correctamente el ataque especial" ,nuevaVidaCell == primeraVidaCell + poder_especial);
+		Assert.assertTrue("No realizo correctamente el ataque especial" ,nuevaVidaGoku == primeraVidaGoku - poder_especial);
 		
 	}
 	
 	@Test
-	public void cell_puede_absorver_vidas_y_transformase(){
+	public void cell_puede_absorber_vidas_y_transformase(){
 		Tablero tablero = new Tablero();
 		Cell cell = new Cell(tablero);
 		Goku goku = new Goku(tablero);
@@ -524,80 +529,82 @@ public class DragonBallTests {
 			Assert.fail("No se ubico el personaje");
 		}
 		cell.aumentarKi(40);
-		int primeraVidaCell = cell.obtenerVida();
-		int primeraVidaGoku = goku.obtenerVida();
 		try{
 			for(int i=0;i<8;i++){
 				cell.ataqueEspecial(goku);
-				int absorver = cell.obtenerPoderDePeleaEspecial();
-				cell.vida = cell.vida + absorver;
 			}
-		}catch (IncapacidadDeAtacar e ){
+		}catch (IncapacidadDeAtacar e){
 			Assert.fail("No pudo atacar");
 		}
-		int segundaVidaCell= cell.obtenerVida();
-		int segundaVidaGoku = goku.obtenerVida();
 		try{
 			cell.transformar_1();
 		}catch (IncapacidadParaTransformacion e){
 			Assert.fail("No se pudo Transformar");
 		}
+		
+		Assert.assertTrue("No se pudo transformar", 40 == cell.obtenerPoderDePelea());
+		
 		try{
 			cell.transformar_2();
 		}catch (IncapacidadParaTransformacion e){
 			Assert.fail("No se pudo Transformar");
 		}
-		Assert.assertTrue(segundaVidaCell > primeraVidaCell);
-		Assert.assertTrue(primeraVidaGoku > segundaVidaGoku);
+		
+		Assert.assertTrue("No se pudo transformar", 80 == cell.obtenerPoderDePelea());
 	}
 	
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuAAtacar(){
-		//Suponemos que los personajes saben como posicionarse inicialmente o delegan a un objeto que sepa//
+	public void	convertirEnChocolateInvalidaAGokuAAtacar() throws PosicionInadecuada, IncapacidadDeAtacar{
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
+		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
-		MajinBoo majinBoo.convertirEnChocolate(goku);
+		majinBoo.ubicarEn(2, 2);
+		majinBoo.ataqueEspecial(goku);
 
 		try {
 				goku.ataqueBasico(majinBoo);
 			  }catch (InhabilitadoError e) {
-			    fail("Personaje Inutilizable");
+				  Assert.assertTrue("No pudo atacar por estar inmovilizado", true);
 			  }
 	}
 
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuAMoverse(){
+	public void	convertirEnChocolateInvalidaAGokuAMoverse() throws PosicionInadecuada, IncapacidadDeAtacar{
 		
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
+		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
-		MajinBoo maginBoo.convertirEnChocolate(goku);
+		majinBoo.ubicarEn(2, 2);
+		majinBoo.ataqueEspecial(goku);
 		
 		try {
-				goku.moverAleatoriamente();
+				goku.moverArriba();
 		  	} catch (InhabilitadoError e) {
-		  		fail("Personaje Inutilizable");
+		  		Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
 		  		}
 		
 		
 	}
 	
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuPor3Turnos(){
+	public void	convertirEnChocolateInvalidaAGokuPor3Turnos() throws PosicionInadecuada, IncapacidadDeAtacar{
 		
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
+		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
-		majinBoo.convertirEnChocolate(goku);
+		majinBoo.ubicarEn(2, 2);
+		majinBoo.ataqueEspecial(goku);
 		int i=0;
 		do {
 			i++;
-			try {
-			//Hasta dos acciones por equipo por turno//
-				goku.moverAleatoriamente();
-				goku.ataqueBasico(majinBoo);
-	  		} catch (InhabilitadoError e) {
+			try {                                         //Modelar los turnos y ver que en 3 turnos pueda moverse
+			//Hasta dos acciones por equipo por turno//		//Chequear que el ki no aumente
+				goku.moverArriba();
+				goku.ataqueBasico(majinBoo);				//Hay que ver si son 3 turnos de este equipo inmovilizado o si son 3 turnos 
+	  		} catch (InhabilitadoError e) {					//en total contando el del equipo contrario y por lo tanto serian 2 turnos sin hacer nada
 	  			fail("Personaje Inutilizable");
 	  		}
 			i++;
