@@ -3,6 +3,7 @@ package DragonBall;
 import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class DragonBallTests {
 
@@ -582,15 +583,25 @@ public class DragonBallTests {
 			}
 		
 	}
-	public void convertirEnChocolateInvalidaAGokuAMoversePorTresTurnos{
+	public void	convertirEnChocolateInvalidaAGokuPor3Turnos(){
 		
-	}
-	
-	public void convertirEnChocolateInvalidaAGokuASumarKi{
-	}
-}
-	
-	
+		Tablero tablero = new Tablero();
+		Goku goku = new Goku(tablero);
+		MajinBoo majinBoo = new MajinBoo(tablero);
+		majinBoo.convertirEnChocolate(goku);
+		int i=0;
+		do {
+			i++;
+			try {
+			//Hasta dos acciones por equipo por turno//
+				goku.moverAleatoriamente();
+				goku.ataqueBasico(majinBoo);
+	  		} catch (InhabilitadoError e) {
+	  			fail("Personaje Inutilizable");
+	  		}
+			i++;
+		}while(i<=3);
+		
 }
 
 
