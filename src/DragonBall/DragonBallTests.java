@@ -556,14 +556,13 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
 		MajinBoo majinBoo = new MajinBoo(tablero);
-		MajinBoo maginBoo.convertirEnChocolate(goku);
+		MajinBoo majinBoo.convertirEnChocolate(goku);
 
 		try {
 				goku.ataqueBasico(majinBoo);
-			  } catch (InhabilitadoError e) {
+			  }catch (InhabilitadoError e) {
 			    fail("Personaje Inutilizable");
 			  }
-			}
 	}
 
 	@Test
@@ -580,9 +579,12 @@ public class DragonBallTests {
 		  	} catch (InhabilitadoError e) {
 		  		fail("Personaje Inutilizable");
 		  		}
-			}
+		
 		
 	}
+	
+	@Test
+	
 	public void	convertirEnChocolateInvalidaAGokuPor3Turnos(){
 		
 		Tablero tablero = new Tablero();
@@ -601,10 +603,29 @@ public class DragonBallTests {
 	  		}
 			i++;
 		}while(i<=3);
+	}
 		
-}
-
-
-
+	@Test
+	
+	public void ubicarAGokuYVerificarQueSuDañoAumentaConAtaqueBasico(){
+		Tablero tablero = new Tablero();
+		Goku goku = new Goku(tablero);
+		Cell cell= new Cell(tablero);
+		int vidaInicialGoku=goku.obtenerVida();
+		int vidaCellInicial=cell.obtenerVida();
+		goku.ataqueBasico(cell);
+		int vidaCellAtaqueGokuFuerte=cell.obtenerVida();
+		int vidaCriticaGoku=(vidaInicialGoku*29/100);
+		goku.modificarVida(vidaCriticaGoku);
+		cell.modificarVida(vidaCellInicial);
+		goku.ataqueBasico(cell);
+		int vidaCellAtaqueGokuDebil=cell.obtenerVida();
+		
+		Assert.assertEquals((vidaCellAtaqueGokuFuerte+vidaCellAtaqueGokuFuerte*20/100),vidaCellAtaqueGokuDebil);
+		
+		
+		
+	}
 		
 	
+}
