@@ -120,12 +120,4 @@ public abstract class Personaje {
 		return this.estado.obtenerDistanciaDeAtaque();
 	}
 	
-	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
-		
-		if (this.ki >= costo_de_transformacion){
-			this.estado = nuevo_estado;
-			this.ki = this.ki - costo_de_transformacion;
-		}
-		else throw new IncapacidadParaTransformacion();
-	}
 }
