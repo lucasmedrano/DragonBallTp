@@ -551,6 +551,7 @@ public class DragonBallTests {
 		Assert.assertTrue(primeraVidaGoku > segundaVidaGoku);
 	}
 	
+	@Test
 	public void	convertirEnChocolateInvalidaAGokuAAtacar(){
 		//Suponemos que los personajes saben como posicionarse inicialmente o delegan a un objeto que sepa//
 		Tablero tablero = new Tablero();		
@@ -566,7 +567,6 @@ public class DragonBallTests {
 	}
 
 	@Test
-	
 	public void	convertirEnChocolateInvalidaAGokuAMoverse(){
 		
 		Tablero tablero = new Tablero();		
@@ -584,7 +584,6 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	
 	public void	convertirEnChocolateInvalidaAGokuPor3Turnos(){
 		
 		Tablero tablero = new Tablero();
@@ -606,8 +605,7 @@ public class DragonBallTests {
 	}
 		
 	@Test
-	
-	public void ubicarAGokuYVerificarQueSuDañoAumentaConAtaqueBasico(){
+	public void ubicarAGokuYVerificarQueSuDanioAumentaConAtaqueBasico(){
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell= new Cell(tablero);
@@ -623,7 +621,7 @@ public class DragonBallTests {
 		
 		Assert.assertEquals((vidaCellAtaqueGokuFuerte+vidaCellAtaqueGokuFuerte*20/100),vidaCellAtaqueGokuDebil);
 		
-		
+
 		
 	}
 		
