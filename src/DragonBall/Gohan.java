@@ -11,6 +11,15 @@ public class Gohan extends Personaje{
 		this.estado = new EstadoGohanNormal();
 	}
 	
+	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
+		
+		if (this.ki >= costo_de_transformacion){
+			this.estado = nuevo_estado;
+			this.ki = this.ki - costo_de_transformacion;
+		}
+		else throw new IncapacidadParaTransformacion();
+	}
+	
 	public void transformar_1() throws IncapacidadParaTransformacion{
 		
 		EstadoGohanSuperSayajinFase1 nuevo_estado = new EstadoGohanSuperSayajinFase1();
