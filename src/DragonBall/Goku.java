@@ -3,6 +3,7 @@ package DragonBall;
 public class Goku extends Personaje {	
 	public Goku(Tablero tablero_de_juego){
 		super(tablero_de_juego);
+		this.vida_max = 500;
 		this.vida = 500;
 		this.costo_ataque_especial = 20;
 		this.costo_transformacion_1 = 20;

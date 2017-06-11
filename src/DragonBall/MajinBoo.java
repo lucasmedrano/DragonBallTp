@@ -5,6 +5,7 @@ public class MajinBoo extends Personaje{
 	
 	public MajinBoo(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
+		this.vida_max = 300;
 		this.vida = 300;
 		this.poder_especial_stun_turnos = 3;
 		this.costo_ataque_especial = 30;

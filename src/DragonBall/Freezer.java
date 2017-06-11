@@ -3,6 +3,7 @@ package DragonBall;
 public class Freezer extends Personaje{
 	public Freezer(Tablero tablero_de_juego){
 		super(tablero_de_juego);
+		this.vida_max = 400;
 		this.vida = 400;
 		this.costo_ataque_especial = 20;
 		this.costo_transformacion_1 = 20;

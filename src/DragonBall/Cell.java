@@ -5,6 +5,7 @@ public class Cell extends Personaje{
 	
 	public Cell(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
+		this.vida_max = 500;
 		this.vida = 500;
 		this.costo_ataque_especial = 5;
 		this.costo_transformacion_1 = 4;

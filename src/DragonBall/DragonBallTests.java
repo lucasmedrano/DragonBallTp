@@ -233,12 +233,15 @@ public class DragonBallTests {
 		Freezer freezer = new Freezer(tablero);
 		MajinBoo majinboo = new MajinBoo(tablero);
 		
-		jugador1.asignarPersonaje1(goku);
-		jugador1.asignarPersonaje2(gohan);
-		jugador1.asignarPersonaje3(piccolo);
-		jugador2.asignarPersonaje1(cell);
-		jugador2.asignarPersonaje2(freezer);
-		jugador2.asignarPersonaje3(majinboo);
+		Equipo equipo1 = new Equipo();
+		Equipo equipo2 = new Equipo();
+		
+		equipo1.asignarPersonajes(goku, gohan, piccolo);
+		equipo2.asignarPersonajes(cell, freezer, majinboo);
+		
+		jugador1.asignarEquipo(equipo1);
+		jugador2.asignarEquipo(equipo2);
+		
 		tablero.ubicarPersonajesJugador1(jugador1);
 		tablero.ubicarPersonajesJugador2(jugador2);
 		
@@ -337,12 +340,21 @@ public class DragonBallTests {
 		Assert.assertEquals(500, cell.obtenerVida());
 	}
 
+//Pruebas segunda parte
+	
 	@Test
 	public void llevar_gohan_primera_transformacion(){
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Piccolo piccolo = new Piccolo(tablero);
 		Gohan gohan = new Gohan(tablero);
+		
+		boolean prueba = false;
+		
+		Equipo equipo_gohan = new Equipo();
+		equipo_gohan.asignarPersonajes(goku, gohan, piccolo);
+		gohan.asignarEquipo(equipo_gohan);
+		
 		try{
 			goku.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
@@ -359,16 +371,20 @@ public class DragonBallTests {
 			Assert.fail("No se ubicó el personaje");
 		}
 		gohan.aumentarKi(15);
+		
 		try{
 			gohan.transformar_1();
 		}catch (IncapacidadParaTransformacion e){
-			Assert.fail("Fallo la transfomracion");
+			Assert.fail("Fallo la transformacion");
 		}
+		
 		try{
 			gohan.transformar_2();
 		}catch (IncapacidadParaTransformacion e){
-			Assert.assertTrue("No se pudo transformar", true);
+			prueba = true;
 		}
+		
+		Assert.assertTrue(prueba);
 	}
 	
 	@Test
@@ -377,6 +393,11 @@ public class DragonBallTests {
 		Goku goku = new Goku(tablero);
 		Piccolo piccolo = new Piccolo(tablero);
 		Gohan gohan = new Gohan(tablero);
+		
+		Equipo equipo_gohan = new Equipo();
+		equipo_gohan.asignarPersonajes(goku, gohan, piccolo);
+		gohan.asignarEquipo(equipo_gohan);
+		
 		try{
 			goku.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
@@ -392,13 +413,14 @@ public class DragonBallTests {
 		}catch (PosicionInadecuada e){
 			Assert.fail("No se ubicó el personaje");
 		}
+		
 		gohan.aumentarKi(50);
 		goku.disminuirVida(400);
 		piccolo.disminuirVida(400);
 		try{
 			gohan.transformar_2();
 		}catch (IncapacidadParaTransformacion e){
-			Assert.fail("Fallo la transfomracion");
+			Assert.fail("Fallo la transformacion");
 		}
 		
 		Assert.assertTrue("No se pudo transformar", 100 == gohan.obtenerPoderDePelea());
@@ -409,7 +431,14 @@ public class DragonBallTests {
 	public void llevar_piccolo_primera_transformacion(){
 		Tablero tablero = new Tablero();
 		Piccolo piccolo = new Piccolo(tablero);
+		Goku goku = new Goku(tablero);
 		Gohan gohan = new Gohan(tablero);
+		boolean prueba = false;
+		
+		Equipo equipo_piccolo = new Equipo();
+		equipo_piccolo.asignarPersonajes(gohan, piccolo, goku);
+		piccolo.asignarEquipo(equipo_piccolo);
+		
 		try{
 			piccolo.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
@@ -429,8 +458,9 @@ public class DragonBallTests {
 		try{
 			piccolo.transformar_2();
 		}catch (IncapacidadParaTransformacion e){
-			Assert.assertTrue("No se pudo transformar", true);
+			prueba = true;
 		}
+		Assert.assertTrue(prueba);
 	}
 	
 	@Test
@@ -438,6 +468,12 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();
 		Piccolo piccolo = new Piccolo(tablero);
 		Gohan gohan = new Gohan(tablero);
+		Goku goku = new Goku(tablero);
+		
+		Equipo equipo_piccolo = new Equipo();
+		equipo_piccolo.asignarPersonajes(gohan, piccolo, goku);
+		piccolo.asignarEquipo(equipo_piccolo);
+		
 		try{
 			piccolo.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){

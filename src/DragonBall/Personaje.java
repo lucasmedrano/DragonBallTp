@@ -8,13 +8,24 @@ public abstract class Personaje {
     protected int costo_ataque_especial;
     protected int costo_transformacion_1;
     protected int costo_transformacion_2;
+    protected Equipo equipo;
     protected Ubicacion ubicacion;
     protected Tablero tablero;
+    protected int vida_max;
     
     
     public Personaje(Tablero tablero_de_juego){
         this.ki = 0;
         this.tablero = tablero_de_juego;
+    }
+    
+    
+    public void asignarEquipo(Equipo equipo){
+    	this.equipo = equipo;
+    }
+    
+    public int obtenerVidaMax(){
+    	return this.vida_max;
     }
     
     public void aumentarKi(int cantidad){
@@ -121,7 +132,6 @@ public abstract class Personaje {
 	}
 	
 	public void disminuirVida(int disminucion_de_vida) {
-		
 		this.vida -= disminucion_de_vida;
 	}
 	
