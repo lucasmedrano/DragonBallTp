@@ -41,7 +41,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void testMoverArribaPersonaje() {
+	public void testMoverArribaPersonaje() throws InhabilitadoError {
 		
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
@@ -63,7 +63,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void testMoverArribaPersonajeMal(){
+	public void testMoverArribaPersonajeMal() throws InhabilitadoError{
 		
 		boolean prueba = false;
 		
@@ -89,7 +89,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void testMoverUnPersonajeAUnCasilleroOcupado(){
+	public void testMoverUnPersonajeAUnCasilleroOcupado() throws InhabilitadoError{
 		boolean prueba = false;
 		
 		Tablero tablero = new Tablero();
@@ -164,7 +164,7 @@ public class DragonBallTests {
 	
 	
 	@Test
-	public void ubicar_transformar_y_mover_personaje() {
+	public void ubicar_transformar_y_mover_personaje() throws InhabilitadoError {
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		try{
@@ -191,7 +191,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void ubicar_transformar_y_mover_personajeMal() {
+	public void ubicar_transformar_y_mover_personajeMal() throws InhabilitadoError {
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		try{
@@ -275,7 +275,7 @@ public class DragonBallTests {
 	
 	
 	@Test
-	public void atacar_respetando_distancias(){
+	public void atacar_respetando_distancias() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell = new Cell(tablero);
@@ -309,7 +309,7 @@ public class DragonBallTests {
 	
 	
 	@Test
-	public void AtacarAUnEnemigoDeMayorPoderDePelea(){
+	public void AtacarAUnEnemigoDeMayorPoderDePelea() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
 		Gohan gohan = new Gohan(tablero);
 		Cell cell = new Cell(tablero);
@@ -335,7 +335,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void atacar_sin_respetar_distancias(){
+	public void atacar_sin_respetar_distancias() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell = new Cell(tablero);
@@ -544,7 +544,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void cell_puede_absorber_vida(){
+	public void cell_puede_absorber_vida() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
 		Cell cell = new Cell(tablero);
 		Goku goku = new Goku(tablero);
@@ -577,7 +577,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void cell_puede_absorber_vidas_y_transformase(){
+	public void cell_puede_absorber_vidas_y_transformase() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
 		Cell cell = new Cell(tablero);
 		Goku goku = new Goku(tablero);
@@ -617,12 +617,13 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuAAtacar() throws PosicionInadecuada, IncapacidadDeAtacar{
+	public void	convertirEnChocolateInvalidaAGokuAAtacar() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
 		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
 		majinBoo.ubicarEn(2, 2);
+		majinBoo.aumentarKi(50);
 		majinBoo.ataqueEspecial(goku);
 
 		try {
@@ -633,13 +634,14 @@ public class DragonBallTests {
 	}
 
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuAMoverse() throws PosicionInadecuada, IncapacidadDeAtacar{
+	public void	convertirEnChocolateInvalidaAGokuAMoverse() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
 		
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
 		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
 		majinBoo.ubicarEn(2, 2);
+		majinBoo.aumentarKi(50);
 		majinBoo.ataqueEspecial(goku);
 		
 		try {
@@ -652,13 +654,14 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void	convertirEnChocolateInvalidaAGokuPor3Turnos() throws PosicionInadecuada, IncapacidadDeAtacar{
+	public void	convertirEnChocolateInvalidaAGokuPor3Turnos() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
 		
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		goku.ubicarEn(1, 1);
 		MajinBoo majinBoo = new MajinBoo(tablero);
 		majinBoo.ubicarEn(2, 2);
+		majinBoo.aumentarKi(50);
 		majinBoo.ataqueEspecial(goku);
 		int i=0;
 		do {
@@ -668,31 +671,27 @@ public class DragonBallTests {
 				goku.moverArriba();
 				goku.ataqueBasico(majinBoo);				//Hay que ver si son 3 turnos de este equipo inmovilizado o si son 3 turnos 
 	  		} catch (InhabilitadoError e) {					//en total contando el del equipo contrario y por lo tanto serian 2 turnos sin hacer nada
-	  			fail("Personaje Inutilizable");
+	  			Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
 	  		}
 			i++;
 		}while(i<=3);
 	}
 		
 	@Test
-	public void ubicarAGokuYVerificarQueSuDanioAumentaConAtaqueBasico(){
+	public void ubicarAGokuYVerificarQueSuDanioAumenta() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
+		
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell= new Cell(tablero);
-		int vidaInicialGoku=goku.obtenerVida();
-		int vidaCellInicial=cell.obtenerVida();
+		goku.ubicarEn(1, 1);
+		cell.ubicarEn(2, 1);
+		goku.aumentarKi(50);
+		goku.disminuirVida(400);
+		int vida_inicial_cell = cell.obtenerVida();
 		goku.ataqueBasico(cell);
-		int vidaCellAtaqueGokuFuerte=cell.obtenerVida();
-		int vidaCriticaGoku=(vidaInicialGoku*29/100);
-		goku.modificarVida(vidaCriticaGoku);
-		cell.modificarVida(vidaCellInicial);
-		goku.ataqueBasico(cell);
-		int vidaCellAtaqueGokuDebil=cell.obtenerVida();
-		
-		Assert.assertEquals((vidaCellAtaqueGokuFuerte+vidaCellAtaqueGokuFuerte*20/100),vidaCellAtaqueGokuDebil);
-		
-
-		
+		goku.ataqueEspecial(cell);
+		int vida_cell = cell.obtenerVida();
+		Assert.assertTrue( "Los ataques hicieron un 20% mas de danio", vida_inicial_cell == vida_cell + 60);
 	}
 		
 	

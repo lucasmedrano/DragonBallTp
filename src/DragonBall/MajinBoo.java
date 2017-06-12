@@ -35,10 +35,12 @@ public class MajinBoo extends Personaje{
 		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
 	
-	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
+	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
 		
-		if (this.tablero.estanARangoDeAtaque(this, enemigo)){
-			
+		if (this.estaInmovilizado()) throw new InhabilitadoError();
+		if (this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
+			enemigo.turnos_inmovilizado = 3;
+			this.ki -= this.costo_ataque_especial;
 		}else throw new IncapacidadDeAtacar();
 	}
 }

@@ -12,11 +12,12 @@ public abstract class Personaje {
     protected Ubicacion ubicacion;
     protected Tablero tablero;
     protected int vida_max;
-    
+    protected int turnos_inmovilizado;
     
     public Personaje(Tablero tablero_de_juego){
         this.ki = 0;
         this.tablero = tablero_de_juego;
+        this.turnos_inmovilizado = 0;
     }
     
     
@@ -59,8 +60,13 @@ public abstract class Personaje {
     	}else throw new PosicionInadecuada();
     }
     
-    public void moverArriba() throws PosicionInadecuada{
+    public boolean estaInmovilizado(){
+    	return this.turnos_inmovilizado > 0;
+    }
+    
+    public void moverArriba() throws PosicionInadecuada, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() + 1;
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
     	
@@ -72,8 +78,9 @@ public abstract class Personaje {
     	
     }
     
-    public void moverAbajo() throws PosicionInadecuada{
+    public void moverAbajo() throws PosicionInadecuada, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() - 1;
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
     	
@@ -84,9 +91,12 @@ public abstract class Personaje {
     	else throw new PosicionInadecuada();
     	
     }
-
-    public void moverDerecha() throws PosicionInadecuada{
+    
+   
+    
+    public void moverDerecha() throws PosicionInadecuada, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() + 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
     	
@@ -97,8 +107,9 @@ public abstract class Personaje {
     	else throw new PosicionInadecuada();
     }
     
-    public void moverIzquierda() throws PosicionInadecuada{
+    public void moverIzquierda() throws PosicionInadecuada, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() - 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
     	
@@ -110,8 +121,9 @@ public abstract class Personaje {
     	
     }
     
-    public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar{
+    public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (this.tablero.estanARangoDeAtaque(this, enemigo)){
     		int poder_de_pelea = this.obtenerPoderDePelea();
     		int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
@@ -121,8 +133,9 @@ public abstract class Personaje {
     	}else throw new IncapacidadDeAtacar();
     }
     
-    public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
+    public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
+    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
     		int ataque_especial = this.obtenerPoderDePeleaEspecial();
     		int poder_de_pelea = this.obtenerPoderDePelea();
