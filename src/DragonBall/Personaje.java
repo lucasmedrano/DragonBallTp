@@ -113,16 +113,24 @@ public abstract class Personaje {
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar{
     	
     	if (this.tablero.estanARangoDeAtaque(this, enemigo)){
-    		int ataque_basico = this.obtenerPoderDePelea();
-    		enemigo.vida = enemigo.vida - ataque_basico;
+    		int poder_de_pelea = this.obtenerPoderDePelea();
+    		int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
+    		if(poder_de_pelea < poder_de_pelea_enemigo){
+    			enemigo.vida = enemigo.vida - (poder_de_pelea - ((poder_de_pelea*20)/100));
+    		}else enemigo.vida -= poder_de_pelea;
     	}else throw new IncapacidadDeAtacar();
     }
     
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
     	
-    	if(this.tablero.estanARangoDeAtaque(this, enemigo)){
+    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
     		int ataque_especial = this.obtenerPoderDePeleaEspecial();
-    		enemigo.vida= enemigo.vida - ataque_especial;
+    		int poder_de_pelea = this.obtenerPoderDePelea();
+    		int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
+    		if(poder_de_pelea < poder_de_pelea_enemigo){
+    			enemigo.vida = enemigo.vida - (ataque_especial - ((ataque_especial*20)/100));
+    		}else enemigo.vida -= ataque_especial;
+    		this.ki -= this.costo_ataque_especial;
     	}else throw new IncapacidadDeAtacar();
     }
     

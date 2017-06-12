@@ -34,4 +34,11 @@ public class MajinBoo extends Personaje{
 		EstadoMajinBooOriginal nuevo_estado = new EstadoMajinBooOriginal();
 		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
+	
+	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
+		
+		if (this.tablero.estanARangoDeAtaque(this, enemigo)){
+			
+		}else throw new IncapacidadDeAtacar();
+	}
 }

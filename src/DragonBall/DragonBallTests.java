@@ -307,6 +307,33 @@ public class DragonBallTests {
 		Assert.assertEquals(480, cell.obtenerVida());
 	}
 	
+	
+	@Test
+	public void AtacarAUnEnemigoDeMayorPoderDePelea(){
+		Tablero tablero = new Tablero();
+		Gohan gohan = new Gohan(tablero);
+		Cell cell = new Cell(tablero);
+		
+		try{
+			gohan.ubicarEn(1,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubic� el personaje");
+		}
+		try{
+			cell.ubicarEn(2,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubic� el personaje");
+		}
+		
+		try{
+			gohan.ataqueBasico(cell);
+		}
+		catch (IncapacidadDeAtacar e){
+			Assert.fail("No ataco");
+		}
+		Assert.assertEquals(488, cell.obtenerVida());
+	}
+	
 	@Test
 	public void atacar_sin_respetar_distancias(){
 		Tablero tablero = new Tablero();
