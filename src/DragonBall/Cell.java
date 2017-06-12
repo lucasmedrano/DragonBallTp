@@ -39,8 +39,8 @@ public class Cell extends Personaje{
 	    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
 	    		int ataque_especial = this.obtenerPoderDePeleaEspecial();
 	    		enemigo.vida= enemigo.vida - ataque_especial;
-	    		if (ataque_especial + this.vida > 500){
-	    			this.vida = 500;
+	    		if (ataque_especial + this.vida > this.vida_max){
+	    			this.vida = this.vida_max;
 	    		}else this.vida += ataque_especial;
 	    		this.ki -= this.costo_ataque_especial;
 	    	}else throw new IncapacidadDeAtacar();
