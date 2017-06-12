@@ -16,9 +16,8 @@ public class Cell extends Personaje{
 	
 	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		
-		if (this.ki >= costo_de_transformacion){
+		if (this.vidas_absorbidas >= costo_de_transformacion){
 			this.estado = nuevo_estado;
-			this.ki = this.ki - costo_de_transformacion;
 		}
 		else throw new IncapacidadParaTransformacion();
 	}
@@ -34,4 +33,16 @@ public class Cell extends Personaje{
 		EstadoCellPerfecto nuevo_estado = new EstadoCellPerfecto();
 		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
+	
+	 public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar{
+	    	
+	    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
+	    		int ataque_especial = this.obtenerPoderDePeleaEspecial();
+	    		enemigo.vida= enemigo.vida - ataque_especial;
+	    		if (ataque_especial + this.vida > this.vida_max){
+	    			this.vida = this.vida_max;
+	    		}else this.vida += ataque_especial;
+	    		this.ki -= this.costo_ataque_especial;
+	    	}else throw new IncapacidadDeAtacar();
+	    }
 }
