@@ -23,17 +23,20 @@ public class MajinBoo extends Personaje{
 			else throw new IncapacidadParaTransformacion();
 	}
 	
+	
 	public void transformar_1() throws IncapacidadParaTransformacion{
 		
 		EstadoMajinBooMalo nuevo_estado = new EstadoMajinBooMalo();
 		this.transformar(this.costo_transformacion_1, nuevo_estado);
 	}
 	
+	
 	public void transformar_2() throws IncapacidadParaTransformacion{
 		
 		EstadoMajinBooOriginal nuevo_estado = new EstadoMajinBooOriginal();
 		this.transformar(this.costo_transformacion_2, nuevo_estado);
 	}
+	
 	
 	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
 		
