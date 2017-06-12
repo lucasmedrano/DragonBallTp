@@ -54,5 +54,4 @@ public class Equipo {
 		
 		return companieros;
 	}
-	
 }

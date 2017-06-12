@@ -1,5 +1,6 @@
 package DragonBall;
 
-public class PersonajeInvalido extends Exception {
+public class PersonajeInvalido extends Exception{
 
 }
+

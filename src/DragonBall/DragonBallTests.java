@@ -694,5 +694,21 @@ public class DragonBallTests {
 		Assert.assertTrue( "Los ataques hicieron un 20% mas de danio", vida_inicial_cell == vida_cell + 60);
 	}
 		
+	@Test	
+	public void pasarAJugadorSiguienteCambiaDeJugador(){
+		Juego juego=new Juego();
+		Jugador jugador1=juego.jugadorSiguiente();
+		Jugador jugador2=juego.jugadorSiguiente();
+		Assert.assertTrue(jugador1!=jugador2);
+	}
 	
+	@Test	
+	public void pasarAJugadorSiguienteDosVecesVuelveAlMismoJugador(){
+		Juego juego=new Juego();
+		Jugador jugador1=juego.jugadorSiguiente();
+		Jugador jugador2=juego.jugadorSiguiente();
+		Jugador jugador3=juego.jugadorSiguiente();
+		Assert.assertTrue(jugador3==jugador1);
+	}
+		
 }
