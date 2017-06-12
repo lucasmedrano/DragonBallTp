@@ -668,5 +668,21 @@ public class DragonBallTests {
 		
 	}
 		
+	@Test	
+	public void pasarAJugadorSiguienteCambiaDeJugador(){
+		Juego juego=new Juego();
+		Jugador jugador1=juego.jugadorSiguiente();
+		Jugador jugador2=juego.jugadorSiguiente();
+		Assert.assertTrue(jugador1!=jugador2);
+	}
 	
+	@Test	
+	public void pasarAJugadorSiguienteDosVecesVuelveAlMismoJugador(){
+		Juego juego=new Juego();
+		Jugador jugador1=juego.jugadorSiguiente();
+		Jugador jugador2=juego.jugadorSiguiente();
+		Jugador jugador3=juego.jugadorSiguiente();
+		Assert.assertTrue(jugador3==jugador1);
+	}
+		
 }
