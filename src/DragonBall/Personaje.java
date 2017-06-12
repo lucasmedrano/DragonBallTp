@@ -121,15 +121,21 @@ public abstract class Personaje {
     	
     }
     
+    public int calculadorAtaque(int ataque, Personaje enemigo){
+		
+		int poder_de_pelea = this.obtenerPoderDePelea();
+    	int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
+    	if(poder_de_pelea < poder_de_pelea_enemigo) return ataque - ((ataque*20)/100);
+		return ataque;
+	}
+    
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (this.tablero.estanARangoDeAtaque(this, enemigo)){
-    		int poder_de_pelea = this.obtenerPoderDePelea();
-    		int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
-    		if(poder_de_pelea < poder_de_pelea_enemigo){
-    			enemigo.vida = enemigo.vida - (poder_de_pelea - ((poder_de_pelea*20)/100));
-    		}else enemigo.vida -= poder_de_pelea;
+    		int ataque = this.obtenerPoderDePelea();
+    		int ataque_basico = this.calculadorAtaque(ataque, enemigo);
+    		enemigo.vida -= ataque_basico;
     	}else throw new IncapacidadDeAtacar();
     }
     
@@ -137,12 +143,9 @@ public abstract class Personaje {
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
-    		int ataque_especial = this.obtenerPoderDePeleaEspecial();
-    		int poder_de_pelea = this.obtenerPoderDePelea();
-    		int poder_de_pelea_enemigo = enemigo.obtenerPoderDePelea();
-    		if(poder_de_pelea < poder_de_pelea_enemigo){
-    			enemigo.vida = enemigo.vida - (ataque_especial - ((ataque_especial*20)/100));
-    		}else enemigo.vida -= ataque_especial;
+    		int ataque = this.obtenerPoderDePeleaEspecial();
+    		int ataque_especial = this.calculadorAtaque(ataque, enemigo);
+    		enemigo.vida -= ataque_especial;
     		this.ki -= this.costo_ataque_especial;
     	}else throw new IncapacidadDeAtacar();
     }
