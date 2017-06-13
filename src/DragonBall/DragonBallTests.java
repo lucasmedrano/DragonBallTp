@@ -41,7 +41,7 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void testMoverArribaAGokuNormalMueveDosCasillerosArriba() throws InhabilitadoError {
+	public void testMoverArribaAPersonaje() throws InhabilitadoError {
 		
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
@@ -59,31 +59,8 @@ public class DragonBallTests {
 		
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal es correcta",7, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion vertical es correcta",7, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals("La ubicacion vertical es correcta",6, ubicacion.obtenerUbicacionVertical());
 	}
-	
-	@Test
-	public void testMoverAbajoAFreezerNormalMueve4CasillerosAbajo() throws InhabilitadoError {
-		
-		Tablero tablero = new Tablero();
-		Freezer freezer = new Freezer(tablero);
-		try{
-			freezer.ubicarEn(7,5);
-		}
-		catch (PosicionInadecuada e){
-			Assert.fail("No se ubic� el personaje");
-		}
-		try{
-			freezer.moverAbajo();
-		}catch (PosicionInadecuada e){
-			Assert.fail("No se puede mover el personaje");
-		}
-		
-		Ubicacion ubicacion = freezer.obtenerUbicacion();
-		Assert.assertEquals("La ubicacion horizontal es correcta",7, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion vertical es correcta",1, ubicacion.obtenerUbicacionVertical());
-	}
-	
 	
 	@Test
 	public void testMoverArribaPersonajeMal() throws InhabilitadoError{
@@ -107,7 +84,7 @@ public class DragonBallTests {
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal es incorrecta",5, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion horizontal es incorrecta",29, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals("La ubicacion vertical es incorrecta",29, ubicacion.obtenerUbicacionVertical());
 		Assert.assertTrue(prueba);
 	}
 	
@@ -125,7 +102,7 @@ public class DragonBallTests {
 		}
 		MajinBoo boo = new MajinBoo(tablero);
 		try{
-			boo.ubicarEn(9,5);
+			boo.ubicarEn(8,5);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
@@ -140,7 +117,7 @@ public class DragonBallTests {
 		Assert.assertEquals("La ubicacion horizontal fallo",7, ubicacion.obtenerUbicacionHorizontal());
 		Assert.assertEquals("La ubicacion vertical fallo",5, ubicacion.obtenerUbicacionVertical());
 		Ubicacion ubicacion2 = boo.obtenerUbicacion();
-		Assert.assertEquals("La ubicacion horizontal fallo",9, ubicacion2.obtenerUbicacionHorizontal());
+		Assert.assertEquals("La ubicacion horizontal fallo",8, ubicacion2.obtenerUbicacionHorizontal());
 		Assert.assertEquals("La ubicacion vertical fallo",5, ubicacion2.obtenerUbicacionVertical());
 		Assert.assertTrue(prueba);
 	}
@@ -210,7 +187,7 @@ public class DragonBallTests {
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals(7, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals(0, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals(4, ubicacion.obtenerUbicacionVertical());
 	}
 	
 	@Test
