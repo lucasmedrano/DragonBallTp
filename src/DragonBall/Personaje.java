@@ -67,7 +67,7 @@ public abstract class Personaje {
     public void moverArriba() throws PosicionInadecuada, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() + 1;
+    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() + obtenerVelocidad();
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
     	
     	if (nueva_ubicacion <= (this.tablero.obtenerTamanio() - 1) && this.tablero.noEstaOcupada(x, nueva_ubicacion)){
@@ -78,10 +78,11 @@ public abstract class Personaje {
     	
     }
     
+    
     public void moverAbajo() throws PosicionInadecuada, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() - 1;
+    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() -this.obtenerVelocidad();
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
     	
     	if (nueva_ubicacion >= 0 && this.tablero.noEstaOcupada(x, nueva_ubicacion)){
@@ -92,12 +93,10 @@ public abstract class Personaje {
     	
     }
     
-   
-    
     public void moverDerecha() throws PosicionInadecuada, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() + 1;
+    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() + this.obtenerVelocidad();
     	int y = this.ubicacion.obtenerUbicacionVertical();
     	
     	if (nueva_ubicacion <= (this.tablero.obtenerTamanio() - 1) && this.tablero.noEstaOcupada(nueva_ubicacion, y)){
@@ -110,7 +109,7 @@ public abstract class Personaje {
     public void moverIzquierda() throws PosicionInadecuada, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() - 1;
+    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() - obtenerVelocidad();
     	int y = this.ubicacion.obtenerUbicacionVertical();
     	
     	if (nueva_ubicacion >= 0 && this.tablero.noEstaOcupada(nueva_ubicacion, y)){
