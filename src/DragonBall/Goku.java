@@ -11,14 +11,6 @@ public class Goku extends Personaje {
 		this.estado = new EstadoGokuNormal();
 	}
 	
-	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
-		
-		if (this.ki >= costo_de_transformacion){
-			this.estado = nuevo_estado;
-			this.ki = this.ki - costo_de_transformacion;
-		}
-		else throw new IncapacidadParaTransformacion();
-	}
 	
 	public void transformar_1() throws IncapacidadParaTransformacion{
 		
@@ -43,5 +35,5 @@ public class Goku extends Personaje {
     	if (this.vida < ((this.vida_max*30)/100)) suma_de_poder = ((ataque*20)/100);
 		return ataque + suma_de_poder - baja_de_poder;
 	}
-	
+
 }

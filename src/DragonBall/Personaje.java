@@ -13,11 +13,19 @@ public abstract class Personaje {
     protected Tablero tablero;
     protected int vida_max;
     protected int turnos_inmovilizado;
+    protected int cantidadDeMovimientos;
+    protected int cantidadDeMovimientosPermitidos;
+    protected boolean finDeMovimiento;
+    protected boolean ataco;
+    
     
     public Personaje(Tablero tablero_de_juego){
         this.ki = 0;
         this.tablero = tablero_de_juego;
         this.turnos_inmovilizado = 0;
+        this.cantidadDeMovimientos=0;
+        this.finDeMovimiento=false;
+        this.ataco=false;
     }
     
     
@@ -64,61 +72,34 @@ public abstract class Personaje {
     	return this.turnos_inmovilizado > 0;
     }
     
-    public void moverArriba() throws PosicionInadecuada, InhabilitadoError{
+    public void moverArriba() throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
     	
-    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() + 1;
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
-    	
-    	if (nueva_ubicacion <= (this.tablero.obtenerTamanio() - 1) && this.tablero.noEstaOcupada(x, nueva_ubicacion)){
-    		this.tablero.nuevaUbicacion(this,x,nueva_ubicacion);
-    		this.ubicacion.cambiarUbicacion(x, nueva_ubicacion);
-    	}
-    	else throw new PosicionInadecuada();
-    	
+    	this.mover(x,nueva_ubicacion);	
     }
     
-    public void moverAbajo() throws PosicionInadecuada, InhabilitadoError{
+    
+    public void moverAbajo() throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
     	
-    	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() - 1;
+    	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() -1;
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
-    	
-    	if (nueva_ubicacion >= 0 && this.tablero.noEstaOcupada(x, nueva_ubicacion)){
-    		this.tablero.nuevaUbicacion(this,x,nueva_ubicacion);
-    		this.ubicacion.cambiarUbicacion(x, nueva_ubicacion);
-    	}
-    	else throw new PosicionInadecuada();
+    	mover(x,nueva_ubicacion);
     	
     }
     
-   
-    
-    public void moverDerecha() throws PosicionInadecuada, InhabilitadoError{
+    public void moverDerecha() throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
     	
-    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() + 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
-    	
-    	if (nueva_ubicacion <= (this.tablero.obtenerTamanio() - 1) && this.tablero.noEstaOcupada(nueva_ubicacion, y)){
-    		this.tablero.nuevaUbicacion(this,nueva_ubicacion,y);
-    		this.ubicacion.cambiarUbicacion(nueva_ubicacion, y);
-    	}
-    	else throw new PosicionInadecuada();
+    	mover(nueva_ubicacion,y);
     }
     
-    public void moverIzquierda() throws PosicionInadecuada, InhabilitadoError{
+    public void moverIzquierda() throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
     	
-    	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() - 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
-    	
-    	if (nueva_ubicacion >= 0 && this.tablero.noEstaOcupada(nueva_ubicacion, y)){
-    		this.tablero.nuevaUbicacion(this,nueva_ubicacion, y);
-    		this.ubicacion.cambiarUbicacion(nueva_ubicacion, y);
-    	}
-    	else throw new PosicionInadecuada();
-    	
+    	mover(nueva_ubicacion,y);
     }
     
     public int calculadorAtaque(int ataque, Personaje enemigo){
@@ -132,17 +113,21 @@ public abstract class Personaje {
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	if (this.tablero.estanARangoDeAtaque(this, enemigo)){
+    	if(this.tablero.estanARangoDeAtaque(this, enemigo)&& !equipo.ataco()){
+    		equipo.incorporarAtaque();
+    		this.ataco=true;
     		int ataque = this.obtenerPoderDePelea();
-    		int ataque_basico = this.calculadorAtaque(ataque, enemigo);
-    		enemigo.vida -= ataque_basico;
-    	}else throw new IncapacidadDeAtacar();
+   			int ataque_basico = this.calculadorAtaque(ataque, enemigo);
+   			enemigo.vida -= ataque_basico;
+   		}else throw new IncapacidadDeAtacar();
     }
     
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
+    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
+    		equipo.incorporarAtaque();
+    		this.ataco=true;
     		int ataque = this.obtenerPoderDePeleaEspecial();
     		int ataque_especial = this.calculadorAtaque(ataque, enemigo);
     		enemigo.vida -= ataque_especial;
@@ -159,4 +144,41 @@ public abstract class Personaje {
 		this.vida -= disminucion_de_vida;
 	}
 	
+	public void incrementarMovimientos(){
+		this.cantidadDeMovimientos++;
+	}
+	
+	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
+		
+		if (this.ki >= costo_de_transformacion){
+			this.estado = nuevo_estado;
+			this.ki = this.ki - costo_de_transformacion;
+		}
+		else throw new IncapacidadParaTransformacion();
+	}
+	
+	private void mover(int x, int y) throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
+		
+		if (this.estaInmovilizado()) throw new InhabilitadoError();
+    	if (this.finDeMovimiento) throw new IncapacidadParaMoverse();
+    	
+		if (this.tablero.esUbicacionValida(x,y) && this.tablero.noEstaOcupada(x, y)){
+    		if (this.cantidadDeMovimientos<this.obtenerVelocidad()){
+    			this.cantidadDeMovimientos++;
+    		}
+    		if (this.cantidadDeMovimientos==this.obtenerVelocidad()){
+    			equipo.incorporarMovimiento();
+   				this.finDeMovimiento=true;
+   			}
+    		
+    		this.tablero.nuevaUbicacion(this,x,y);
+    		this.ubicacion.cambiarUbicacion(x,y);
+    	}else throw new PosicionInadecuada();
+	}
+	
+	public void finalizarTurno(){
+		this.ataco=false;
+		this.finDeMovimiento=false;
+		this.cantidadDeMovimientos=0;
+	}
 }

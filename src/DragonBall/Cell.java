@@ -37,7 +37,7 @@ public class Cell extends Personaje{
 	 public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
 	    	
 		 if (this.estaInmovilizado()) throw new InhabilitadoError();
-		 if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
+		 if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
 			 int ataque = this.obtenerPoderDePeleaEspecial();
 			 int ataque_especial = this.calculadorAtaque(ataque, enemigo);
 			 if (ataque_especial + this.vida > this.vida_max){
