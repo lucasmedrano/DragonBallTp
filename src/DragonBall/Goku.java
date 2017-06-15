@@ -44,24 +44,4 @@ public class Goku extends Personaje {
 		return ataque + suma_de_poder - baja_de_poder;
 	}
 	
-	 public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
-	    	
-	    if (this.estaInmovilizado()) throw new InhabilitadoError();
-	    if(this.tablero.estanARangoDeAtaque(this, enemigo)){
-	    	int ataque = this.obtenerPoderDePelea();
-	    	int ataque_basico = this.calculadorAtaque(ataque, enemigo);
-	    	enemigo.vida -= ataque_basico;
-	    }else throw new IncapacidadDeAtacar();
-	  }
-	    
-	 public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
-	    	
-	    if (this.estaInmovilizado()) throw new InhabilitadoError();
-	    if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial){
-	    	int ataque = this.obtenerPoderDePeleaEspecial();
-	    	int ataque_especial = this.calculadorAtaque(ataque, enemigo);
-	    	this.ki -= this.costo_ataque_especial;
-	    	enemigo.vida -= ataque_especial;
-	    }else throw new IncapacidadDeAtacar();
-	 }
 }
