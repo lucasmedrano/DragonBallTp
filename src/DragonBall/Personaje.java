@@ -84,7 +84,7 @@ public abstract class Personaje {
     	
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionVertical() -1;
     	int x = this.ubicacion.obtenerUbicacionHorizontal();
-    	mover(x,nueva_ubicacion);
+    	this.mover(x,nueva_ubicacion);
     	
     }
     
@@ -92,14 +92,14 @@ public abstract class Personaje {
     	
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() + 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
-    	mover(nueva_ubicacion,y);
+    	this.mover(nueva_ubicacion,y);
     }
     
     public void moverIzquierda() throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
     	
     	int nueva_ubicacion = this.ubicacion.obtenerUbicacionHorizontal() - 1;
     	int y = this.ubicacion.obtenerUbicacionVertical();
-    	mover(nueva_ubicacion,y);
+    	this.mover(nueva_ubicacion,y);
     }
     
     public int calculadorAtaque(int ataque, Personaje enemigo){
