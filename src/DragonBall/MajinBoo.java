@@ -34,6 +34,8 @@ public class MajinBoo extends Personaje{
 		
 		if (this.estaInmovilizado()) throw new InhabilitadoError();
 		if (this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
+			if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
+    		equipo.incorporarAtaque();
 			enemigo.turnos_inmovilizado = 4;
 			this.ki -= this.costo_ataque_especial;
 		}else throw new IncapacidadDeAtacar();

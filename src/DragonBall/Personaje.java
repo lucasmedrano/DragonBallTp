@@ -16,7 +16,7 @@ public abstract class Personaje {
     protected int cantidadDeMovimientos;
     protected int cantidadDeMovimientosPermitidos;
     protected boolean finDeMovimiento;
-    protected boolean ataco;
+    public boolean seEstaMoviendo;
     
     
     public Personaje(Tablero tablero_de_juego){
@@ -25,7 +25,7 @@ public abstract class Personaje {
         this.turnos_inmovilizado = 0;
         this.cantidadDeMovimientos=0;
         this.finDeMovimiento=false;
-        this.ataco=false;
+        this.seEstaMoviendo=false;
     }
     
     
@@ -113,9 +113,11 @@ public abstract class Personaje {
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
+    	
+    	
     	if(this.tablero.estanARangoDeAtaque(this, enemigo)&& !equipo.ataco()){
+    		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
     		equipo.incorporarAtaque();
-    		this.ataco=true;
     		int ataque = this.obtenerPoderDePelea();
    			int ataque_basico = this.calculadorAtaque(ataque, enemigo);
    			enemigo.vida -= ataque_basico;
@@ -125,9 +127,10 @@ public abstract class Personaje {
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
+    	
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
+    		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
     		equipo.incorporarAtaque();
-    		this.ataco=true;
     		int ataque = this.obtenerPoderDePeleaEspecial();
     		int ataque_especial = this.calculadorAtaque(ataque, enemigo);
     		enemigo.vida -= ataque_especial;
@@ -160,11 +163,21 @@ public abstract class Personaje {
 	private void mover(int x, int y) throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
 		
 		if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	if (this.finDeMovimiento) throw new IncapacidadParaMoverse();
+		
+		if (equipo.otrosCompanierosSeEstanMoviendo(this)) throw new IncapacidadParaMoverse();
+		
+		if (equipo.seMovioYAtaco()) throw new IncapacidadParaMoverse();
+		
+		if (this.finDeMovimiento) throw new IncapacidadParaMoverse();
+		
+    	
+		if (equipo.otrosCompanierosSeEstanMoviendo(this)) throw new IncapacidadParaMoverse();
     	
 		if (this.tablero.esUbicacionValida(x,y) && this.tablero.noEstaOcupada(x, y)){
     		if (this.cantidadDeMovimientos<this.obtenerVelocidad()){
     			this.cantidadDeMovimientos++;
+    			equipo.moverse();
+    			this.seEstaMoviendo();
     		}
     		if (this.cantidadDeMovimientos==this.obtenerVelocidad()){
     			equipo.incorporarMovimiento();
@@ -176,9 +189,17 @@ public abstract class Personaje {
     	}else throw new PosicionInadecuada();
 	}
 	
+	public void seEstaMoviendo(){
+		seEstaMoviendo=true;
+	}
+	
+	public boolean enMovimiento(){
+		return this.seEstaMoviendo;
+	}
+	
 	public void finalizarTurno(){
-		this.ataco=false;
-		this.finDeMovimiento=false;
 		this.cantidadDeMovimientos=0;
+		this.finDeMovimiento=false;
+	    this.seEstaMoviendo=false;
 	}
 }

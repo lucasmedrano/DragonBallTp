@@ -1,15 +1,23 @@
 package DragonBall;
 
+import org.junit.Assert;
+
 public class Equipo {
 	private Personaje personaje1;
 	private Personaje personaje2;
 	private Personaje personaje3;
-	private boolean ataco;
+	private boolean ataco; 
 	private boolean seMovio;
+	private boolean enMovimiento;
+	private boolean inmovilizado;
+	private boolean seMovioYAtaco;
 	
 	public Equipo(){
 		this.ataco=false;
 		this.seMovio=false;
+		this.enMovimiento=false;
+		this.inmovilizado=false;
+		this.seMovioYAtaco=false;
 	}
 	
 	public void asignarPersonajes(Personaje personaje1, Personaje personaje2, Personaje personaje3){
@@ -91,9 +99,40 @@ public class Equipo {
 	public void finalizarTurno(){
 		this.ataco=false;
 		this.seMovio=false;
+		this.enMovimiento=false;
+		this.inmovilizado=false;
 		
 		personaje1.finalizarTurno();
 		personaje2.finalizarTurno();
 		personaje3.finalizarTurno();
+	}
+	
+	public boolean otrosCompanierosSeEstanMoviendo(Personaje personaje){
+		Personaje companiero1,companiero2;
+		Personaje[] companieros= new Personaje[2];
+		
+		try{
+			companieros=this.obtenerCompanieros(personaje);
+		}catch(PersonajeInvalido e){
+			Assert.fail("Compañero inexistente");
+		}
+		companiero1=companieros[0];
+		companiero2=companieros[1];
+		
+		return (companiero1.enMovimiento() | companiero2.enMovimiento());
+	}
+	public boolean seEstaMoviendo(){
+		return this.enMovimiento;
+	}
+	
+	public void moverse(){
+		this.enMovimiento=true;
+	}
+	
+	public void moverseYAtacar(){
+		seMovioYAtaco=true;
+	}	
+	public boolean seMovioYAtaco(){
+		return seMovioYAtaco;
 	}
 }
