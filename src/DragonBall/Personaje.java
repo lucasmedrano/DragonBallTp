@@ -184,7 +184,7 @@ public abstract class Personaje {
    				this.finDeMovimiento=true;
    			}
     		
-    		this.tablero.nuevaUbicacion(this,x,y);
+    		this.tablero.cambiarUbicacion(this,x,y);
     		this.ubicacion.cambiarUbicacion(x,y);
     	}else throw new PosicionInadecuada();
 	}
