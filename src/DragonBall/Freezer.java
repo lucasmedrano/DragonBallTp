@@ -11,15 +11,6 @@ public class Freezer extends Personaje{
 		this.estado = new EstadoFreezerNormal();
 	}
 	
-	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
-		
-		if (this.ki >= costo_de_transformacion){
-			this.estado = nuevo_estado;
-			this.ki = this.ki - costo_de_transformacion;
-		}
-		else throw new IncapacidadParaTransformacion();
-	}
-	
 	public void transformar_1() throws IncapacidadParaTransformacion{
 		
 		EstadoFreezerSegundaForma nuevo_estado = new EstadoFreezerSegundaForma();

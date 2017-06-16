@@ -17,8 +17,8 @@ public class DragonBallTests {
 			Assert.fail("No se ubic� el personaje");
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
-		Assert.assertEquals("La ubicacion horizontal fallo",7, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion vertical fallo",5, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals("La ubicacion horizontal es correcta",7, ubicacion.obtenerUbicacionHorizontal());
+		Assert.assertEquals("La ubicacion vertical es correcta",5, ubicacion.obtenerUbicacionVertical());
 	}
 	
 	@Test
@@ -40,85 +40,108 @@ public class DragonBallTests {
 	}
 	
 	@Test
-	public void testMoverArribaPersonaje() throws InhabilitadoError {
-		
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+	public void testMoverArribaAPersonaje() throws InhabilitadoError {
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku= new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
 		try{
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
 		}
-		try{
+		try {
 			goku.moverArriba();
-		}catch (PosicionInadecuada e){
-			Assert.fail("No se puede mover el personaje");
-		}
+		  }catch (IncapacidadParaMoverse e) {				  
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+				  fail("Inmovilizado, No puede atacar");
+		  }catch (PosicionInadecuada e){
+			      Assert.assertTrue("No se ubico al personaje",true);
+		  }
 		
 		Ubicacion ubicacion = goku.obtenerUbicacion();
-		Assert.assertEquals("La ubicacion horizontal fallo",7, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion verticalsi fallo",6, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals("La ubicacion horizontal es correcta",7, ubicacion.obtenerUbicacionHorizontal());
+		Assert.assertEquals("La ubicacion vertical es correcta",6, ubicacion.obtenerUbicacionVertical());
 	}
 	
 	@Test
 	public void testMoverArribaPersonajeMal() throws InhabilitadoError{
-		
-		boolean prueba = false;
-		
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku=new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
 		try{
 			goku.ubicarEn(5,29);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
 		}
-		try{
+		try {
 			goku.moverArriba();
-		}
-		
-		catch (PosicionInadecuada e) {
-			prueba = true;
-		}
+		  }catch (IncapacidadParaMoverse e) {				  
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+				  fail("Inmovilizado, No puede atacar");
+		  }catch (PosicionInadecuada e){
+			      Assert.assertTrue("No se ubico al personaje",true);
+		  }
+			
 		Ubicacion ubicacion = goku.obtenerUbicacion();
-		Assert.assertEquals(5, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals(29, ubicacion.obtenerUbicacionVertical());
-		Assert.assertTrue(prueba);
+		Assert.assertEquals("La ubicacion horizontal es incorrecta",5, ubicacion.obtenerUbicacionHorizontal());
+		Assert.assertEquals("La ubicacion vertical es incorrecta",29, ubicacion.obtenerUbicacionVertical());
 	}
 	
 	@Test
-	public void testMoverUnPersonajeAUnCasilleroOcupado() throws InhabilitadoError{
+	public void testMoverABooAUnCasilleroOcupadoPorGoku() throws InhabilitadoError{
 		boolean prueba = false;
 		
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku= new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		MajinBoo boo= new MajinBoo(tablero);
+		Cell cell=new Cell(tablero);
+		Freezer freezer=new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonajes(boo,cell, freezer);
 		try{
 			goku.ubicarEn(7,5);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
 		}
-		MajinBoo boo = new MajinBoo(tablero);
 		try{
 			boo.ubicarEn(8,5);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
 		}
-		try{
+		try {
 			boo.moverIzquierda();
-		}
-		catch (PosicionInadecuada e){
-			prueba = true;
-		}
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
+		  }catch (PosicionInadecuada e){
+		      Assert.assertTrue("No se ubico al personaje",true);
+		  }
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal fallo",7, ubicacion.obtenerUbicacionHorizontal());
 		Assert.assertEquals("La ubicacion vertical fallo",5, ubicacion.obtenerUbicacionVertical());
 		Ubicacion ubicacion2 = boo.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal fallo",8, ubicacion2.obtenerUbicacionHorizontal());
 		Assert.assertEquals("La ubicacion vertical fallo",5, ubicacion2.obtenerUbicacionVertical());
-		Assert.assertTrue(prueba);
 	}
 	
 		
@@ -164,8 +187,16 @@ public class DragonBallTests {
 	
 	@Test
 	public void ubicar_transformar_y_mover_personaje() throws InhabilitadoError {
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku= new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(freezer);
 		try{
 			goku.ubicarEn(7,5);
 		}
@@ -179,11 +210,15 @@ public class DragonBallTests {
 		catch (IncapacidadParaTransformacion e){
 			Assert.fail("Fallo la transfomracion");
 		}
-		try{
+		try {
 			goku.moverAbajo();
-		}catch (PosicionInadecuada e){
-			Assert.fail("No se puede mover el personaje");
-		}
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals(7, ubicacion.obtenerUbicacionHorizontal());
 		Assert.assertEquals(4, ubicacion.obtenerUbicacionVertical());
@@ -191,8 +226,13 @@ public class DragonBallTests {
 	
 	@Test
 	public void ubicar_transformar_y_mover_personajeMal() throws InhabilitadoError {
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku= new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
 		try{
 			goku.ubicarEn(29,5);
 		}
@@ -210,6 +250,8 @@ public class DragonBallTests {
 			goku.moverDerecha();
 		}catch (PosicionInadecuada e){
 			Assert.assertTrue("No se pudo mover", true);
+		}catch (IncapacidadParaMoverse e){
+			Assert.fail("No se puede mover");
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals(29, ubicacion.obtenerUbicacionHorizontal());
@@ -278,7 +320,10 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell = new Cell(tablero);
-		
+		Equipo equipo1=new Equipo();
+		Equipo equipo2=new Equipo();
+		equipo1.asignarPersonaje1(goku);
+		equipo2.asignarPersonaje2(cell);
 		try{
 			goku.ubicarEn(1,1);
 		}catch (PosicionInadecuada e){
@@ -312,6 +357,8 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();
 		Gohan gohan = new Gohan(tablero);
 		Cell cell = new Cell(tablero);
+		Equipo equipo= new Equipo();
+		equipo.asignarPersonaje1(gohan);
 		
 		try{
 			gohan.ubicarEn(1,1);
@@ -338,6 +385,10 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();
 		Goku goku = new Goku(tablero);
 		Cell cell = new Cell(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonaje1(goku);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(cell);
 		
 		try{
 			goku.ubicarEn(1,1);
@@ -545,8 +596,18 @@ public class DragonBallTests {
 	@Test
 	public void cell_puede_absorber_vida() throws InhabilitadoError{
 		Tablero tablero = new Tablero();
-		Cell cell = new Cell(tablero);
 		Goku goku = new Goku(tablero);
+		Equipo equipo1=new Equipo();
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		equipo1.asignarPersonajes(goku,gohan,piccolo);
+		
+		MajinBoo boo= new MajinBoo(tablero);
+		Cell cell=new Cell(tablero);
+		Freezer freezer=new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonajes(boo,cell, freezer);
+		
 		try{
 			cell.ubicarEn(1,5);
 		}catch (PosicionInadecuada e){
@@ -577,9 +638,15 @@ public class DragonBallTests {
 	
 	@Test
 	public void cell_puede_absorber_vidas_y_transformase() throws InhabilitadoError{
-		Tablero tablero = new Tablero();
+	
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Goku goku= new Goku(tablero);
+		Gohan gohan= new Gohan(tablero);
+		Piccolo piccolo= new Piccolo(tablero);
 		Cell cell = new Cell(tablero);
-		Goku goku = new Goku(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(gohan, cell, piccolo);
 		try{
 			cell.ubicarEn(5,5);
 		}catch (PosicionInadecuada e){
@@ -594,6 +661,7 @@ public class DragonBallTests {
 		try{
 			for(int i=0;i<8;i++){
 				cell.ataqueEspecial(goku);
+				equipo.finalizarTurno();
 			}
 		}catch (IncapacidadDeAtacar e){
 			Assert.fail("No pudo atacar");
@@ -620,16 +688,29 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
 		goku.ubicarEn(1, 1);
+		Equipo equipo1= new Equipo();
+		equipo1.asignarPersonaje1(goku);
 		MajinBoo majinBoo = new MajinBoo(tablero);
 		majinBoo.ubicarEn(2, 2);
+		Equipo equipo2= new Equipo();
+		equipo2.asignarPersonaje1(majinBoo);
 		majinBoo.aumentarKi(50);
-		majinBoo.ataqueEspecial(goku);
+		
+		try {
+			majinBoo.ataqueEspecial(goku);
+		  }catch (IncapacidadDeAtacar e) {
+			  fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
 
 		try {
-				goku.ataqueBasico(majinBoo);
-			  }catch (InhabilitadoError e) {
-				  Assert.assertTrue("No pudo atacar por estar inmovilizado", true);
-			  }
+			goku.ataqueBasico(majinBoo);
+			}catch (IncapacidadDeAtacar e) {
+			  fail("No puede atacar");
+			}catch (InhabilitadoError e){
+			  Assert.assertTrue("Inmovilizado, No puede atacar",true);
+			}
 	}
 
 	@Test
@@ -638,76 +719,616 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();		
 		Goku goku = new Goku(tablero);
 		goku.ubicarEn(1, 1);
+		Equipo equipo1= new Equipo();
+		equipo1.asignarPersonaje1(goku);
 		MajinBoo majinBoo = new MajinBoo(tablero);
 		majinBoo.ubicarEn(2, 2);
+		Equipo equipo2= new Equipo();
+		equipo2.asignarPersonaje1(majinBoo);
 		majinBoo.aumentarKi(50);
-		majinBoo.ataqueEspecial(goku);
 		
 		try {
-				goku.moverArriba();
-		  	} catch (InhabilitadoError e) {
-		  		Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
-		  		}
-		
-		
+			majinBoo.ataqueEspecial(goku);
+		  }catch (IncapacidadDeAtacar e) {
+			  fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+
+		try {
+			goku.moverArriba();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
 	}
 	
-	@Test
+	/*@Test
 	public void	convertirEnChocolateInvalidaAGokuPor3Turnos() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
 		
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
+		boolean gokuSeMovio=true;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Personaje majinBoo=new MajinBoo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, majinBoo);
 		goku.ubicarEn(1, 1);
-		MajinBoo majinBoo = new MajinBoo(tablero);
-		majinBoo.ubicarEn(2, 2);
+		gohan.ubicarEn(1,0);
+		piccolo.ubicarEn(3, 2);
+		majinBoo.ubicarEn(0, 0);
 		majinBoo.aumentarKi(50);
 		majinBoo.ataqueEspecial(goku);
-		int i=0;
-		do {
-			i++;
-			try {                                         //Modelar los turnos y ver que en 3 turnos pueda moverse
-			//Hasta dos acciones por equipo por turno//		//Chequear que el ki no aumente
-				goku.moverArriba();
-				goku.ataqueBasico(majinBoo);				//Hay que ver si son 3 turnos de este equipo inmovilizado o si son 3 turnos 
-	  		} catch (InhabilitadoError e) {					//en total contando el del equipo contrario y por lo tanto serian 2 turnos sin hacer nada
-	  			Assert.assertTrue("No pudo moverse por estar inmovilizado", true);
-	  		}
-			i++;
-		}while(i<=3);
-	}
+		try {
+			goku.moverArriba();
+			goku.moverArriba();
+			equipo.finalizarTurno();
+		}catch (IncapacidadParaMoverse e) {
+	
+		}catch (InhabilitadoError e){
+			fail("Inmovilizado");
+		}catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		}
+		
+		try {
+			goku.moverArriba();
+			goku.moverArriba();
+			equipo.finalizarTurno();
+		}catch (IncapacidadParaMoverse e) {
+	
+		}catch (InhabilitadoError e){
+			fail("Inmovilizado");
+		}catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		}
+		
+		try {
+			goku.moverArriba();
+			goku.moverArriba();
+			equipo.finalizarTurno();
+		}catch (IncapacidadParaMoverse e) {
+	
+		}catch (InhabilitadoError e){
+			fail("Inmovilizado");
+			gokuSeMovio=false;
+		}catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		}
+		
+		Assert.assertFalse(gokuSeMovio);
+	}*/
 		
 	@Test
 	public void ubicarAGokuYVerificarQueSuDanioAumenta() throws PosicionInadecuada, IncapacidadDeAtacar, InhabilitadoError{
-		
-		Tablero tablero = new Tablero();
-		Goku goku = new Goku(tablero);
-		Cell cell= new Cell(tablero);
+
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Personaje cell=new Cell(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
 		goku.ubicarEn(1, 1);
+		gohan.ubicarEn(1,0);
+		piccolo.ubicarEn(3, 2);
 		cell.ubicarEn(2, 1);
 		goku.aumentarKi(50);
 		goku.disminuirVida(400);
 		int vida_inicial_cell = cell.obtenerVida();
 		goku.ataqueBasico(cell);
+		equipo.finalizarTurno();
 		goku.ataqueEspecial(cell);
 		int vida_cell = cell.obtenerVida();
 		Assert.assertTrue( "Los ataques hicieron un 20% mas de danio", vida_inicial_cell == vida_cell + 60);
 	}
+	
+	@Test
+	public void equipoNoPuedeRealizarAtaqueBasicoDosVecesConDosPersonajesDiferentes(){
 		
-	@Test	
-	public void pasarAJugadorSiguienteCambiaDeJugador(){
-		Juego juego=new Juego();
-		Jugador jugador1=juego.jugadorSiguiente();
-		Jugador jugador2=juego.jugadorSiguiente();
-		Assert.assertTrue(jugador1!=jugador2);
+		boolean gohanAtaco=true;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Personaje cell= new Cell(tablero);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			gohan.ubicarEn(2,1);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			cell.ubicarEn(3,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			freezer.ubicarEn(2,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.ataqueBasico(cell);
+		  }catch (IncapacidadDeAtacar e) {
+			  Assert.fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue(equipo.ataco());
+		
+		try {
+			gohan.ataqueBasico(freezer);
+		  }catch (IncapacidadDeAtacar e) {
+			  gohanAtaco=false;
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue("Gohan no pudo atacar porque el equipo no puede atacar dos veces",!gohanAtaco);
+	}
+
+	@Test
+	public void equipoNoPuedeRealizarAtaqueBasicoDosVecesConElMismoPersonaje(){
+	
+		boolean gokuAtaco=true;
+	
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Personaje cell= new Cell(tablero);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+	
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			cell.ubicarEn(3,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			freezer.ubicarEn(2,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.ataqueBasico(cell);
+		  }catch (IncapacidadDeAtacar e) {
+			  Assert.fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue(equipo.ataco());
+		
+		try {
+			goku.ataqueBasico(freezer);
+		  }catch (IncapacidadDeAtacar e) {
+			  gokuAtaco=false;
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue("Goku no pudo atacar porque el equipo no puede atacar dos veces",!gokuAtaco);
 	}
 	
-	@Test	
-	public void pasarAJugadorSiguienteDosVecesVuelveAlMismoJugador(){
-		Juego juego=new Juego();
-		Jugador jugador1=juego.jugadorSiguiente();
-		Jugador jugador2=juego.jugadorSiguiente();
-		Jugador jugador3=juego.jugadorSiguiente();
-		Assert.assertTrue(jugador3==jugador1);
-	}
+	@Test
+	public void equipoPuedeRealizarUnAtaqueYMoverseConElMismoPersonaje(){
 		
+		boolean gokuAtaco=true;
+		boolean gokuSeMovio=true;
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Personaje cell= new Cell(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try{
+			cell.ubicarEn(3,2);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.moverArriba();
+		  }catch (IncapacidadParaMoverse e) {
+			  gokuSeMovio=false;
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			goku.ataqueBasico(cell);
+		  }catch (IncapacidadDeAtacar e) {
+			  gokuAtaco=false;
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue("Goku puede atacar y moverse",gokuAtaco);
+		Assert.assertTrue("Goku puede atacar y moverse",gokuSeMovio);
+	}
+	
+	@Test
+	public void gokuEnEstadoNormalNoSePuedeMoverParaArribaMasDeLoQueSuVelocidadIndica(){
+		
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try {
+			goku.moverArriba();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			goku.moverArriba();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		boolean pruebaOk=false;
+		try {
+			goku.moverArriba();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		Assert.assertTrue(pruebaOk);
+	}
+	
+	@Test
+	public void gokuEnEstadoNormalNoSePuedeMoverParaAbajoMasDeLoQueSuVelocidadIndica(){
+		boolean pruebaOk=false;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		Assert.assertTrue(pruebaOk);
+	}
+	
+	@Test
+	
+	public void gokuSeMueveUnaVezYAtacaYNoPuedeVolverAMoverse(){
+		boolean pruebaOk=false;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(freezer);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			freezer.ubicarEn(1,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+
+		try {
+			goku.ataqueBasico(freezer);
+		  }catch (IncapacidadDeAtacar e) {
+			  Assert.fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		Assert.assertTrue(pruebaOk);
+	}
+	
+	@Test
+	
+	public void GokuNoPuedeMoverseSiAtacaGohanYAntesSeMueveGoku(){
+		boolean pruebaOk=false;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(freezer);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			gohan.ubicarEn(1,4);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			freezer.ubicarEn(1,5);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			gohan.ataqueBasico(freezer);
+		  }catch (IncapacidadDeAtacar e) {
+			  Assert.fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		Assert.assertTrue(goku.enMovimiento());
+		Assert.assertTrue(equipo.ataco());
+		Assert.assertTrue(equipo.otrosCompanierosSeEstanMoviendo(gohan));
+		
+		try {
+			goku.moverDerecha();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		Assert.assertTrue(pruebaOk);
+	}
+	
+	@Test
+	
+	public void siGokuSeMueveUnPasoGohanNoPuedeMoverse(){
+		boolean pruebaOk=false;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(freezer);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			gohan.ubicarEn(1,4);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			gohan.moverDerecha();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		Assert.assertTrue(pruebaOk);
+		}
+
+	@Test
+
+	public void siGokuSeMueveDosPasosGohanPuedeAtacarPeroGokuNoSePuedeMoverDespues(){
+		boolean pruebaOk=false;
+		
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		Personaje freezer= new Freezer(tablero);
+		Equipo equipo2=new Equipo();
+		equipo2.asignarPersonaje1(freezer);
+		
+		try{
+			goku.ubicarEn(2,3);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			gohan.ubicarEn(1,4);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try{
+			freezer.ubicarEn(1,5);
+		}catch (PosicionInadecuada e){
+			Assert.fail("No se ubico el personaje");
+		}
+		
+		try {
+			goku.moverAbajo();
+		  }catch (IncapacidadParaMoverse e) {
+			  Assert.fail("No puede moverse");
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			goku.moverDerecha();
+		  }catch (IncapacidadParaMoverse e) {
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		try {
+			gohan.ataqueBasico(freezer);
+		  }catch (IncapacidadDeAtacar e) {
+			  Assert.fail("No puede atacar");
+		  }catch (InhabilitadoError e){
+			  fail("Inmovilizado, No puede atacar");
+		  }
+		
+		try {
+			goku.moverDerecha();
+		  }catch (IncapacidadParaMoverse e) {
+			  pruebaOk=true;
+		  }catch (InhabilitadoError e){
+			  Assert.fail("Inmovilizado");
+		  }catch (PosicionInadecuada e){
+		      Assert.fail("No se ubico al personaje");
+		  }
+		
+		Assert.assertTrue(pruebaOk);
+	}
 }

@@ -70,4 +70,8 @@ public class Tablero {
 		
 		this.ubicarPersonajeJugador(this.tamanio - 1, jugador);
 	}
+	
+	public boolean esUbicacionValida(int x,int y){
+		return(x<tamanio && x>=0 && y<tamanio && y>=0);
+	}
 }
