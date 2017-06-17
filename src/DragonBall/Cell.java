@@ -35,21 +35,21 @@ public class Cell extends Personaje{
 	}
 	
 	 public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
+		if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
+	    if (this.estaInmovilizado()) throw new InhabilitadoError();
+	    if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
 
-	    	if (this.estaInmovilizado()) throw new InhabilitadoError();
-	    	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
-
-	    	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
-		   	    if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
-		    	equipo.incorporarAtaque();
-		         int ataque = this.obtenerPoderDePeleaEspecial();
-				 int ataque_especial = this.calculadorAtaque(ataque, enemigo);
-				 if (ataque_especial + this.vida > this.vida_max){
-		    	    this.vida = this.vida_max;
-		    	 }else this.vida += ataque_especial;
-				 enemigo.vida -= ataque_especial;
-				 this.ki -= this.costo_ataque_especial;
-				 this.vidas_absorbidas += 1;
+	    if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
+	    	if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
+		    equipo.incorporarAtaque();
+		    int ataque = this.obtenerPoderDePeleaEspecial();
+			int ataque_especial = this.calculadorAtaque(ataque, enemigo);
+			if (ataque_especial + this.vida > this.vida_max){
+		        this.vida = this.vida_max;
+		    }else this.vida += ataque_especial;
+			enemigo.vida -= ataque_especial;
+			this.ki -= this.costo_ataque_especial;
+			this.vidas_absorbidas += 1;
 	    }else throw new IncapacidadDeAtacar();
 	 }
 }
