@@ -614,6 +614,7 @@ public class DragonBallTests {
 		Freezer freezer=new Freezer(tablero);
 		Equipo equipo2=new Equipo();
 		equipo2.asignarPersonajes(boo,cell, freezer);
+		equipo2.esTuTurno();
 		
 		try{
 			cell.ubicarEn(1,5);
@@ -653,7 +654,10 @@ public class DragonBallTests {
 		Piccolo piccolo= new Piccolo(tablero);
 		Cell cell = new Cell(tablero);
 		Equipo equipo=new Equipo();
+		
 		equipo.asignarPersonajes(gohan, cell, piccolo);
+		
+		equipo.esTuTurno();
 		try{
 			cell.ubicarEn(5,5);
 		}catch (PosicionInadecuada e){
@@ -667,6 +671,7 @@ public class DragonBallTests {
 		cell.aumentarKi(40);
 		try{
 			for(int i=0;i<8;i++){
+				equipo.esTuTurno();
 				cell.ataqueEspecial(goku);
 				equipo.finalizarTurno();
 			}
@@ -702,7 +707,7 @@ public class DragonBallTests {
 		Equipo equipo2= new Equipo();
 		equipo2.asignarPersonaje1(majinBoo);
 		majinBoo.aumentarKi(50);
-		
+		equipo2.esTuTurno();
 		try {
 			majinBoo.ataqueEspecial(goku);
 		  }catch (IncapacidadDeAtacar e) {
@@ -733,7 +738,7 @@ public class DragonBallTests {
 		Equipo equipo2= new Equipo();
 		equipo2.asignarPersonaje1(majinBoo);
 		majinBoo.aumentarKi(50);
-		
+		equipo2.esTuTurno();
 		try {
 			majinBoo.ataqueEspecial(goku);
 		  }catch (IncapacidadDeAtacar e) {
@@ -1346,4 +1351,84 @@ public class DragonBallTests {
 		
 		Assert.assertTrue(pruebaOk);
 	}
+	
+	@Test
+	public void noSePuedeAtacarBasicoAlMismoEquipo() throws InhabilitadoError{
+		boolean puede_atacar = true;
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
+		try{
+			goku.ataqueBasico(gohan);
+		}catch(IncapacidadDeAtacar excepcion){
+			puede_atacar = false;
+		}
+		Assert.assertFalse(puede_atacar);
+	}
+	
+	@Test
+	public void noSePuedeAtacarEspecialAlMismoEquipo() throws InhabilitadoError{
+		boolean puede_atacar = true;
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje piccolo= new Piccolo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
+		goku.aumentarKi(60);
+		try{
+			goku.ataqueEspecial(gohan);
+		}catch(IncapacidadDeAtacar excepcion){
+			puede_atacar = false;
+		}
+		Assert.assertFalse(puede_atacar);
+	}
+	
+	@Test
+	public void majinBooNoPuedeAtacarEspecialAlMismoEquipo() throws InhabilitadoError{
+		boolean puede_atacar = true;
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje majinboo= new MajinBoo(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, majinboo);
+		equipo.esTuTurno();
+		majinboo.aumentarKi(60);
+		try{
+			majinboo.ataqueEspecial(gohan);
+		}catch(IncapacidadDeAtacar excepcion){
+			puede_atacar = false;
+		}
+		Assert.assertFalse(puede_atacar);
+	}
+	
+	@Test
+	public void cellNoPuedeAtacarEspecialAlMismoEquipo() throws InhabilitadoError{
+		boolean puede_atacar = true;
+		Juego juego= new Juego();
+		Tablero tablero=juego.obtenerTablero();
+		Personaje goku= new Goku(tablero);
+		Personaje gohan= new Gohan(tablero);
+		Personaje cell= new Cell(tablero);
+		Equipo equipo=new Equipo();
+		equipo.asignarPersonajes(goku, gohan, cell);
+		equipo.esTuTurno();
+		cell.aumentarKi(60);
+		try{
+			cell.ataqueEspecial(gohan);
+		}catch(IncapacidadDeAtacar excepcion){
+			puede_atacar = false;
+		}
+		Assert.assertFalse(puede_atacar);
+	}
+	
 }

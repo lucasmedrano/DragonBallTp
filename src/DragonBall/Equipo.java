@@ -152,4 +152,8 @@ public class Equipo {
 	public boolean esMiTurno() {
 		return this.es_mi_turno;
 	}
+	
+	public boolean estaEnElEquipo(Personaje personaje){
+		return (personaje.equals(personaje1) || personaje.equals(personaje2) || personaje.equals(personaje3));
+	}
 }

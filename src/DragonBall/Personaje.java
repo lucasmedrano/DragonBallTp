@@ -111,7 +111,7 @@ public abstract class Personaje {
 	}
     
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
-    	
+    	if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
     	
@@ -125,7 +125,7 @@ public abstract class Personaje {
     }
     
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
-    	
+    	if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
 
