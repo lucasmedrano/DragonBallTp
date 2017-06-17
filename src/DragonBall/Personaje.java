@@ -113,7 +113,7 @@ public abstract class Personaje {
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	
+    	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
     	
     	if(this.tablero.estanARangoDeAtaque(this, enemigo)&& !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
@@ -127,7 +127,8 @@ public abstract class Personaje {
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	
+    	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
+
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
     		equipo.incorporarAtaque();
