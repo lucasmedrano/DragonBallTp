@@ -49,6 +49,7 @@ public class DragonBallTests {
 		Piccolo piccolo= new Piccolo(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		try{
 			goku.ubicarEn(7,5);
 		}
@@ -79,6 +80,7 @@ public class DragonBallTests {
 		Piccolo piccolo= new Piccolo(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		try{
 			goku.ubicarEn(5,29);
 		}
@@ -122,6 +124,7 @@ public class DragonBallTests {
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubicion el personaje");
 		}
+		equipo2.esTuTurno();
 		try{
 			boo.ubicarEn(8,5);
 		}
@@ -198,6 +201,7 @@ public class DragonBallTests {
 		Personaje freezer= new Freezer(tablero);
 		Equipo equipo2=new Equipo();
 		equipo2.asignarPersonaje1(freezer);
+		equipo.esTuTurno();
 		try{
 			goku.ubicarEn(7,5);
 		}
@@ -234,6 +238,7 @@ public class DragonBallTests {
 		Piccolo piccolo= new Piccolo(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		try{
 			goku.ubicarEn(29,5);
 		}
@@ -949,6 +954,7 @@ public class DragonBallTests {
 		Personaje cell= new Cell(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
@@ -993,6 +999,7 @@ public class DragonBallTests {
 		Personaje piccolo= new Piccolo(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
@@ -1042,6 +1049,7 @@ public class DragonBallTests {
 		Personaje piccolo= new Piccolo(tablero);
 		Equipo equipo=new Equipo();
 		equipo.asignarPersonajes(goku, gohan, piccolo);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
@@ -1107,7 +1115,7 @@ public class DragonBallTests {
 		}catch (PosicionInadecuada e){
 			Assert.fail("No se ubico el personaje");
 		}
-		
+		equipo.esTuTurno();
 		try {
 			goku.moverAbajo();
 		  }catch (IncapacidadParaMoverse e) {
@@ -1155,6 +1163,7 @@ public class DragonBallTests {
 		Personaje freezer= new Freezer(tablero);
 		Equipo equipo2=new Equipo();
 		equipo2.asignarPersonaje1(freezer);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
@@ -1223,6 +1232,7 @@ public class DragonBallTests {
 		Personaje freezer= new Freezer(tablero);
 		Equipo equipo2=new Equipo();
 		equipo2.asignarPersonaje1(freezer);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
@@ -1274,6 +1284,7 @@ public class DragonBallTests {
 		Personaje freezer= new Freezer(tablero);
 		Equipo equipo2=new Equipo();
 		equipo2.asignarPersonaje1(freezer);
+		equipo.esTuTurno();
 		
 		try{
 			goku.ubicarEn(2,3);
