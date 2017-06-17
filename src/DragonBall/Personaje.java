@@ -202,4 +202,13 @@ public abstract class Personaje {
 		this.finDeMovimiento=false;
 	    this.seEstaMoviendo=false;
 	}
+
+
+	public void empezoTurno() {
+		if(this.turnos_inmovilizado > 0){
+			this.turnos_inmovilizado -= 1;
+			return;
+		}
+		this.ki +=5;
+	}
 }

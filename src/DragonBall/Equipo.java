@@ -135,4 +135,10 @@ public class Equipo {
 	public boolean seMovioYAtaco(){
 		return seMovioYAtaco;
 	}
+
+	public void empezoTurno() {
+		this.personaje1.empezoTurno();
+		this.personaje2.empezoTurno();
+		this.personaje3.empezoTurno();
+	}
 }
