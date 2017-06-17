@@ -10,6 +10,13 @@ public class Tablero {
 		this.tablero = new Personaje[tamanio][tamanio];
 	}
 	
+	public void cambiarUbicacion(Personaje personaje, int x, int y){
+		int x_viejo = personaje.ubicacion.obtenerUbicacionHorizontal();
+		int y_vieja = personaje.ubicacion.obtenerUbicacionVertical();
+		this.tablero[y][x] = personaje;
+		this.tablero[y_vieja][x_viejo] = null;
+}
+	
 	public void nuevaUbicacion(Personaje personaje, int x, int y){
 			this.tablero[y][x] = personaje;
 	}

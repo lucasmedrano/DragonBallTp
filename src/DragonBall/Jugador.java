@@ -26,4 +26,16 @@ public class Jugador {
     public Equipo obtenerEquipo(){
     	return this.equipo;
     }
+
+	public void empezoTurno() {
+		this.equipo.empezoTurno();
+	}
+
+	public void esTuTurno() {
+		this.equipo.esTuTurno();
+	}
+
+	public void finalizoTuTurno() {
+		this.equipo.finalizarTurno();		
+	}
 }

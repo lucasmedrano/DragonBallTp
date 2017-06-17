@@ -113,7 +113,7 @@ public abstract class Personaje {
     public void ataqueBasico(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	
+    	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
     	
     	if(this.tablero.estanARangoDeAtaque(this, enemigo)&& !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
@@ -127,7 +127,8 @@ public abstract class Personaje {
     public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
-    	
+    	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
+
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
     		equipo.incorporarAtaque();
@@ -170,8 +171,7 @@ public abstract class Personaje {
 		
 		if (this.finDeMovimiento) throw new IncapacidadParaMoverse();
 		
-    	
-		if (equipo.otrosCompanierosSeEstanMoviendo(this)) throw new IncapacidadParaMoverse();
+    	if (!equipo.esMiTurno()) throw new IncapacidadParaMoverse();
     	
 		if (this.tablero.esUbicacionValida(x,y) && this.tablero.noEstaOcupada(x, y)){
     		if (this.cantidadDeMovimientos<this.obtenerVelocidad()){
@@ -184,7 +184,7 @@ public abstract class Personaje {
    				this.finDeMovimiento=true;
    			}
     		
-    		this.tablero.nuevaUbicacion(this,x,y);
+    		this.tablero.cambiarUbicacion(this,x,y);
     		this.ubicacion.cambiarUbicacion(x,y);
     	}else throw new PosicionInadecuada();
 	}
@@ -201,5 +201,14 @@ public abstract class Personaje {
 		this.cantidadDeMovimientos=0;
 		this.finDeMovimiento=false;
 	    this.seEstaMoviendo=false;
+	}
+
+
+	public void empezoTurno() {
+		if(this.turnos_inmovilizado > 0){
+			this.turnos_inmovilizado -= 1;
+			return;
+		}
+		this.ki +=5;
 	}
 }
