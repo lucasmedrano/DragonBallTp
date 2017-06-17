@@ -20,10 +20,7 @@ import model.Jugador;
 import view.eventos.BotonEntrarEventHandler;
 import view.eventos.OpcionSalirEventHandler;
 
-/**
- *
- * @author Martin
- */
+
 public class ContenedorGanador extends VBox {
 
 	public ContenedorGanador(Stage stage, Jugador ganador) {
