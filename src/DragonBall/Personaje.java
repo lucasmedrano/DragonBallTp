@@ -170,8 +170,7 @@ public abstract class Personaje {
 		
 		if (this.finDeMovimiento) throw new IncapacidadParaMoverse();
 		
-    	
-		if (equipo.otrosCompanierosSeEstanMoviendo(this)) throw new IncapacidadParaMoverse();
+    	if (!equipo.esMiTurno()) throw new IncapacidadParaMoverse();
     	
 		if (this.tablero.esUbicacionValida(x,y) && this.tablero.noEstaOcupada(x, y)){
     		if (this.cantidadDeMovimientos<this.obtenerVelocidad()){

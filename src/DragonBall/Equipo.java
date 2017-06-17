@@ -11,13 +11,15 @@ public class Equipo {
 	private boolean enMovimiento;
 	private boolean inmovilizado;
 	private boolean seMovioYAtaco;
+	private boolean es_mi_turno;
 	
 	public Equipo(){
-		this.ataco=false;
-		this.seMovio=false;
-		this.enMovimiento=false;
-		this.inmovilizado=false;
-		this.seMovioYAtaco=false;
+		this.ataco = false;
+		this.seMovio = false;
+		this.enMovimiento = false;
+		this.inmovilizado = false;
+		this.seMovioYAtaco = false;
+		this.es_mi_turno = false;
 	}
 	
 	public void asignarPersonajes(Personaje personaje1, Personaje personaje2, Personaje personaje3){
@@ -101,6 +103,7 @@ public class Equipo {
 		this.seMovio=false;
 		this.enMovimiento=false;
 		this.inmovilizado=false;
+		this.es_mi_turno = false;
 		
 		personaje1.finalizarTurno();
 		personaje2.finalizarTurno();
@@ -140,5 +143,13 @@ public class Equipo {
 		this.personaje1.empezoTurno();
 		this.personaje2.empezoTurno();
 		this.personaje3.empezoTurno();
+	}
+
+	public void esTuTurno() {
+		this.es_mi_turno = true;
+	}
+
+	public boolean esMiTurno() {
+		return this.es_mi_turno;
 	}
 }

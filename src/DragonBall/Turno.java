@@ -29,6 +29,7 @@ import java.util.Collections;
  		Jugador jugador2 = this.jugadores.get(2);
  		jugador1.empezoTurno();
  		jugador2.empezoTurno();
-
  	}
+ 	
+ 	
 } 

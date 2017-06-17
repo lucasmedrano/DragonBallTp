@@ -30,4 +30,12 @@ public class Jugador {
 	public void empezoTurno() {
 		this.equipo.empezoTurno();
 	}
+
+	public void esTuTurno() {
+		this.equipo.esTuTurno();
+	}
+
+	public void finalizoTuTurno() {
+		this.equipo.finalizarTurno();		
+	}
 }
