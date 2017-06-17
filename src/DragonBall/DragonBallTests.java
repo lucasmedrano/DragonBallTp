@@ -983,8 +983,6 @@ public class DragonBallTests {
 	
 	@Test
 	public void gokuEnEstadoNormalNoSePuedeMoverParaArribaMasDeLoQueSuVelocidadIndica(){
-		
-		
 		Juego juego= new Juego();
 		Tablero tablero=juego.obtenerTablero();
 		Personaje goku= new Goku(tablero);
