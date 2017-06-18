@@ -1,6 +1,11 @@
 package DragonBall;
 
 public class Freezer extends Personaje{
+	
+	final static private String rutaImgNormal = "file:fotos/freezer.png";
+	final static private String rutaImgT1 = "file:fotos/freezer SF.png";
+	final static private String rutaImgT2 = "file:fotos/freezer PF.png";
+	
 	public Freezer(Tablero tablero_de_juego){
 		super(tablero_de_juego);
 		this.vida_max = 400;
@@ -9,6 +14,9 @@ public class Freezer extends Personaje{
 		this.costo_transformacion_1 = 20;
 		this.costo_transformacion_2= 50;
 		this.estado = new EstadoFreezerNormal();
+		this.rutaImgNor = rutaImgNormal;
+		this.rutaImg1T = rutaImgT1;
+		this.rutaImg2T = rutaImgT2;
 	}
 	
 	public void transformar_1() throws IncapacidadParaTransformacion{

@@ -1,7 +1,11 @@
 package DragonBall;
 
 public class Cell extends Personaje{
+	
 	protected int vidas_absorbidas;
+	final static private String rutaImgNormal = "file:fotos/cell.png";
+	final static private String rutaImgT1 = "file:fotos/cell semi.png";
+	final static private String rutaImgT2 = "file:fotos/cell perfecto.png";
 	
 	public Cell(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
@@ -12,6 +16,9 @@ public class Cell extends Personaje{
 		this.costo_transformacion_2= 8;
 		this.vidas_absorbidas = 0;
 		this.estado = new EstadoCellNormal();
+		this.rutaImgNor = rutaImgNormal;
+		this.rutaImg1T = rutaImgT1;
+		this.rutaImg2T = rutaImgT2;
 	}
 	
 	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
