@@ -1,7 +1,13 @@
 package DragonBall;
 
 public class Gohan extends Personaje{
+	
 	protected int porcentaje_vida_necesaria_equipo;
+	final static private String rutaImgNormal = "file:fotos/gohan.png";
+	final static private String rutaImgT1 = "file:fotos/gohan SS1.png";
+	final static private String rutaImgT2 = "file:fotos/gohan SS2.png";
+	
+	
 	public Gohan(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
 		this.vida_max = 300;
@@ -11,6 +17,9 @@ public class Gohan extends Personaje{
 		this.costo_transformacion_2= 30;
 		this.porcentaje_vida_necesaria_equipo = 20;
 		this.estado = new EstadoGohanNormal();
+		this.rutaImgNor=rutaImgNormal;
+		this.rutaImg1T=rutaImgT1;
+		this.rutaImg2T=rutaImgT2;
 	}
 	
 	public void transformar(int costo_de_transformacion, boolean chequear_vida_equipo, Estado nuevo_estado) throws IncapacidadParaTransformacion{

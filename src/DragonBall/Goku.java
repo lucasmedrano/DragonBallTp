@@ -1,6 +1,11 @@
 package DragonBall;
 
 public class Goku extends Personaje {	
+	
+	final static private String rutaImgNormal = "file:fotos/goku.png";
+	final static private String rutaImgT1 = "file:fotos/kaioken.png";
+	final static private String rutaImgT2 = "file:fotos/goku Super.png";
+	
 	public Goku(Tablero tablero_de_juego){
 		super(tablero_de_juego);
 		this.vida_max = 500;
@@ -9,6 +14,9 @@ public class Goku extends Personaje {
 		this.costo_transformacion_1 = 20;
 		this.costo_transformacion_2= 50;
 		this.estado = new EstadoGokuNormal();
+		this.rutaImgNor = rutaImgNormal;
+		this.rutaImg1T = rutaImgT1;
+		this.rutaImg2T = rutaImgT2;
 	}
 	
 	

@@ -17,6 +17,9 @@ public abstract class Personaje {
     protected int cantidadDeMovimientosPermitidos;
     protected boolean finDeMovimiento;
     public boolean seEstaMoviendo;
+    protected String rutaImgNor;
+    protected String rutaImg1T;
+    protected String rutaImg2T;
     
     
     public Personaje(Tablero tablero_de_juego){
