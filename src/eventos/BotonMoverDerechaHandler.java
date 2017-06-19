@@ -2,26 +2,26 @@ package eventos;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import DragonBall.Goku;
 import DragonBall.IncapacidadParaMoverse;
 import DragonBall.InhabilitadoError;
 import DragonBall.PosicionInadecuada;
-import application.VistaGoku;
+import application.VistaPersonaje;
+import DragonBall.Personaje;
 
 public class BotonMoverDerechaHandler implements EventHandler<ActionEvent> {
 	
-	private final VistaGoku vista;
-    private final Goku goku;
+	private final VistaPersonaje vista;
+    private final Personaje personaje;
     
-    public BotonMoverDerechaHandler(VistaGoku vista, Goku goku) {
+    public BotonMoverDerechaHandler(VistaPersonaje vista, Personaje personaje) {
         this.vista = vista;
-        this.goku = goku;
+        this.personaje = personaje;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
         try {
-			this.goku.moverDerecha();
+			this.personaje.moverDerecha();
 		} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
 			return;
 		}

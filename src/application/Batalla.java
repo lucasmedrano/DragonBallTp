@@ -53,7 +53,7 @@ public class Batalla extends BorderPane{
 
         this.setMenu(stage);
         this.setCentro(goku, gohan, piccolo, freezer, cell, boo);
-        this.setBotonera(goku, juego);
+        this.setBotonera(goku, gohan, piccolo, freezer, cell, boo, juego);
     }
 
 
@@ -62,7 +62,7 @@ public class Batalla extends BorderPane{
 	        this.setTop(menuBar);
 	    }
 	    
-	    private void setBotonera(Goku goku, Juego juego) {
+	    private void setBotonera(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo, Juego juego) {
 
 	        Button ataqueBasico = new Button();
 	        ataqueBasico.setText("Ataque Basico");
@@ -101,18 +101,79 @@ public class Batalla extends BorderPane{
 	        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(juego);
 	        finalizarTurno.setOnAction(finalizarTurnoHandler);
 	        
+	        if ((spinner.getValue()).equals("Goku")){
+	        	BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaGoku, goku);
+	        	moverArriba.setOnAction(moveButtonArribaHandler);
 	        
-	        BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaGoku, goku);
-	        moverArriba.setOnAction(moveButtonArribaHandler);
+	        	BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaGoku, goku);
+	        	moverAbajo.setOnAction(moveButtonAbajoHandler);
 	        
-	        BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaGoku, goku);
-	        moverAbajo.setOnAction(moveButtonAbajoHandler);
+	        	BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaGoku, goku);
+	        	moverDerecha.setOnAction(moveButtonDerechaHandler);
 	        
-	        BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaGoku, goku);
-	        moverDerecha.setOnAction(moveButtonDerechaHandler);
+	        	BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaGoku, goku);
+	        	moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        }else if ((spinner.getValue()).equals("Gohan")){
+	        		BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaGohan, gohan);
+	        		moverArriba.setOnAction(moveButtonArribaHandler);
 	        
-	        BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaGoku, goku);
-	        moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        		BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaGohan, gohan);
+	        		moverAbajo.setOnAction(moveButtonAbajoHandler);
+	        
+	        		BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaGohan, gohan);
+	        		moverDerecha.setOnAction(moveButtonDerechaHandler);
+	        
+	        		BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaGohan, gohan);
+	        		moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        	}else if ((spinner.getValue()).equals("Piccolo")){
+	        			BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaPiccolo, piccolo);
+	        			moverArriba.setOnAction(moveButtonArribaHandler);
+        
+	        			BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaPiccolo, piccolo);
+	        			moverAbajo.setOnAction(moveButtonAbajoHandler);
+        
+	        			BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaPiccolo, piccolo);
+	        			moverDerecha.setOnAction(moveButtonDerechaHandler);
+        
+	        			BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaPiccolo, piccolo);
+	        			moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        		}else if ((spinner.getValue()).equals("Freezer")){
+		        			BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaFreezer, freezer);
+		        			moverArriba.setOnAction(moveButtonArribaHandler);
+		        
+		        			BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaFreezer, freezer);
+		        			moverAbajo.setOnAction(moveButtonAbajoHandler);
+		        
+		        			BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaFreezer, freezer);
+		        			moverDerecha.setOnAction(moveButtonDerechaHandler);
+		        
+		        			BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaFreezer, freezer);
+		        			moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        			}else if ((spinner.getValue()).equals("Cell")){
+	    	        			BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaCell, cell);
+	    	        			moverArriba.setOnAction(moveButtonArribaHandler);
+	    	        
+	    	        			BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaCell, cell);
+	    	        			moverAbajo.setOnAction(moveButtonAbajoHandler);
+	    	        
+	    	        			BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaCell, cell);
+	    	        			moverDerecha.setOnAction(moveButtonDerechaHandler);
+	    	        
+	    	        			BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaCell, cell);
+	    	        			moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        				}else if ((spinner.getValue()).equals("MajinBoo")){
+	        	        			BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaMajinBoo, boo);
+	        	        			moverArriba.setOnAction(moveButtonArribaHandler);
+	        	        			
+	        	        			BotonMoverAbajoHandler moveButtonAbajoHandler = new BotonMoverAbajoHandler(vistaMajinBoo, boo);
+	        	        			moverAbajo.setOnAction(moveButtonAbajoHandler);
+	        	        
+	        	        			BotonMoverDerechaHandler moveButtonDerechaHandler = new BotonMoverDerechaHandler(vistaMajinBoo, boo);
+	        	        			moverDerecha.setOnAction(moveButtonDerechaHandler);
+	        	        		
+	        	        			BotonMoverIzquierdaHandler moveButtonIzquierdaHandler = new BotonMoverIzquierdaHandler(vistaMajinBoo, boo);
+	        	        			moverIzquierda.setOnAction(moveButtonIzquierdaHandler);
+	        					}
 	        
 	        
 	        GridPane grid = new GridPane();
@@ -139,12 +200,12 @@ public class Batalla extends BorderPane{
 
 	    	
 	    	canvasCentral = new Canvas(1500, 1500);
-	    	vistaGoku = new VistaGoku(goku, canvasCentral);
-	    	vistaGohan = new VistaGohan(gohan, canvasCentral);
-	    	vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral);
-	    	vistaCell = new VistaCell(cell, canvasCentral);
-	    	vistaFreezer = new VistaFreezer(freezer, canvasCentral);
-	    	vistaMajinBoo = new VistaMajinBoo(boo,canvasCentral);
+	    	vistaGoku = new VistaGoku(goku, canvasCentral, 20, 500);
+	    	vistaGohan = new VistaGohan(gohan, canvasCentral, 20, 400);
+	    	vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral, 20, 600);
+	    	vistaCell = new VistaCell(cell, canvasCentral, 900, 500);
+	    	vistaFreezer = new VistaFreezer(freezer, canvasCentral, 900, 400);
+	    	vistaMajinBoo = new VistaMajinBoo(boo,canvasCentral, 900, 600);
 	        vistaGoku.dibujar();
 	        vistaGohan.dibujar();
 	        vistaPiccolo.dibujar();
