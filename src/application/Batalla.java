@@ -9,6 +9,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.awt.Label;
+
 import DragonBall.Cell;
 import DragonBall.Freezer;
 import DragonBall.Gohan;
@@ -22,9 +25,14 @@ import eventos.BotonMoverAbajoHandler;
 import eventos.BotonMoverArribaHandler;
 import eventos.BotonMoverDerechaHandler;
 import eventos.BotonMoverIzquierdaHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 
 
@@ -82,9 +90,17 @@ public class Batalla extends BorderPane{
 	        
 	        Button finalizarTurno = new Button();
 	        finalizarTurno.setText("Finaliza Turno");
+	        	        
+	        ObservableList<String> personajes = FXCollections.observableArrayList("MajinBoo", "Cell", "Freezer", "Piccolo", "Gohan", "Goku");
+	        
+	        final Spinner<String> spinner = new Spinner<String>();
+	        SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(personajes);
+	        valueFactory.setValue("Goku");
+	        spinner.setValueFactory(valueFactory);
 	        
 	        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(juego);
 	        finalizarTurno.setOnAction(finalizarTurnoHandler);
+	        
 	        
 	        BotonMoverArribaHandler moveButtonArribaHandler = new BotonMoverArribaHandler(vistaGoku, goku);
 	        moverArriba.setOnAction(moveButtonArribaHandler);
@@ -103,6 +119,7 @@ public class Batalla extends BorderPane{
 	        grid.setVgap(27);
 	        grid.setHgap(10);
 	        
+	        grid.add(spinner, 0, 14);
 	        grid.add(ataqueBasico, 0, 3);
 	        grid.add(ataqueEspecial, 0, 4);
 	        grid.add(transformacion1, 0, 5);
