@@ -43,5 +43,9 @@ public class Goku extends Personaje {
     	if (this.vida < ((this.vida_max*30)/100)) suma_de_poder = ((ataque*20)/100);
 		return ataque + suma_de_poder - baja_de_poder;
 	}
+	
+	public String delvolverRutaNormal(){
+		return this.rutaImgNor;
+	}
 
 }
