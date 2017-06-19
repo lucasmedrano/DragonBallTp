@@ -33,7 +33,7 @@ public class Main extends Application {
 			Jugador jugador1 = juego.obtenerJugador1();
 			Jugador jugador2 = juego.obtenerJugador2();
 			Equipo equipo1 = new Equipo();
-			equipo1.asignarPersonajes(goku, gohan, piccolo);
+			equipo1.asignarPersonajes(gohan,goku, piccolo);
 			Equipo equipo2 = new Equipo();
 			equipo2.asignarPersonajes(freezer, cell, boo);
 			
