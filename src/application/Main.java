@@ -46,7 +46,7 @@ public class Main extends Application {
 			
 			juego.empiezaJuego();
 			
-			Batalla batalla = new Batalla(stage, goku, juego);
+			Batalla batalla = new Batalla(stage, goku, juego, cell);
 			Scene scene = new Scene(batalla, 30, 30);
 			
 			AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, batalla.getBarraDeMenu());
