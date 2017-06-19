@@ -13,6 +13,7 @@ import DragonBall.Cell;
 import DragonBall.Freezer;
 import DragonBall.Gohan;
 import DragonBall.Goku;
+import DragonBall.Cell;
 import DragonBall.Juego;
 import DragonBall.MajinBoo;
 import DragonBall.Piccolo;
@@ -34,10 +35,12 @@ public class Batalla extends BorderPane{
 	Canvas canvasCentral;
 	VBox contenedorCentral;
 	VistaGoku vistaGoku;
-	VistaGoku vistaGohan;
-	VistaGoku vistaPiccolo;
-	
+	VistaGohan vistaGohan;
+	VistaPiccolo vistaPiccolo;
+	VistaCell vistaCell;
+
 	public Batalla(Stage stage, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo, Juego juego) {
+
         this.setMenu(stage);
         this.setCentro(goku, gohan, piccolo, freezer, cell, boo);
         this.setBotonera(goku, juego);
@@ -106,7 +109,7 @@ public class Batalla extends BorderPane{
 	        grid.add(moverAbajo, 2, 17);
 	        grid.add(moverIzquierda, 1, 16);
 	        grid.add(moverDerecha, 3, 16);
-	        grid.add(finalizarTurno, 0, 26);
+	        grid.add(finalizarTurno, 0, 10);
 	        grid.setPadding(new Insets(20));
 
 	        this.setLeft(grid);
@@ -114,17 +117,18 @@ public class Batalla extends BorderPane{
 	    }
 
 	    private void setCentro(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
+
 	    	
 	    	canvasCentral = new Canvas(1500, 1500);
 	    	vistaGoku = new VistaGoku(goku, canvasCentral);
+	    	vistaGohan = new VistaGohan(gohan, canvasCentral);
+	    	vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral);
+	    	vistaCell = new VistaCell(cell, canvasCentral);
+	    	
 	        vistaGoku.dibujar();
-	        
-	        vistaGohan = new VistaGohan(gohan, canvasCentral);
 	        vistaGohan.dibujar();
-	        
-	        vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral);
 	        vistaPiccolo.dibujar();
-	        
+	        vistaCell.dibujar();
 	        contenedorCentral = new VBox(canvasCentral);
 	        Image imagen = new Image("file:src/imagenes/campo.jpg");
 	        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

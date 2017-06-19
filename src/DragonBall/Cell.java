@@ -59,4 +59,8 @@ public class Cell extends Personaje{
 			this.vidas_absorbidas += 1;
 	    }else throw new IncapacidadDeAtacar();
 	 }
+	 
+	 public String delvolverRutaNormal(){
+			return this.rutaImgNor;
+		}
 }

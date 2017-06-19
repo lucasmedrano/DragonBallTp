@@ -1,7 +1,10 @@
 package application;
 
 import javafx.scene.canvas.Canvas;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+
+
 import DragonBall.Goku;
 
 public class VistaGoku {
@@ -23,11 +26,13 @@ public class VistaGoku {
     }
 
     private void dibujarFormas() {
-        canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
-        canvas.getGraphicsContext2D().fillOval(goku.obtenerUbicacion().obtenerUbicacionHorizontal() + 20 + this.x, goku.obtenerUbicacion().obtenerUbicacionVertical() + 500 + this.y, 30, 30);
+    	Image imagen = new Image(goku.delvolverRutaNormal());
+      	canvas.getGraphicsContext2D().drawImage(imagen, goku.obtenerUbicacion().obtenerUbicacionHorizontal() + 20 + this.x, goku.obtenerUbicacion().obtenerUbicacionVertical() + 500 + this.y, 50, 100);
     }
 
     public void update(int x, int y) {
+    	Image image = new Image("file:src/imagenes/pedazoCampo.jpg");
+    	canvas.getGraphicsContext2D().drawImage(image, goku.obtenerUbicacion().obtenerUbicacionHorizontal() + 20 + this.x, goku.obtenerUbicacion().obtenerUbicacionVertical() + 500 + this.y, 50, 100);
     	this.x += x;
     	this.y += y;
     	this.dibujar();
