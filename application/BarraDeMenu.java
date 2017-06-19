@@ -1,4 +1,4 @@
-package view;
+package application;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -14,7 +14,7 @@ public class BarraDeMenu extends MenuBar {
 
 	public BarraDeMenu(Stage stage) {
 
-		Menu menuArchivo = new Menu("Archivo");
+		Menu menuArchivo = new Menu("Opciones");
 		Menu menuVer = new Menu("Ver");
 		Menu menuAyuda = new Menu("Ayuda");
 

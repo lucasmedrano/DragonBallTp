@@ -1,4 +1,4 @@
-package view;
+package application;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,8 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import DragonBall.Juego;
-import DragonBall.Jugador;
+
 import eventos.BotonEntrarEventHandler;
 import eventos.OpcionSalirEventHandler;
 

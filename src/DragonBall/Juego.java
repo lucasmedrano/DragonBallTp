@@ -12,7 +12,6 @@ public class Juego {
     	this.jugador1 = new Jugador();
     	this.jugador2 = new Jugador();
     	this.turno = new Turno(jugador1, jugador2);
-    	this.jugador_jugando = null;
     }
     
     public Tablero obtenerTablero(){
@@ -36,7 +35,8 @@ public class Juego {
     public void turnoSiguiente(){
     	
     	this.jugador_jugando.finalizoTuTurno();
-    	this.turno.empezoTurno();
+    	jugador1.empezoTurno();
+    	jugador2.empezoTurno();
     	this.jugador_jugando = this.turno.obtenerJugadorSiguiente();
     	this.jugador_jugando.esTuTurno();
     }

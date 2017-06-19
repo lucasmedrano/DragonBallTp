@@ -1175,4 +1175,31 @@ public class DragonBallTests {
 		Assert.assertFalse(puede_atacar);
 	}
 	
+	@Test
+	public void crearJuegoYPasarTurnos() throws PosicionInadecuada{
+		
+		Juego juego = new Juego();
+		Tablero tablero = juego.obtenerTablero();
+		Goku goku = new Goku(tablero);
+		Piccolo piccolo = new Piccolo(tablero);
+		Gohan gohan = new Gohan(tablero);
+		Freezer freezer = new Freezer(tablero);
+		Cell cell = new Cell(tablero);
+		MajinBoo boo = new MajinBoo(tablero);
+		Jugador jugador1 = juego.obtenerJugador1();
+		Jugador jugador2 = juego.obtenerJugador2();
+		Equipo equipo1 = new Equipo();
+		equipo1.asignarPersonajes(goku, gohan, piccolo);
+		Equipo equipo2 = new Equipo();
+		equipo2.asignarPersonajes(freezer, cell, boo);
+		
+		goku.ubicarEn(0, 15);
+		
+		jugador1.asignarEquipo(equipo1);
+		jugador2.asignarEquipo(equipo2);
+		juego.empiezaJuego();
+		juego.turnoSiguiente();
+		juego.turnoSiguiente();
+	}
+	
 }
