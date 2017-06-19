@@ -57,16 +57,16 @@ public class Batalla extends BorderPane{
 	        transformacion2.setText("Transformacion 2");
 	        
 	        Button moverArriba = new Button();
-	        moverArriba.setText("  ↑  ");
+	        moverArriba.setText("Norte");
 	        
 	        Button moverAbajo = new Button();
-	        moverAbajo.setText("  ↓  ");
+	        moverAbajo.setText("Sur");
 	        
 	        Button moverDerecha = new Button();
-	        moverDerecha.setText(" → ");
+	        moverDerecha.setText("Este");
 	        
 	        Button moverIzquierda = new Button();
-	        moverIzquierda.setText(" ← ");
+	        moverIzquierda.setText("Oeste");
 	        
 	        Button finalizarTurno = new Button();
 	        finalizarTurno.setText("Finaliza Turno");

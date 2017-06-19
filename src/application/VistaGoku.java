@@ -27,7 +27,6 @@ public class VistaGoku {
     private void dibujarFormas() {
     	Image imagen = new Image(goku.delvolverRutaNormal());
     	canvas.getGraphicsContext2D().drawImage(imagen, 1, 1, 75, 75);
-        //canvas.getGraphicsContext2D().setFill(Color.DARKBLUE);
         canvas.getGraphicsContext2D().fillOval(goku.obtenerUbicacion().obtenerUbicacionHorizontal() + 20 + this.x, goku.obtenerUbicacion().obtenerUbicacionVertical() + 500 + this.y, 30, 30);
     }
 
