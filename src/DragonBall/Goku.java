@@ -2,9 +2,9 @@ package DragonBall;
 
 public class Goku extends Personaje {	
 	
-	final static private String rutaImgNormal = "file:fotos/goku.png";
-	final static private String rutaImgT1 = "file:fotos/kaioken.png";
-	final static private String rutaImgT2 = "file:fotos/goku Super.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/Goku.png";
+	final static private String rutaImgT1 = "file:src/Guerreros/kaioken.png";
+	final static private String rutaImgT2 = "file:src/Guerreros/goku Super.png";
 	
 	public Goku(Tablero tablero_de_juego){
 		super(tablero_de_juego);
