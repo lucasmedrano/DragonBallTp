@@ -38,6 +38,8 @@ public class Batalla extends BorderPane{
 	VistaGohan vistaGohan;
 	VistaPiccolo vistaPiccolo;
 	VistaCell vistaCell;
+	VistaFreezer vistaFreezer;
+	VistaMajinBoo vistaMajinBoo;
 
 	public Batalla(Stage stage, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo, Juego juego) {
 
@@ -124,11 +126,14 @@ public class Batalla extends BorderPane{
 	    	vistaGohan = new VistaGohan(gohan, canvasCentral);
 	    	vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral);
 	    	vistaCell = new VistaCell(cell, canvasCentral);
-	    	
+	    	vistaFreezer = new VistaFreezer(freezer, canvasCentral);
+	    	vistaMajinBoo = new VistaMajinBoo(boo,canvasCentral);
 	        vistaGoku.dibujar();
 	        vistaGohan.dibujar();
 	        vistaPiccolo.dibujar();
 	        vistaCell.dibujar();
+	        vistaMajinBoo.dibujar();
+	        vistaFreezer.dibujar();
 	        contenedorCentral = new VBox(canvasCentral);
 	        Image imagen = new Image("file:src/imagenes/campo.jpg");
 	        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
