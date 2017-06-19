@@ -3,9 +3,9 @@ package DragonBall;
 public class MajinBoo extends Personaje{
 	
 	protected int poder_especial_stun_turnos;
-	final static private String rutaImgNormal = "file:fotos/boo normal.png";
-	final static private String rutaImgT1 = "file:fotos/boo malo.png";
-	final static private String rutaImgT2 = "file:fotos/boo original.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/boo normal.png";
+	final static private String rutaImgT1 = "file:src/Guerreros/boo malo.png";
+	final static private String rutaImgT2 = "file:src/Guerreros/boo original.png";
 	
 	public MajinBoo(Tablero tablero_de_juego){	
 		super(tablero_de_juego);

@@ -2,9 +2,9 @@ package DragonBall;
 
 public class Freezer extends Personaje{
 	
-	final static private String rutaImgNormal = "file:fotos/freezer.png";
-	final static private String rutaImgT1 = "file:fotos/freezer SF.png";
-	final static private String rutaImgT2 = "file:fotos/freezer PF.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/freezer.png";
+	final static private String rutaImgT1 = "file:src/Guerreros/freezer SF.png";
+	final static private String rutaImgT2 = "file:src/Guerreros/freezer PF.png";
 	
 	public Freezer(Tablero tablero_de_juego){
 		super(tablero_de_juego);
