@@ -214,4 +214,8 @@ public abstract class Personaje {
 		}
 		this.ki +=5;
 	}
+	
+	public String delvolverRutaNormal(){
+		return this.rutaImgNor;
+	}
 }

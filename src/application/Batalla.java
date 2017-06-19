@@ -9,8 +9,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import DragonBall.Cell;
+import DragonBall.Freezer;
+import DragonBall.Gohan;
 import DragonBall.Goku;
 import DragonBall.Juego;
+import DragonBall.MajinBoo;
+import DragonBall.Piccolo;
 import eventos.BotonFinalizarTurnoHandler;
 import eventos.BotonMoverAbajoHandler;
 import eventos.BotonMoverArribaHandler;
@@ -29,10 +34,12 @@ public class Batalla extends BorderPane{
 	Canvas canvasCentral;
 	VBox contenedorCentral;
 	VistaGoku vistaGoku;
+	VistaGoku vistaGohan;
+	VistaGoku vistaPiccolo;
 	
-	public Batalla(Stage stage, Goku goku, Juego juego) {
+	public Batalla(Stage stage, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo, Juego juego) {
         this.setMenu(stage);
-        this.setCentro(goku);
+        this.setCentro(goku, gohan, piccolo, freezer, cell, boo);
         this.setBotonera(goku, juego);
     }
 
@@ -106,11 +113,18 @@ public class Batalla extends BorderPane{
 
 	    }
 
-	    private void setCentro(Goku goku) {
+	    private void setCentro(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
 	    	
 	    	canvasCentral = new Canvas(1500, 1500);
 	    	vistaGoku = new VistaGoku(goku, canvasCentral);
 	        vistaGoku.dibujar();
+	        
+	        vistaGohan = new VistaGohan(gohan, canvasCentral);
+	        vistaGohan.dibujar();
+	        
+	        vistaPiccolo = new VistaPiccolo(piccolo, canvasCentral);
+	        vistaPiccolo.dibujar();
+	        
 	        contenedorCentral = new VBox(canvasCentral);
 	        Image imagen = new Image("file:src/imagenes/campo.jpg");
 	        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

@@ -4,7 +4,7 @@ public class Goku extends Personaje {
 	
 	final static private String rutaImgNormal = "file:src/Guerreros/Goku.png";
 	final static private String rutaImgT1 = "file:src/Guerreros/kaioken.png";
-	final static private String rutaImgT2 = "file:src/Guerreros/goku Super.png";
+	final static private String rutaImgT2 = "file:src//Guerreros/goku Super.png";
 	
 	public Goku(Tablero tablero_de_juego){
 		super(tablero_de_juego);
@@ -42,10 +42,6 @@ public class Goku extends Personaje {
     	if(poder_de_pelea < poder_de_pelea_enemigo) baja_de_poder = ((ataque*20)/100);
     	if (this.vida < ((this.vida_max*30)/100)) suma_de_poder = ((ataque*20)/100);
 		return ataque + suma_de_poder - baja_de_poder;
-	}
-	
-	public String delvolverRutaNormal(){
-		return this.rutaImgNor;
 	}
 
 }

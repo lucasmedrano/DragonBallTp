@@ -3,9 +3,9 @@ package DragonBall;
 public class Piccolo extends Personaje{
 	
 	protected int porcentaje_vida_necesaria_gohan;
-	final static private String rutaImgNormal = "file:fotos/piccolo.png";
-	final static private String rutaImgT1 = "file:fotos/piccolo Foralecido.png";
-	final static private String rutaImgT2 = "file:fotos/piccolo protector.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/piccolo.png";
+	final static private String rutaImgT1 = "file:src/Guerreros/piccolo Foralecido.png";
+	final static private String rutaImgT2 = "file:src/Guerreros/piccolo protector.png";
 	
 	public Piccolo(Tablero tablero_de_juego){
 		super(tablero_de_juego);
