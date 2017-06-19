@@ -30,6 +30,8 @@ public class VistaGoku {
     }
 
     public void update(int x, int y) {
+    	Image image = new Image("file:src/imagenes/pedazoCampo.jpg");
+    	canvas.getGraphicsContext2D().drawImage(image, goku.obtenerUbicacion().obtenerUbicacionHorizontal() + 20 + this.x, goku.obtenerUbicacion().obtenerUbicacionVertical() + 500 + this.y, 50, 100);
     	this.x += x;
     	this.y += y;
     	this.dibujar();
