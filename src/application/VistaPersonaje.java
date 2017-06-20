@@ -1,8 +1,10 @@
 package application;
 
 import DragonBall.Personaje;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
 public abstract class VistaPersonaje {
 	Canvas canvas;

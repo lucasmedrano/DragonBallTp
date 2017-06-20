@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import eventos.OpcionAcercaDeEventHandler;
 import eventos.OpcionPantallaCompletaEventHandler;
 import eventos.OpcionSalirEventHandler;
+import eventos.OpcionSalirAContenedorBienvenidosEventHandler;
 
 public class BarraDeMenu extends MenuBar {
 
@@ -20,7 +21,11 @@ public class BarraDeMenu extends MenuBar {
 
 		MenuItem opcionSalir = new MenuItem("Salir");
 		MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
+		MenuItem opcionReiniciar = new MenuItem("Reiniciar");
 
+		OpcionSalirAContenedorBienvenidosEventHandler opcionReiniciarHandler = new OpcionSalirAContenedorBienvenidosEventHandler(stage);
+		opcionReiniciar.setOnAction(opcionReiniciarHandler);
+		
 		OpcionSalirEventHandler opcionSalirHandler = new OpcionSalirEventHandler();
 		opcionSalir.setOnAction(opcionSalirHandler);
 
@@ -33,7 +38,7 @@ public class BarraDeMenu extends MenuBar {
 
 		opcionPantallaCompleta.setDisable(true);
 
-		menuArchivo.getItems().addAll(opcionSalir);
+		menuArchivo.getItems().addAll(opcionReiniciar, opcionSalir);
 		menuAyuda.getItems().addAll(opcionAcercaDe);
 		menuVer.getItems().addAll(opcionPantallaCompleta);
 
