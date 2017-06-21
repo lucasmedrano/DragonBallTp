@@ -92,7 +92,7 @@ public class CampoBatalla extends BorderPane{
     
     public void colocarPersonajes(){
     	Image gohanImagen = new Image("file:src/Guerreros/gohan.jpg");
-    	Image gokuImagen = new Image("file:src/Guerreros/Goku.jpg");
+    	Image gokuImagen = new Image("file:src/Guerreros/goku.jpg");
     	Image piccoloImagen = new Image("file:src/Guerreros/piccolo.jpg");
     	Image cellImagen = new Image("file:src/Guerreros/cell.jpg");
     	Image freezerImagen = new Image("file:src/Guerreros/Freezer.jpg");
