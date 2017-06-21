@@ -3,9 +3,9 @@ package DragonBall;
 public class Gohan extends Personaje{
 	
 	protected int porcentaje_vida_necesaria_equipo;
-	final static private String rutaImgNormal = "file:src/Guerreros/gohan.png";
-	final static private String rutaImgT1 = "file:src/Guerreros/gohan SS1.png";
-	final static private String rutaImgT2 = "file:src/Guerreros/gohan SS2.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/gohan.jpg";
+	final static private String rutaImgT1 = "file:src/Guerreros/Gohan SSJ 1.jpg";
+	final static private String rutaImgT2 = "file:src/Guerreros/Gohan SS2.jpg";
 	
 	
 	public Gohan(Tablero tablero_de_juego){	

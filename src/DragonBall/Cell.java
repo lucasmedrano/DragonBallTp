@@ -3,9 +3,9 @@ package DragonBall;
 public class Cell extends Personaje{
 	
 	protected int vidas_absorbidas;
-	final static private String rutaImgNormal = "file:src/Guerreros/cell.png";
-	final static private String rutaImgT1 = "file:src/Guerreros/cell semi.png";
-	final static private String rutaImgT2 = "file:src/Guerreros/cell perfecto.png";
+	final static private String rutaImgNormal = "file:src/Guerreros/cell.jpg";
+	final static private String rutaImgT1 = "file:src/Guerreros/Cell SemiPerfecto.jpg";
+	final static private String rutaImgT2 = "file:src/Guerreros/Cell Perfecto.jpg";
 	
 	public Cell(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
