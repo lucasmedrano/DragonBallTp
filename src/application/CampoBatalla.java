@@ -1,6 +1,9 @@
 package application;
 
+import DragonBall.Juego;
+import eventos.BotonFinalizarTurnoHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -18,11 +21,11 @@ public class CampoBatalla extends BorderPane{
 	int x_seleccionado;
 	int y_seleccionado;
 	
-    public CampoBatalla(Stage stage) {
+    public CampoBatalla(Stage stage, Juego juego) {
         this.fondo = new Image("file:src/imagenes/campo.jpg");
         this.setMenu(stage);
         this.iniciarCampo();
-        this.setInformacionAliados();
+        this.setInformacionAliados(juego);
         this.setInformacionEnemigos();
     }
              
@@ -34,11 +37,18 @@ public class CampoBatalla extends BorderPane{
         grid.setPadding(new Insets(100));	
     }
         
-    private void setInformacionAliados() {
+    private void setInformacionAliados(Juego juego) {
     	GridPane grid = new GridPane();
-        grid.setVgap(0);
+        grid.setVgap(10);
         grid.setHgap(0);
-            	
+        
+        Button finalizarTurno = new Button();
+        finalizarTurno.setText("Finaliza Turno");
+        
+        BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(juego);
+        finalizarTurno.setOnAction(finalizarTurnoHandler);
+        
+        grid.add(finalizarTurno, 0, 10);
         grid.setPadding(new Insets(100));	
         this.setLeft(grid);
     }

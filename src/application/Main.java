@@ -46,7 +46,7 @@ public class Main extends Application {
 			
 			juego.empiezaJuego();
 			
-			CampoBatalla campoBatalla = new CampoBatalla(stage);
+			CampoBatalla campoBatalla = new CampoBatalla(stage, juego);
 
 			Scene scene = new Scene(campoBatalla, 1500, 800);
 			

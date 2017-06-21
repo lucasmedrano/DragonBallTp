@@ -50,7 +50,7 @@ public class OpcionSalirAContenedorBienvenidosEventHandler implements EventHandl
 		tablero.ubicarPersonajesJugador2(jugador2);
 		
 		juego.empiezaJuego();
-		CampoBatalla campoBatalla = new CampoBatalla(stage);
+		CampoBatalla campoBatalla = new CampoBatalla(stage, juego);
 
 		Scene scene = new Scene(campoBatalla, 30, 30);
 		
