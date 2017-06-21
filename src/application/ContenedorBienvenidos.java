@@ -59,7 +59,7 @@ public class ContenedorBienvenidos extends VBox {
 
 		etiqueta.setText(
 				"Haga click en el boton para iniciar la partida. Jugador 1 es Guerreros Z y Jugador 2 es Invasores de la Tierra");
-		etiqueta.setTextFill(Color.web("#FFFFFF"));
+		etiqueta.setTextFill(Color.web("#FF0000"));
 
 		this.getChildren().addAll(etiqueta, botonEntrar, botonSalir);
 	}
