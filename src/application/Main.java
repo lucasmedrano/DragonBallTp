@@ -46,11 +46,11 @@ public class Main extends Application {
 			
 			juego.empiezaJuego();
 			
-			Batalla batalla = new Batalla(stage, goku, gohan, piccolo, freezer, cell, boo, juego);
+			CampoBatalla campoBatalla = new CampoBatalla(stage);
 
-			Scene scene = new Scene(batalla, 30, 30);
+			Scene scene = new Scene(campoBatalla, 30, 30);
 			
-			AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, batalla.getBarraDeMenu());
+			AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, campoBatalla.getBarraDeMenu());
 	        scene.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
 			
 			ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, scene);

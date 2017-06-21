@@ -51,6 +51,8 @@ public class Batalla extends BorderPane{
 	VistaCell vistaCell;
 	VistaFreezer vistaFreezer;
 	VistaMajinBoo vistaMajinBoo;
+	
+	CampoBatalla campo;
 
 	public Batalla(Stage stage, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo, Juego juego) {
 
@@ -224,7 +226,7 @@ public class Batalla extends BorderPane{
 	    }
 
 	    public BarraDeMenu getBarraDeMenu() {
-	        return menuBar;
+	        return campo.getBarraDeMenu();
 	    }
 
 }

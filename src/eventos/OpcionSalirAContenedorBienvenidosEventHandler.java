@@ -11,6 +11,7 @@ import DragonBall.MajinBoo;
 import DragonBall.Piccolo;
 import DragonBall.Tablero;
 import application.Batalla;
+import application.CampoBatalla;
 import application.ContenedorBienvenidos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -49,9 +50,13 @@ public class OpcionSalirAContenedorBienvenidosEventHandler implements EventHandl
 		tablero.ubicarPersonajesJugador2(jugador2);
 		
 		juego.empiezaJuego();
-		Batalla batalla = new Batalla(stage, goku, gohan, piccolo, freezer, cell, boo, juego);
+		CampoBatalla campoBatalla = new CampoBatalla(stage);
 
-		Scene scene = new Scene(batalla, 30, 30);
+		Scene scene = new Scene(campoBatalla, 30, 30);
+		
+		AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, campoBatalla.getBarraDeMenu());
+        scene.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
+
 		ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, scene);
 		Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 800, 600);
 		
