@@ -52,7 +52,7 @@ public class OpcionSalirAContenedorBienvenidosEventHandler implements EventHandl
 		juego.empiezaJuego();
 		CampoBatalla campoBatalla = new CampoBatalla(stage, juego);
 
-		Scene scene = new Scene(campoBatalla, 30, 30);
+		Scene scene = new Scene(campoBatalla, 1500, 800);
 		
 		AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, campoBatalla.getBarraDeMenu());
         scene.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
