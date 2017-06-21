@@ -22,30 +22,9 @@ public class CampoBatalla extends BorderPane{
         this.fondo = new Image("file:src/imagenes/campo.jpg");
         this.setMenu(stage);
         this.iniciarCampo();
-        this.setInformacionAliados();
-        this.setInformacionEnemigos();
     }
     
-    private void setInformacionEnemigos() {
-    	GridPane grid = new GridPane();
-    	grid.setVgap(0);
-    	grid.setHgap(0);
-    	
-    	grid.setPadding(new Insets(100));	
-    	this.setRight(grid);
-	}
-
-	private void setInformacionAliados() {
-    	GridPane grid = new GridPane();
-    	grid.setVgap(0);
-    	grid.setHgap(0);
-    	
-    	grid.setPadding(new Insets(100));	
-    	this.setLeft(grid);
-    }
-    
-
-	public void iniciarCampo(){
+    public void iniciarCampo(){
     	
     	casilleros = new Casillero [10][10];
     	for(int i = 0; i < 10; i++){
@@ -69,6 +48,7 @@ public class CampoBatalla extends BorderPane{
     			grid.add(casilleros[i][j], i, j);
     		}
     	}
+        grid.setPadding(new Insets(20));
         this.setCenter(grid);
         
     }
@@ -83,7 +63,7 @@ public class CampoBatalla extends BorderPane{
     }
     
     public void dibujarPersonaje(Image imagen, int x, int y){
-    	casilleros[y][x].setearImagen(imagen, 100, 100, false);
+    	casilleros[y][x].setearImagen(imagen, 100, 60, false);
     }
     
     public void dibujarFondo(int x, int y){
@@ -91,12 +71,12 @@ public class CampoBatalla extends BorderPane{
     }
     
     public void colocarPersonajes(){
-    	Image gohanImagen = new Image("file:src/Guerreros/gohan.jpg");
-    	Image gokuImagen = new Image("file:src/Guerreros/Goku.jpg");
-    	Image piccoloImagen = new Image("file:src/Guerreros/piccolo.jpg");
-    	Image cellImagen = new Image("file:src/Guerreros/cell.jpg");
-    	Image freezerImagen = new Image("file:src/Guerreros/Freezer.jpg");
-    	Image majinbooImagen = new Image("file:src/Guerreros/MajinBoo.jpg");
+    	Image gohanImagen = new Image("file:src/Guerreros/gohan.png");
+    	Image gokuImagen = new Image("file:src/Guerreros/Goku.png");
+    	Image piccoloImagen = new Image("file:src/Guerreros/piccolo.png");
+    	Image cellImagen = new Image("file:src/Guerreros/cell.png");
+    	Image freezerImagen = new Image("file:src/Guerreros/freezer.png");
+    	Image majinbooImagen = new Image("file:src/Guerreros/boo normal.png");
     	dibujarPersonaje(gokuImagen, 5, 0);
     	dibujarPersonaje(gohanImagen, 4, 0);
     	dibujarPersonaje(piccoloImagen, 6, 0);
