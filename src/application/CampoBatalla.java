@@ -22,6 +22,25 @@ public class CampoBatalla extends BorderPane{
         this.fondo = new Image("file:src/imagenes/campo.jpg");
         this.setMenu(stage);
         this.iniciarCampo();
+        this.setInformacionAliados();
+        this.setInformacionEnemigos();
+    }
+             
+    private void setInformacionEnemigos() {
+    	GridPane grid = new GridPane();
+        grid.setVgap(0);
+        grid.setHgap(0);
+            	
+        grid.setPadding(new Insets(100));	
+    }
+        
+    private void setInformacionAliados() {
+    	GridPane grid = new GridPane();
+        grid.setVgap(0);
+        grid.setHgap(0);
+            	
+        grid.setPadding(new Insets(100));	
+        this.setLeft(grid);
     }
     
     public void iniciarCampo(){
@@ -48,7 +67,6 @@ public class CampoBatalla extends BorderPane{
     			grid.add(casilleros[i][j], i, j);
     		}
     	}
-        grid.setPadding(new Insets(20));
         this.setCenter(grid);
         
     }
