@@ -48,7 +48,7 @@ public class Main extends Application {
 			
 			CampoBatalla campoBatalla = new CampoBatalla(stage);
 
-			Scene scene = new Scene(campoBatalla, 30, 30);
+			Scene scene = new Scene(campoBatalla, 1500, 800);
 			
 			AplicacionOnKeyPressEventHandler AplicacionOnKeyPressEventHandler = new AplicacionOnKeyPressEventHandler(stage, campoBatalla.getBarraDeMenu());
 	        scene.setOnKeyPressed(AplicacionOnKeyPressEventHandler);
