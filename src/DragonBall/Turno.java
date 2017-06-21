@@ -23,4 +23,10 @@ import java.util.Collections;
  		this.i += 1;
  		return jugador;
 	}	
-} 
+
+ 	public Jugador obtenerJugadorActual(){
+ 		Jugador jugador = this.jugadores.get(i);
+ 		return jugador;
+ 	}
+ 
+ }
