@@ -125,10 +125,65 @@ public class VBoxStatsYOrdenesDisponibles {
 				actualizarStatsEnemigo(equipoParaAtacar.obtenerNombre(), equipoParaAtacar.obtenerVida());
 			}
 		};
+		EventHandler<ActionEvent> seleccionarSegundoParaAtacar = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (jugadorActual.obtenerNombre() == "Goku" || jugadorActual.obtenerNombre() == "Gohan"
+						|| jugadorActual.obtenerNombre() == "Piccolo") {
+					equipoParaAtacar = equipoInvasores.get(1);
+				} else {
+					equipoParaAtacar = equipoGuerreros.get(1);
+				}
+				actualizarStatsEnemigo(equipoParaAtacar.obtenerNombre(), equipoParaAtacar.obtenerVida());
+			}
+		};
+		EventHandler<ActionEvent> seleccionarTerceroParaAtacar = new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (jugadorActual.obtenerNombre() == "Goku" || jugadorActual.obtenerNombre() == "Gohan"
+						|| jugadorActual.obtenerNombre() == "Piccolo") {
+					equipoParaAtacar = equipoInvasores.get(2);
+				} else {
+					equipoParaAtacar = equipoGuerreros.get(2);
+				}
+				actualizarStatsEnemigo(equipoParaAtacar.obtenerNombre(), equipoParaAtacar.obtenerVida());
+			}
+		};
+		HBox botonesParaSeleccionarLosAlgoformers = new HBox();
+
+		Button primerGuerrero = new Button(guerreros.get(0).getNombre());
+		primerGuerrero.setPrefSize(80, 20);
+		primerGuerrero.setOnAction(seleccionarPrimero);
+
+		Button segundoGuerrero = new Button(guerreros.get(1).getNombre());
+		segundoGuerrero.setPrefSize(80, 20);
+		segundoGuerrero.setOnAction(seleccionarSegundo);
+
+		Button tercerGuerrero = new Button(guerreros.get(2).getNombre());
+		tercerGuerrero.setPrefSize(80, 20);
+		tercerGuerrero.setOnAction(seleccionarTercero);
+		
+		HBox botonesParaSeleccionarLosGuerrerosParaAtacar = new HBox();
+
+		Button primerGuerreroParaAtacar = new Button(equipoEnemigo.get(0).getNombre());
+		primerGuerreroParaAtacar.setPrefSize(80, 20);
+		primerGuerreroParaAtacar.setOnAction(seleccionarPrimeroParaAtacar);
+
+		Button segundoGuerreroParaAtacar = new Button(equipoEnemigo.get(1).getNombre());
+		segundoGuerreroParaAtacar.setPrefSize(80, 20);
+		segundoGuerreroParaAtacar.setOnAction(seleccionarSegundoParaAtacar);
+
+		Button tercerGuerreroParaAtacar = new Button(equipoEnemigo.get(2).getNombre());
+		tercerGuerreroParaAtacar.setPrefSize(80, 20);
+		tercerGuerreroParaAtacar.setOnAction(seleccionarTerceroParaAtacar);
 	
-	
-	
-	
+		this.enemigo = new Text[] { new Text(stringEnemigo), new Text(stringVida) };
+
+		for (int i = 0; i < this.enemigo.length; i++) {
+
+			VBox.setMargin(this.enemigo[i], new Insets(0, 0, 0, 8));
+			this.getChildren().add(this.enemigo[i]);
+		}
 	
 	}
 	

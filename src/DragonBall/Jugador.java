@@ -38,4 +38,5 @@ public class Jugador {
 	public void finalizoTuTurno() {
 		this.equipo.finalizarTurno();		
 	}
+	
 }
