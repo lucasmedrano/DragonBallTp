@@ -1,14 +1,17 @@
 package application;
 
 import DragonBall.Personaje;
-import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.GridPane;
 
 
 public class VistaGoku extends VistaPersonaje{
 
-
-    public VistaGoku(Personaje personaje, Canvas canvas, int x, int y) {
-        super(personaje, canvas, x, y);
+    public VistaGoku(Personaje personaje, GridPane grid) {
+    	super(personaje, grid);
+    	this.rutaNormal = "file:src/Guerreros/goku.jpg";
+    	this.rutaTransf1 = "file:src/Guerreros/GokuKaioKen.jpg";
+    	this.rutaTransf2 = "file:src//Guerreros/Goku SSJ.jpg";
+        
     }
 
 }

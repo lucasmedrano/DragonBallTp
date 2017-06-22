@@ -46,7 +46,7 @@ public class Main extends Application {
 			
 			juego.empiezaJuego();
 			
-			CampoBatalla campoBatalla = new CampoBatalla(stage, juego);
+			CampoBatalla campoBatalla = new CampoBatalla(stage, juego, goku, gohan, piccolo, freezer, cell, boo);
 
 			Scene scene = new Scene(campoBatalla, 1500, 800);
 			

@@ -3,9 +3,6 @@ package DragonBall;
 public class MajinBoo extends Personaje{
 	
 	protected int poder_especial_stun_turnos;
-	final static private String rutaImgNormal = "file:src/Guerreros/MajinBoo.jpg";
-	final static private String rutaImgT1 = "file:src/Guerreros/MajinBoo Malo.jpg";
-	final static private String rutaImgT2 = "file:src/Guerreros/MajinBoo Original.jpg";
 	
 	public MajinBoo(Tablero tablero_de_juego){	
 		super(tablero_de_juego);
@@ -16,9 +13,6 @@ public class MajinBoo extends Personaje{
 		this.costo_transformacion_1 = 20;
 		this.costo_transformacion_2= 50;
 		this.estado = new EstadoMajinBooNormal();
-		this.rutaImgNor = rutaImgNormal;
-		this.rutaImg1T = rutaImgT1;
-		this.rutaImg2T = rutaImgT2;
 	}
 	
 

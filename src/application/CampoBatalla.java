@@ -1,6 +1,12 @@
 package application;
 
+import DragonBall.Cell;
+import DragonBall.Freezer;
+import DragonBall.Gohan;
+import DragonBall.Goku;
 import DragonBall.Juego;
+import DragonBall.MajinBoo;
+import DragonBall.Piccolo;
 import eventos.BotonFinalizarTurnoHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -16,15 +22,18 @@ public class CampoBatalla extends BorderPane{
     int x;
 	int y;
 	
+	VistaGoku vistaGoku;
+	VistaGohan vistaGohan;
+	VistaPiccolo vistaPiccolo;
+	VistaCell vistaCell;
+	VistaFreezer vistaFreezer;
+	VistaMajinBoo vistaMajinBoo;
 	
-	Image imagen_seleccionada;
-	int x_seleccionado;
-	int y_seleccionado;
-	
-    public CampoBatalla(Stage stage, Juego juego) {
+    public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
+    	
         this.fondo = new Image("file:src/imagenes/campo.jpg");
         this.setMenu(stage);
-        this.iniciarCampo();
+        this.iniciarCampo(goku, gohan, piccolo, freezer, cell, boo);
         this.setInformacionAliados(juego);
         this.setInformacionEnemigos();
     }
@@ -53,33 +62,28 @@ public class CampoBatalla extends BorderPane{
         this.setLeft(grid);
     }
     
-    public void iniciarCampo(){
+    public void iniciarCampo(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo){
     	
-    	casilleros = new Casillero [10][10];
+    	GridPane casilleros = new GridPane();
+    	casilleros.setVgap(0);
+    	casilleros.setHgap(0);
     	for(int i = 0; i < 10; i++){
     		for(int j = 0; j < 10; j++){
-    			casilleros[i][j] = new Casillero(j, i);
-    			casilleros[i][j].setearImagen(this.fondo, 100, 100, true);
+    			Casillero casillero = new Casillero(j, i);
+    			casillero.setearImagen(this.fondo, 70, 70, true);
+    			casilleros.add(casillero, i, j);
     		}
     	}
-    	dibujarCampo();
+    	this.vistaGoku = new VistaGoku(goku, casilleros);
+    	this.vistaGohan = new VistaGohan(gohan, casilleros);
+    	this.vistaPiccolo = new VistaPiccolo(piccolo, casilleros);
+    	this.vistaFreezer = new VistaFreezer(freezer, casilleros);
+    	this.vistaCell = new VistaCell(cell, casilleros);
+    	this.vistaMajinBoo = new VistaMajinBoo(boo, casilleros);
     	colocarPersonajes();
+    	this.setCenter(casilleros);
     }
     
-    private void dibujarCampo(){
-    	
-    	GridPane grid = new GridPane();
-        grid.setVgap(0);
-        grid.setHgap(0);
-        
-        for(int i = 0; i < 10; i++){
-    		for(int j = 0; j < 10; j++){
-    			grid.add(casilleros[i][j], i, j);
-    		}
-    	}
-        this.setCenter(grid);
-        
-    }
     
     private void setMenu(Stage stage) {
         this.menuBar = new BarraDeMenu(stage);
@@ -90,33 +94,19 @@ public class CampoBatalla extends BorderPane{
         return menuBar;
     }
     
-    public void dibujarPersonaje(Image imagen, int x, int y){
-    	casilleros[y][x].setearImagen(imagen, 100, 100, false);
-    }
-    
     public void dibujarFondo(int x, int y){
-    	casilleros[y][x].setearImagen(this.fondo, 100, 100, true);
+    	casilleros[y][x].setearImagen(this.fondo, 70, 70, true);
     }
     
     public void colocarPersonajes(){
-    	Image gohanImagen = new Image("file:src/Guerreros/gohan.jpg");
-    	Image gokuImagen = new Image("file:src/Guerreros/goku.jpg");
-    	Image piccoloImagen = new Image("file:src/Guerreros/piccolo.jpg");
-    	Image cellImagen = new Image("file:src/Guerreros/cell.jpg");
-    	Image freezerImagen = new Image("file:src/Guerreros/Freezer.jpg");
-    	Image majinbooImagen = new Image("file:src/Guerreros/MajinBoo.jpg");
-    	dibujarPersonaje(gokuImagen, 5, 0);
-    	dibujarPersonaje(gohanImagen, 4, 0);
-    	dibujarPersonaje(piccoloImagen, 6, 0);
-    	dibujarPersonaje(freezerImagen, 4, 9);
-    	dibujarPersonaje(cellImagen, 5, 9);
-    	dibujarPersonaje(majinbooImagen, 6, 9);
+    	vistaGoku.dibujarInicial();
+    	vistaGohan.dibujarInicial();
+    	vistaPiccolo.dibujarInicial();
+    	vistaFreezer.dibujarInicial();
+    	vistaCell.dibujarInicial();
+    	vistaMajinBoo.dibujarInicial();
     }
-    
-    public void moverPersonaje(Image imagen, int x_viejo, int y_viejo, int x_nuevo, int y_nuevo){
-    	dibujarFondo(x_viejo, y_viejo);
-    	dibujarPersonaje(imagen, x_nuevo, y_nuevo);
-    }
+   
     
 }
 

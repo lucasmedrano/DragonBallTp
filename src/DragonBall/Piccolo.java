@@ -3,10 +3,6 @@ package DragonBall;
 public class Piccolo extends Personaje{
 	
 	protected int porcentaje_vida_necesaria_gohan;
-	final static private String rutaImgNormal = "file:src/Guerreros/piccolo.jpg";
-	final static private String rutaImgT1 = "file:src/Guerreros/Piccolo Foralecido.jpg";
-	final static private String rutaImgT2 = "file:src/Guerreros/Piccolo protector.jpg";
-	
 	public Piccolo(Tablero tablero_de_juego){
 		super(tablero_de_juego);
 		this.vida_max = 500;
@@ -16,9 +12,6 @@ public class Piccolo extends Personaje{
 		this.costo_transformacion_2= 0;
 		this.porcentaje_vida_necesaria_gohan = 20;
 		this.estado = new EstadoPiccoloNormal();
-		this.rutaImgNor = rutaImgNormal;
-		this.rutaImg1T = rutaImgT1;
-		this.rutaImg2T = rutaImgT2;
 	}
 	
 	public void transformar(int costo_de_transformacion, boolean chequear_vida_gohan, Estado nuevo_estado) throws IncapacidadParaTransformacion{

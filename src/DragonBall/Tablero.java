@@ -6,7 +6,7 @@ public class Tablero {
 	private int tamanio;
 	
 	public Tablero(){
-		this.tamanio = 30;
+		this.tamanio = 10;
 		this.tablero = new Personaje[tamanio][tamanio];
 	}
 	
