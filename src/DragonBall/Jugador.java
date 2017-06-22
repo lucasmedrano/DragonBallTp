@@ -39,4 +39,7 @@ public class Jugador {
 		this.equipo.finalizarTurno();		
 	}
 	
+	public Personaje[] obtenerNombre(){
+		return equipo.obteneEquipo();
+	}
 }
