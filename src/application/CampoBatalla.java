@@ -192,6 +192,7 @@ public class CampoBatalla extends BorderPane{
     	else if(personaje_seleccionado instanceof Freezer) vista_seleccionada = vistaFreezer;
     	else if(personaje_seleccionado instanceof MajinBoo) vista_seleccionada = vistaMajinBoo;
     }
+
     
     public void setearPersonajeSeleccionado(Personaje personaje){
     	this.personaje_seleccionado = personaje;
