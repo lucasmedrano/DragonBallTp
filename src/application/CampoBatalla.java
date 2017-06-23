@@ -16,6 +16,7 @@ import eventos.BotonMoverIzquierdaHandler;
 import eventos.SeleccionarPersonajeEventHandler;
 import eventos.Transformar1EventHandler;
 import eventos.Transformar2EventHandler;
+import eventos.BotonAtaqueBasicoHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,6 +85,10 @@ public class CampoBatalla extends BorderPane{
         
         Button moverAbajo = new Button();
         moverAbajo.setText("↓");
+        
+        Button ataqueBasico= new Button();
+        ataqueBasico.setText("Ataque Basico");
+        
         BotonMoverAbajoHandler moverAbajoHandler = new BotonMoverAbajoHandler(this);
         moverAbajo.setOnAction(moverAbajoHandler);
         Button moverDerecha = new Button();
@@ -94,14 +99,18 @@ public class CampoBatalla extends BorderPane{
         moverIzquierda.setText("←");
         BotonMoverIzquierdaHandler moverIzquierdaHandler = new BotonMoverIzquierdaHandler(this);
         moverIzquierda.setOnAction(moverIzquierdaHandler);
-
+       
+        BotonAtaqueBasicoHandler ataqueBasicoHandler = new BotonAtaqueBasicoHandler(this,vistaFreezer);
+        ataqueBasico.setOnAction(ataqueBasicoHandler);
+        
         this.datosYBotones.add(finalizarTurno, 1, 10);
         this.datosYBotones.add(transf1, 1, 11);
         this.datosYBotones.add(transf2, 1, 12);
-        this.datosYBotones.add(moverArriba, 1, 13);
-        this.datosYBotones.add(moverAbajo, 1, 15);
-        this.datosYBotones.add(moverIzquierda, 0, 14);
-        this.datosYBotones.add(moverDerecha, 2, 14);
+        this.datosYBotones.add(moverArriba, 1, 18);
+        this.datosYBotones.add(moverAbajo, 1,20);
+        this.datosYBotones.add(moverIzquierda, 0, 19);
+        this.datosYBotones.add(moverDerecha, 2, 19);
+        this.datosYBotones.add(ataqueBasico,1 ,25);
         this.datosYBotones.setPadding(new Insets(100));	
         this.datosYBotones.add(vida, 1, 2);
         this.setLeft(datosYBotones);
