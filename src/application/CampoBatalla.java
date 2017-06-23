@@ -18,7 +18,9 @@ import eventos.Transformar1EventHandler;
 import eventos.Transformar2EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -27,16 +29,16 @@ public class CampoBatalla extends BorderPane{
 	private Image fondo; 
     private GridPane casilleros;
     BarraDeMenu menuBar;
-	
 	VistaGoku vistaGoku;
 	VistaGohan vistaGohan;
 	VistaPiccolo vistaPiccolo;
 	VistaCell vistaCell;
 	VistaFreezer vistaFreezer;
 	VistaMajinBoo vistaMajinBoo;
-	
 	Personaje personaje_seleccionado;
 	VistaPersonaje vista_seleccionada;
+	Label vida;
+	GridPane datosYBotones;
 	
     public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
     	
@@ -54,12 +56,12 @@ public class CampoBatalla extends BorderPane{
             	
         grid.setPadding(new Insets(100));	
     }
-        
+    
     private void setInformacionAliados(Juego juego) {
-    	GridPane grid = new GridPane();
-        grid.setVgap(2);
-        grid.setHgap(1);
-        
+    	this.datosYBotones = new GridPane();
+        this.datosYBotones.setVgap(2);
+        this.datosYBotones.setHgap(1);
+        this.vida = new Label("");
         Button finalizarTurno = new Button();
         finalizarTurno.setText("Finaliza Turno");
         BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(juego);
@@ -92,16 +94,17 @@ public class CampoBatalla extends BorderPane{
         moverIzquierda.setText("←");
         BotonMoverIzquierdaHandler moverIzquierdaHandler = new BotonMoverIzquierdaHandler(this);
         moverIzquierda.setOnAction(moverIzquierdaHandler);
-        
-        grid.add(finalizarTurno, 1, 10);
-        grid.add(transf1, 1, 11);
-        grid.add(transf2, 1, 12);
-        grid.add(moverArriba, 1, 13);
-        grid.add(moverAbajo, 1, 15);
-        grid.add(moverIzquierda, 0, 14);
-        grid.add(moverDerecha, 2, 14);
-        grid.setPadding(new Insets(100));	
-        this.setLeft(grid);
+
+        this.datosYBotones.add(finalizarTurno, 1, 10);
+        this.datosYBotones.add(transf1, 1, 11);
+        this.datosYBotones.add(transf2, 1, 12);
+        this.datosYBotones.add(moverArriba, 1, 13);
+        this.datosYBotones.add(moverAbajo, 1, 15);
+        this.datosYBotones.add(moverIzquierda, 0, 14);
+        this.datosYBotones.add(moverDerecha, 2, 14);
+        this.datosYBotones.setPadding(new Insets(100));	
+        this.datosYBotones.add(vida, 1, 2);
+        this.setLeft(datosYBotones);
     }
     
     public void iniciarCampo(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo){	
@@ -184,6 +187,17 @@ public class CampoBatalla extends BorderPane{
 
     public VistaPersonaje obtenerVistaSeleccionada(){
     	return this.vista_seleccionada;
+    }
+    
+    public void actualizarDatos(){
+        this.vida.setText((Integer.toString(this.personaje_seleccionado.obtenerVida())));
+        ImageView imagen_personaje_seleccionado = new ImageView();
+        
+        imagen_personaje_seleccionado.setImage(this.vista_seleccionada.obtenerImagenCircular());
+        imagen_personaje_seleccionado.setFitHeight(200);
+        imagen_personaje_seleccionado.setPreserveRatio(true);
+    	
+        this.datosYBotones.add(imagen_personaje_seleccionado, 1, 0);
     }
 }
 

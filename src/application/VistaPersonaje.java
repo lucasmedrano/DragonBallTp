@@ -1,10 +1,7 @@
 package application;
 
 import DragonBall.Personaje;
-import javafx.event.EventHandler;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public abstract class VistaPersonaje {
@@ -13,8 +10,11 @@ public abstract class VistaPersonaje {
     String rutaNormal;
     String rutaTransf1;
     String rutaTransf2;
-    
+    String rutacircnormal;
+    String rutacirc1;
+    String rutacirc2;
     Image imagen;
+    Image imagencircular;
     
     
     public VistaPersonaje(Personaje personaje, GridPane grid) {
@@ -23,6 +23,7 @@ public abstract class VistaPersonaje {
     }
     
     public void dibujarInicial(){
+    	this.imagencircular = new Image(this.rutacircnormal);
     	this.imagen = new Image(this.rutaNormal);
     	int x = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
     	int y = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
@@ -40,10 +41,20 @@ public abstract class VistaPersonaje {
     }
 
     public void actualizarATransformacion1(){
-    	imagen = new Image(rutaTransf1);
+    	this.imagen = new Image(rutaTransf1);
+    	this.imagencircular = new Image(rutacirc1);
     }
 
     public void actualizarATransformacion2(){
-    	imagen = new Image(rutaTransf2);
+    	this.imagen = new Image(rutaTransf2);
+    	this.imagencircular = new Image(rutacirc2);
+    }
+    
+    public Image obtenerImagen(){
+    	return this.imagen;
+    }
+    
+    public Image obtenerImagenCircular(){
+    	return this.imagencircular;
     }
 }

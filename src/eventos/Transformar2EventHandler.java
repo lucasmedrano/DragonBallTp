@@ -25,6 +25,7 @@ public class Transformar2EventHandler implements EventHandler<ActionEvent>{
 				personaje.transformar_2();
 				this.vista_personaje.actualizarATransformacion2();
 				this.vista_personaje.dibujar();
+				campo.actualizarDatos();
 			}catch (IncapacidadParaTransformacion error){
 				return;
 			}

@@ -26,7 +26,7 @@ public class SeleccionarPersonajeEventHandler implements EventHandler<MouseEvent
 		
 		campo.setearPersonajeSeleccionado(this.personaje);
 		campo.actualizarVistaSeleccionada();
-		
+		campo.actualizarDatos();
 	}
 	
 	public int obtenerX(){
