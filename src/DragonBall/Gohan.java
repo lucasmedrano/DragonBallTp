@@ -18,6 +18,8 @@ public class Gohan extends Personaje{
 	
 	public void transformar(int costo_de_transformacion, boolean chequear_vida_equipo, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		try{	
+			if (this.estaInmovilizado()) throw new IncapacidadParaTransformacion();
+	    	if (!equipo.esMiTurno()) throw new IncapacidadParaTransformacion();
 			
 			if((chequear_vida_equipo) && (chequearPorcentajeVidaEquipo() == false)){
 				throw new IncapacidadParaTransformacion();

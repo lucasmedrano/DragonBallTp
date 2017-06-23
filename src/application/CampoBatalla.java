@@ -78,20 +78,20 @@ public class CampoBatalla extends BorderPane{
         transf2.setOnAction(transformarPersonajeA2);
         
         Button moverArriba = new Button();
-        moverArriba.setText("↑");
+        moverArriba.setText("Arriba");
         BotonMoverArribaHandler moverArribaHandler = new BotonMoverArribaHandler(this);
         moverArriba.setOnAction(moverArribaHandler);
         
         Button moverAbajo = new Button();
-        moverAbajo.setText("↓");
+        moverAbajo.setText("Abajo");
         BotonMoverAbajoHandler moverAbajoHandler = new BotonMoverAbajoHandler(this);
         moverAbajo.setOnAction(moverAbajoHandler);
         Button moverDerecha = new Button();
-        moverDerecha.setText("→");
+        moverDerecha.setText("Derecha");
         BotonMoverDerechaHandler moverDerechaHandler = new BotonMoverDerechaHandler(this);
         moverDerecha.setOnAction(moverDerechaHandler);
         Button moverIzquierda = new Button();
-        moverIzquierda.setText("←");
+        moverIzquierda.setText("Izquierda");
         BotonMoverIzquierdaHandler moverIzquierdaHandler = new BotonMoverIzquierdaHandler(this);
         moverIzquierda.setOnAction(moverIzquierdaHandler);
 
@@ -101,7 +101,7 @@ public class CampoBatalla extends BorderPane{
         this.datosYBotones.add(moverArriba, 1, 13);
         this.datosYBotones.add(moverAbajo, 1, 15);
         this.datosYBotones.add(moverIzquierda, 0, 14);
-        this.datosYBotones.add(moverDerecha, 2, 14);
+        this.datosYBotones.add(moverDerecha, 1, 14);
         this.datosYBotones.setPadding(new Insets(100));	
         this.datosYBotones.add(vida, 1, 2);
         this.setLeft(datosYBotones);

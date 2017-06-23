@@ -16,6 +16,9 @@ public class Piccolo extends Personaje{
 	
 	public void transformar(int costo_de_transformacion, boolean chequear_vida_gohan, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		try{
+			if (this.estaInmovilizado()) throw new IncapacidadParaTransformacion();
+	    	if (!equipo.esMiTurno()) throw new IncapacidadParaTransformacion();
+			
 			if(chequear_vida_gohan && (vidaGohanAlcanza() == false)){
 				throw new IncapacidadParaTransformacion();
 			}

@@ -157,6 +157,10 @@ public abstract class Personaje {
 	
 	public void transformar(int costo_de_transformacion, Estado nuevo_estado) throws IncapacidadParaTransformacion{
 		
+		if (this.estaInmovilizado()) throw new IncapacidadParaTransformacion();
+    	if (!equipo.esMiTurno()) throw new IncapacidadParaTransformacion();
+
+		
 		if (this.ki >= costo_de_transformacion){
 			this.estado = nuevo_estado;
 			this.ki = this.ki - costo_de_transformacion;
