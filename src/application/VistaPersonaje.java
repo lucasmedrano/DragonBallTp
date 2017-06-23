@@ -14,12 +14,15 @@ public abstract class VistaPersonaje {
     String rutacirc1;
     String rutacirc2;
     Image imagen;
+    Image imagenChocolate;
     Image imagencircular;
     
     
     public VistaPersonaje(Personaje personaje, GridPane grid) {
         this.personaje = personaje;
     	this.grid = grid;
+    	this.imagenChocolate = new Image("file:src/imagenes/chocolate.jpg");
+    	
     }
     
     public void dibujarInicial(){
@@ -40,6 +43,11 @@ public abstract class VistaPersonaje {
     		this.imagen = new Image("file:src/imagenes/campo.jpg");
     		casillero.setearImagen(this.imagen, 70, 70, true);
         	casillero.setearPersonaje(null);
+        	return;
+    	}
+    	if (this.personaje.estaInmovilizado()){
+    		casillero.setearImagen(this.imagenChocolate, 70, 70, true);
+        	casillero.setearPersonaje(personaje);
         	return;
     	}
     	casillero.setearImagen(this.imagen, 70, 70, true);
