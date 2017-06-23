@@ -13,7 +13,7 @@ public class VistaCell extends VistaPersonaje{
     	this.rutaTransf1 = "file:src/Guerreros/Cell SemiPerfecto.jpg";
     	this.rutaTransf2 = "file:src/Guerreros/Cell Perfecto.jpg";
         this.rutacircnormal = "file:src//imagenes/circulocellnormal.png";
-        this.rutacirc1 = "file:src//imagenes/circulocellnormal.png";
+        this.rutacirc1 = "file:src//imagenes/cellsemiperfecto.png";
         this.rutacirc2 = "file:src//imagenes/circulocell.png";
     }
 

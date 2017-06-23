@@ -13,8 +13,8 @@ public class VistaPiccolo extends VistaPersonaje{
     	this.rutaTransf1 = "file:src/Guerreros/piccolo Fortalecido.jpg";
     	this.rutaTransf2 = "file:src/Guerreros/piccolo Protector.jpg";
         this.rutacircnormal = "file:src//imagenes/circulopiccolo.png";
-        this.rutacirc1 = "file:src//imagenes/circulopiccolo.png";
-        this.rutacirc2 = "file:src//imagenes/circulopiccolo.png";
+        this.rutacirc1 = "file:src//imagenes/piccolofortalecido.png";
+        this.rutacirc2 = "file:src//imagenes/piccoloprotector.png";
     	
     }
 
