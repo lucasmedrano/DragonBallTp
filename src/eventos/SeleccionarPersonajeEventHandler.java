@@ -1,29 +1,32 @@
 package eventos;
 
 import DragonBall.Personaje;
+import application.CampoBatalla;
 import application.Casillero;
-import application.VistaPersonaje;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class SeleccionarPersonajeEventHandler implements EventHandler<MouseEvent> {
-	String mostrar;
 	int x;
 	int y;
 	Personaje personaje;
+	Casillero casillero;
+	CampoBatalla campo;
 	
-	public SeleccionarPersonajeEventHandler(Casillero casillero){
-		mostrar = "Se hizo click en un casillero";
-		x = casillero.obtenerX();
-		y = casillero.obtenerY();
-		this.personaje = casillero.obtenerPersonaje();
+	public SeleccionarPersonajeEventHandler(Casillero casillero, CampoBatalla campo){
+		this.casillero = casillero;
+		this.campo = campo;
 	}
 
 	@Override
 	public void handle(MouseEvent event) {
-		// TODO Auto-generated method stub
-		System.out.println(Integer.toString(x));
-		System.out.println(Integer.toString(y));
+		x = casillero.obtenerX();
+		y = casillero.obtenerY();
+		this.personaje = casillero.obtenerPersonaje();
+		
+		campo.setearPersonajeSeleccionado(this.personaje);
+		campo.actualizarVistaSeleccionada();
+		
 	}
 	
 	public int obtenerX(){

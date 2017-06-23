@@ -35,8 +35,6 @@ public class CampoBatalla extends BorderPane{
 	VistaFreezer vistaFreezer;
 	VistaMajinBoo vistaMajinBoo;
 	
-	int x_seleccionado;
-	int y_seleccionado;
 	Personaje personaje_seleccionado;
 	VistaPersonaje vista_seleccionada;
 	
@@ -78,23 +76,22 @@ public class CampoBatalla extends BorderPane{
         transf2.setOnAction(transformarPersonajeA2);
         
         Button moverArriba = new Button();
-        moverArriba.setText("Arriba");
+        moverArriba.setText("↑");
         BotonMoverArribaHandler moverArribaHandler = new BotonMoverArribaHandler(this);
         moverArriba.setOnAction(moverArribaHandler);
         
         Button moverAbajo = new Button();
-        moverAbajo.setText("Abajo");
+        moverAbajo.setText("↓");
         BotonMoverAbajoHandler moverAbajoHandler = new BotonMoverAbajoHandler(this);
         moverAbajo.setOnAction(moverAbajoHandler);
         Button moverDerecha = new Button();
-        moverDerecha.setText("->");
+        moverDerecha.setText("→");
         BotonMoverDerechaHandler moverDerechaHandler = new BotonMoverDerechaHandler(this);
         moverDerecha.setOnAction(moverDerechaHandler);
         Button moverIzquierda = new Button();
-        moverIzquierda.setText("<-");
+        moverIzquierda.setText("←");
         BotonMoverIzquierdaHandler moverIzquierdaHandler = new BotonMoverIzquierdaHandler(this);
         moverIzquierda.setOnAction(moverIzquierdaHandler);
-        
         
         grid.add(finalizarTurno, 1, 10);
         grid.add(transf1, 1, 11);
@@ -161,14 +158,9 @@ public class CampoBatalla extends BorderPane{
     			x = j;
     			y = i;
     	    	Casillero casillero = (Casillero) this.casilleros.getChildren().get(10*x + y);
-    	    	SeleccionarPersonajeEventHandler eventoSeleccionar = new SeleccionarPersonajeEventHandler(casillero);
+    	    	SeleccionarPersonajeEventHandler eventoSeleccionar = new SeleccionarPersonajeEventHandler(casillero, this);
     	    	
-    	        casillero.setOnMouseClicked(event -> {
-    	            this.x_seleccionado = eventoSeleccionar.obtenerX();
-    	            this.y_seleccionado = eventoSeleccionar.obtenerY();
-    	            this.personaje_seleccionado = eventoSeleccionar.obtenerPersonaje();
-    	            actualizarVistaSeleccionada();
-    	        });
+    	        casillero.setOnMouseClicked(eventoSeleccionar);
     		}
     	}
     }   
@@ -180,6 +172,10 @@ public class CampoBatalla extends BorderPane{
     	else if(personaje_seleccionado instanceof Cell) vista_seleccionada = vistaCell;
     	else if(personaje_seleccionado instanceof Freezer) vista_seleccionada = vistaFreezer;
     	else if(personaje_seleccionado instanceof MajinBoo) vista_seleccionada = vistaMajinBoo;
+    }
+    
+    public void setearPersonajeSeleccionado(Personaje personaje){
+    	this.personaje_seleccionado = personaje;
     }
     
     public Personaje obtenerPersonajeSeleccionado(){

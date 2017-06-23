@@ -76,7 +76,7 @@ public class DragonBallTests {
 		equipo.asignarPersonajes(goku, gohan, piccolo);
 		equipo.esTuTurno();
 		try{
-			goku.ubicarEn(5,29);
+			goku.ubicarEn(5,9);
 		}
 		catch (PosicionInadecuada e){
 			Assert.fail("No se ubic� el personaje");
@@ -93,7 +93,7 @@ public class DragonBallTests {
 			
 		Ubicacion ubicacion = goku.obtenerUbicacion();
 		Assert.assertEquals("La ubicacion horizontal es incorrecta",5, ubicacion.obtenerUbicacionHorizontal());
-		Assert.assertEquals("La ubicacion vertical es incorrecta",29, ubicacion.obtenerUbicacionVertical());
+		Assert.assertEquals("La ubicacion vertical es incorrecta",9, ubicacion.obtenerUbicacionVertical());
 	}
 	
 	@Test
@@ -221,7 +221,7 @@ public class DragonBallTests {
 		equipo.asignarPersonajes(goku, gohan, piccolo);
 		equipo.esTuTurno();
 		try{
-			goku.ubicarEn(29,5);
+			goku.ubicarEn(9,5);
 			goku.aumentarKi(50);
 			goku.transformar_2();
 		}catch (PosicionInadecuada e){
@@ -239,7 +239,7 @@ public class DragonBallTests {
 			Assert.fail("No se puede mover");
 		}
 		Ubicacion ubicacion = goku.obtenerUbicacion();
-		Assert.assertEquals(29, ubicacion.obtenerUbicacionHorizontal());
+		Assert.assertEquals(9, ubicacion.obtenerUbicacionHorizontal());
 		Assert.assertEquals(5, ubicacion.obtenerUbicacionVertical());
 	}
 	
@@ -272,7 +272,7 @@ public class DragonBallTests {
 		
 		Assert.assertEquals(jugador1, juego.obtenerJugador1());
 		Assert.assertEquals(jugador2, juego.obtenerJugador2());
-		Assert.assertEquals(30, tablero.obtenerTamanio());
+		Assert.assertEquals(10, tablero.obtenerTamanio());
 		
 		Ubicacion ubicacion_goku = goku.obtenerUbicacion();
 		Ubicacion ubicacion_gohan = gohan.obtenerUbicacion();
@@ -356,7 +356,7 @@ public class DragonBallTests {
 		
 		try{
 			goku.ubicarEn(1,1);
-			cell.ubicarEn(10,10);
+			cell.ubicarEn(9,9);
 		}catch (PosicionInadecuada e){
 			Assert.fail("No se ubicion el personaje");
 		}
@@ -507,7 +507,7 @@ public class DragonBallTests {
 		Tablero tablero = new Tablero();
 		Cell cell = new Cell(tablero);
 		try{
-			cell.ubicarEn(10,11);
+			cell.ubicarEn(2,2);
 		}catch(PosicionInadecuada e){
 			Assert.fail("No se ubicó el personaje");
 		}
@@ -1193,7 +1193,7 @@ public class DragonBallTests {
 		Equipo equipo2 = new Equipo();
 		equipo2.asignarPersonajes(freezer, cell, boo);
 		
-		goku.ubicarEn(0, 15);
+		goku.ubicarEn(0, 5);
 		
 		jugador1.asignarEquipo(equipo1);
 		jugador2.asignarEquipo(equipo2);

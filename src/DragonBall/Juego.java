@@ -27,13 +27,11 @@ public class Juego {
     } 
     
     public void empiezaJuego(){
-    	
     	this.jugador_jugando = this.turno.obtenerJugadorSiguiente();
     	this.jugador_jugando.esTuTurno();
     }
     
     public void turnoSiguiente(){
-    	
     	this.jugador_jugando.finalizoTuTurno();
     	jugador1.empezoTurno();
     	jugador2.empezoTurno();
