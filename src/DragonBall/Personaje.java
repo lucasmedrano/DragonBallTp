@@ -59,6 +59,10 @@ public abstract class Personaje {
     	return this.vida;
     }
     
+    public int obtenerKi(){
+    	return this.ki;
+    }
+    
     public int obtenerVelocidad(){
     	return this.estado.obtenerVelocidad();
     }
