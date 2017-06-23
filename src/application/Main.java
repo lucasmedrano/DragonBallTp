@@ -37,7 +37,6 @@ public class Main extends Application {
 			Equipo equipo2 = new Equipo();
 			equipo2.asignarPersonajes(freezer, cell, boo);
 			
-
 			jugador1.asignarEquipo(equipo1);
 			jugador2.asignarEquipo(equipo2);
 			
