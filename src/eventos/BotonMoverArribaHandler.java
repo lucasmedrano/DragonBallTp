@@ -6,25 +6,34 @@ import DragonBall.IncapacidadParaMoverse;
 import DragonBall.InhabilitadoError;
 import DragonBall.Personaje;
 import DragonBall.PosicionInadecuada;
+import application.CampoBatalla;
 import application.VistaPersonaje;
 
 public class BotonMoverArribaHandler implements EventHandler<ActionEvent> {
 	
-	private final VistaPersonaje vista;
-    private final Personaje personaje;
+	VistaPersonaje vista;
+    Personaje personaje;
+    CampoBatalla campo;
+    int x_viejo;
+    int y_viejo;
     
-    public BotonMoverArribaHandler(VistaPersonaje vista, Personaje personaje) {
-        this.vista = vista;
-        this.personaje = personaje;
+    public BotonMoverArribaHandler(CampoBatalla campo) {
+        this.campo = campo;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        try {
+        this.vista = campo.obtenerVistaSeleccionada();
+        this.personaje = campo.obtenerPersonajeSeleccionado();
+    	
+    	try {
+    		x_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
+    		y_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
 			this.personaje.moverAbajo();
+			this.vista.dibujar();
+			this.campo.dibujarFondo(x_viejo, y_viejo);
 		} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
 			return;
 		}
-        this.vista.update(0, -50);
     }
 }

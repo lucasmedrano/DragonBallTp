@@ -164,6 +164,11 @@ public abstract class Personaje {
 		else throw new IncapacidadParaTransformacion();
 	}
 	
+	public abstract void transformar_1() throws IncapacidadParaTransformacion;
+	public abstract void transformar_2() throws IncapacidadParaTransformacion;
+	
+	
+	
 	private void mover(int x, int y) throws PosicionInadecuada, InhabilitadoError,IncapacidadParaMoverse{
 		
 		if (this.estaInmovilizado()) throw new InhabilitadoError();

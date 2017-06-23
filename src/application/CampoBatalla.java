@@ -6,8 +6,16 @@ import DragonBall.Gohan;
 import DragonBall.Goku;
 import DragonBall.Juego;
 import DragonBall.MajinBoo;
+import DragonBall.Personaje;
 import DragonBall.Piccolo;
 import eventos.BotonFinalizarTurnoHandler;
+import eventos.BotonMoverAbajoHandler;
+import eventos.BotonMoverArribaHandler;
+import eventos.BotonMoverDerechaHandler;
+import eventos.BotonMoverIzquierdaHandler;
+import eventos.SeleccionarPersonajeEventHandler;
+import eventos.Transformar1EventHandler;
+import eventos.Transformar2EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,10 +25,8 @@ import javafx.stage.Stage;
 
 public class CampoBatalla extends BorderPane{
 	private Image fondo; 
-    private Casillero [][] casilleros;
+    private GridPane casilleros;
     BarraDeMenu menuBar;
-    int x;
-	int y;
 	
 	VistaGoku vistaGoku;
 	VistaGohan vistaGohan;
@@ -28,6 +34,11 @@ public class CampoBatalla extends BorderPane{
 	VistaCell vistaCell;
 	VistaFreezer vistaFreezer;
 	VistaMajinBoo vistaMajinBoo;
+	
+	int x_seleccionado;
+	int y_seleccionado;
+	Personaje personaje_seleccionado;
+	VistaPersonaje vista_seleccionada;
 	
     public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
     	
@@ -48,23 +59,56 @@ public class CampoBatalla extends BorderPane{
         
     private void setInformacionAliados(Juego juego) {
     	GridPane grid = new GridPane();
-        grid.setVgap(10);
-        grid.setHgap(0);
+        grid.setVgap(2);
+        grid.setHgap(1);
         
         Button finalizarTurno = new Button();
         finalizarTurno.setText("Finaliza Turno");
-        
         BotonFinalizarTurnoHandler finalizarTurnoHandler = new BotonFinalizarTurnoHandler(juego);
         finalizarTurno.setOnAction(finalizarTurnoHandler);
         
-        grid.add(finalizarTurno, 0, 10);
+        Button transf1 = new Button();
+        transf1.setText("Transformacion 1");
+        Transformar1EventHandler transformarPersonajeA1 = new Transformar1EventHandler(this);
+        transf1.setOnAction(transformarPersonajeA1);
+        
+        Button transf2 = new Button();
+        transf2.setText("Transformacion 2");
+        Transformar2EventHandler transformarPersonajeA2 = new Transformar2EventHandler(this);
+        transf2.setOnAction(transformarPersonajeA2);
+        
+        Button moverArriba = new Button();
+        moverArriba.setText("Arriba");
+        BotonMoverArribaHandler moverArribaHandler = new BotonMoverArribaHandler(this);
+        moverArriba.setOnAction(moverArribaHandler);
+        
+        Button moverAbajo = new Button();
+        moverAbajo.setText("Abajo");
+        BotonMoverAbajoHandler moverAbajoHandler = new BotonMoverAbajoHandler(this);
+        moverAbajo.setOnAction(moverAbajoHandler);
+        Button moverDerecha = new Button();
+        moverDerecha.setText("->");
+        BotonMoverDerechaHandler moverDerechaHandler = new BotonMoverDerechaHandler(this);
+        moverDerecha.setOnAction(moverDerechaHandler);
+        Button moverIzquierda = new Button();
+        moverIzquierda.setText("<-");
+        BotonMoverIzquierdaHandler moverIzquierdaHandler = new BotonMoverIzquierdaHandler(this);
+        moverIzquierda.setOnAction(moverIzquierdaHandler);
+        
+        
+        grid.add(finalizarTurno, 1, 10);
+        grid.add(transf1, 1, 11);
+        grid.add(transf2, 1, 12);
+        grid.add(moverArriba, 1, 13);
+        grid.add(moverAbajo, 1, 15);
+        grid.add(moverIzquierda, 0, 14);
+        grid.add(moverDerecha, 2, 14);
         grid.setPadding(new Insets(100));	
         this.setLeft(grid);
     }
     
-    public void iniciarCampo(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo){
-    	
-    	GridPane casilleros = new GridPane();
+    public void iniciarCampo(Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo){	
+    	casilleros = new GridPane();
     	casilleros.setVgap(0);
     	casilleros.setHgap(0);
     	for(int i = 0; i < 10; i++){
@@ -82,9 +126,9 @@ public class CampoBatalla extends BorderPane{
     	this.vistaMajinBoo = new VistaMajinBoo(boo, casilleros);
     	colocarPersonajes();
     	this.setCenter(casilleros);
+    	this.setearEventos();
     }
-    
-    
+     
     private void setMenu(Stage stage) {
         this.menuBar = new BarraDeMenu(stage);
         this.setTop(menuBar);
@@ -95,7 +139,9 @@ public class CampoBatalla extends BorderPane{
     }
     
     public void dibujarFondo(int x, int y){
-    	casilleros[y][x].setearImagen(this.fondo, 70, 70, true);
+    	((Casillero) this.casilleros.getChildren().get(10*x + y)).setearImagen(this.fondo, 70, 70, true);
+    	((Casillero) this.casilleros.getChildren().get(10*x + y)).setearPersonaje(null);
+    	
     }
     
     public void colocarPersonajes(){
@@ -106,7 +152,42 @@ public class CampoBatalla extends BorderPane{
     	vistaCell.dibujarInicial();
     	vistaMajinBoo.dibujarInicial();
     }
-   
     
+    public void setearEventos(){
+    	int x;
+    	int y;
+    	for(int i = 0; i < 10; i++){
+    		for(int j = 0; j < 10; j++){
+    			x = j;
+    			y = i;
+    	    	Casillero casillero = (Casillero) this.casilleros.getChildren().get(10*x + y);
+    	    	SeleccionarPersonajeEventHandler eventoSeleccionar = new SeleccionarPersonajeEventHandler(casillero);
+    	    	
+    	        casillero.setOnMouseClicked(event -> {
+    	            this.x_seleccionado = eventoSeleccionar.obtenerX();
+    	            this.y_seleccionado = eventoSeleccionar.obtenerY();
+    	            this.personaje_seleccionado = eventoSeleccionar.obtenerPersonaje();
+    	            actualizarVistaSeleccionada();
+    	        });
+    		}
+    	}
+    }   
+
+    public void actualizarVistaSeleccionada(){
+    	if(personaje_seleccionado instanceof Goku) vista_seleccionada = vistaGoku;
+    	else if(personaje_seleccionado instanceof Gohan) vista_seleccionada =vistaGohan;
+    	else if(personaje_seleccionado instanceof Piccolo) vista_seleccionada = vistaPiccolo;
+    	else if(personaje_seleccionado instanceof Cell) vista_seleccionada = vistaCell;
+    	else if(personaje_seleccionado instanceof Freezer) vista_seleccionada = vistaFreezer;
+    	else if(personaje_seleccionado instanceof MajinBoo) vista_seleccionada = vistaMajinBoo;
+    }
+    
+    public Personaje obtenerPersonajeSeleccionado(){
+    	return this.personaje_seleccionado;
+    }
+
+    public VistaPersonaje obtenerVistaSeleccionada(){
+    	return this.vista_seleccionada;
+    }
 }
 

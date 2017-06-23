@@ -28,13 +28,22 @@ public abstract class VistaPersonaje {
     	int y = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
     	Casillero casillero = (Casillero) this.grid.getChildren().get(10*x + y);
     	casillero.setearImagen(this.imagen, 70, 70, true);
+    	casillero.setearPersonaje(personaje);
     }
     
     public void dibujar() {
-        
+    	int x = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
+    	int y = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
+    	Casillero casillero = (Casillero) this.grid.getChildren().get(10*x + y);
+    	casillero.setearImagen(this.imagen, 70, 70, true);
+    	casillero.setearPersonaje(personaje);
     }
 
+    public void actualizarATransformacion1(){
+    	imagen = new Image(rutaTransf1);
+    }
 
-	 public void update() {
-	    }
+    public void actualizarATransformacion2(){
+    	imagen = new Image(rutaTransf2);
+    }
 }
