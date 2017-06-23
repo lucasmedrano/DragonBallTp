@@ -30,12 +30,12 @@ public class CampoBatalla extends BorderPane{
 	private Image fondo; 
     private GridPane casilleros;
     BarraDeMenu menuBar;
-	VistaGoku vistaGoku;
-	VistaGohan vistaGohan;
-	VistaPiccolo vistaPiccolo;
-	VistaCell vistaCell;
-	VistaFreezer vistaFreezer;
-	VistaMajinBoo vistaMajinBoo;
+	public VistaGoku vistaGoku;
+	public VistaGohan vistaGohan;
+	public VistaPiccolo vistaPiccolo;
+	public VistaCell vistaCell;
+	public VistaFreezer vistaFreezer;
+	public VistaMajinBoo vistaMajinBoo;
 	Personaje personaje_seleccionado;
 	VistaPersonaje vista_seleccionada;
 	Label vida;
@@ -100,7 +100,7 @@ public class CampoBatalla extends BorderPane{
        
         Button ataqueBasico= new Button();
         ataqueBasico.setText("Ataque Basico");
-        BotonAtaqueBasicoHandler ataqueBasicoHandler = new BotonAtaqueBasicoHandler(this,vistaFreezer);
+        BotonAtaqueBasicoHandler ataqueBasicoHandler = new BotonAtaqueBasicoHandler(this);
         ataqueBasico.setOnAction(ataqueBasicoHandler);
         
         this.datosYBotones.add(finalizarTurno, 1, 10);

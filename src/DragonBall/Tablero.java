@@ -81,4 +81,8 @@ public class Tablero {
 	public boolean esUbicacionValida(int x,int y){
 		return(x<tamanio && x>=0 && y<tamanio && y>=0);
 	}
+
+	public void borrarPersonaje(int x, int y) {
+		this.tablero[y][x] = null;		
+	}
 }

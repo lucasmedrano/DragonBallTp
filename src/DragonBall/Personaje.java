@@ -117,6 +117,7 @@ public abstract class Personaje {
     	if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
+    	if(enemigo.vida <= 0) throw new InhabilitadoError();
     	
     	if(this.tablero.estanARangoDeAtaque(this, enemigo)&& !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
@@ -124,13 +125,19 @@ public abstract class Personaje {
     		int ataque = this.obtenerPoderDePelea();
    			int ataque_basico = this.calculadorAtaque(ataque, enemigo);
    			enemigo.vida -= ataque_basico;
+   			if(enemigo.vida <= 0){
+   				enemigo.borrarPersonaje();
+   			}
    		}else throw new IncapacidadDeAtacar();
-    }
-    
-    public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
+    }  
+
+
+	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
+    	if(enemigo.vida <= 0) throw new InhabilitadoError();
+				
 
     	if(this.tablero.estanARangoDeAtaque(this, enemigo) && this.ki >= this.costo_ataque_especial && !equipo.ataco()){
     		if (equipo.seEstaMoviendo()) this.equipo.moverseYAtacar();
@@ -139,6 +146,9 @@ public abstract class Personaje {
     		int ataque_especial = this.calculadorAtaque(ataque, enemigo);
     		enemigo.vida -= ataque_especial;
     		this.ki -= this.costo_ataque_especial;
+    		if(enemigo.vida <= 0){
+   				enemigo.borrarPersonaje();
+   			}
     	}else throw new IncapacidadDeAtacar();
     }
     
@@ -226,5 +236,11 @@ public abstract class Personaje {
 	
 	public String delvolverRutaNormal(){
 		return this.rutaImgNor;
+	}
+	
+	public void borrarPersonaje() {
+		int x = this.ubicacion.obtenerUbicacionHorizontal();
+		int y = this.ubicacion.obtenerUbicacionVertical();
+		this.tablero.borrarPersonaje(x, y);
 	}
 }
