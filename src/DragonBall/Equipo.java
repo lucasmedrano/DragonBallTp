@@ -55,14 +55,14 @@ public class Equipo {
 	}
 	
 	public Personaje obtenerPersonaje1(){
-		return personaje1;
+		return this.personaje1;
 	}
 	
 	public Personaje obtenerPersonaje2(){
-		return personaje2;
+		return this.personaje2;
 	}
 	public Personaje obtenerPersonaje3(){
-		return personaje3;
+		return this.personaje3;
 	}
 	
 	public Personaje[] obtenerCompanieros(Personaje personaje) throws PersonajeInvalido{
@@ -91,11 +91,11 @@ public class Equipo {
 		return ataco;
 	}
 	public void incorporarAtaque(){
-		ataco=true;
+		this.ataco = true;
 	}	
 	
 	public void incorporarMovimiento(){
-		seMovio=true;
+		this.seMovio = true;
 	}
 
 	public void finalizarTurno(){
@@ -130,14 +130,14 @@ public class Equipo {
 	}
 	
 	public void moverse(){
-		this.enMovimiento=true;
+		this.enMovimiento = true;
 	}
 	
 	public void moverseYAtacar(){
-		seMovioYAtaco=true;
+		this.seMovioYAtaco = true;
 	}	
 	public boolean seMovioYAtaco(){
-		return seMovioYAtaco;
+		return this.seMovioYAtaco;
 	}
 
 	public void empezoTurno() {
