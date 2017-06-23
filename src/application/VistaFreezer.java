@@ -14,7 +14,7 @@ public class VistaFreezer extends VistaPersonaje{
     	this.rutaTransf2 = "file:src/Guerreros/Freezer Final.jpg";
         this.rutacircnormal = "file:src//imagenes/circulofreezer.png";
         this.rutacirc1 = "file:src//imagenes/circulofreezer2.png";
-        this.rutacirc2 = "file:src//imagenes/circulofreezer2.png";
+        this.rutacirc2 = "file:src//imagenes/circulofreezer.png";
     }
 
 }

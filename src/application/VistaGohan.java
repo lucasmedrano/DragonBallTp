@@ -14,7 +14,7 @@ public class VistaGohan extends VistaPersonaje{
     	this.rutaTransf2 = "file:src/Guerreros/Gohan SSJ2.jpg";
         this.rutacircnormal = "file:src//imagenes/circulogohannormal.png";
         this.rutacirc1 = "file:src//imagenes/circulogohanssj.png";
-        this.rutacirc2 = "file:src//imagenes/circulogohanssj2.png";
+        this.rutacirc2 = "file:src//imagenes/circulogohan22j2.png";
     }
 
 }
