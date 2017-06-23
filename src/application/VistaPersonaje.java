@@ -56,5 +56,12 @@ public abstract class VistaPersonaje {
     
     public Image obtenerImagenCircular(){
     	return this.imagencircular;
+    	
     }
+    
+    public Personaje obtenerPersonaje(){
+    	return personaje;
+    }
+    
+    
 }

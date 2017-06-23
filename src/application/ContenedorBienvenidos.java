@@ -35,7 +35,7 @@ public class ContenedorBienvenidos extends VBox {
 		this.setPadding(new Insets(25));
 		Image imagen = new Image("file:src/fondo.jpg");
 		BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+				BackgroundPosition.DEFAULT, new BackgroundSize(1,1,true,true,false,false));
 		this.setBackground(new Background(imagenDeFondo));
 
 		Button botonEntrar = new Button();
