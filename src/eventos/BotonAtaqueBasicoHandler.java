@@ -68,7 +68,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	        	 this.vistaEnemigo = this.campo.vistaCell;
 	         }else this.vistaEnemigo = this.campo.vistaGohan;
 	     } else if (result.get() == buttonTypeEnemigo3) {
-	    	 if(enemigo1.equals("MajinBoo")){
+	    	 if(enemigo3.equals("MajinBoo")){
 	        	 this.vistaEnemigo = this.campo.vistaMajinBoo;
 	         }else this.vistaEnemigo = this.campo.vistaPiccolo;
 	     } else {
