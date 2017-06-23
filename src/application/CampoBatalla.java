@@ -221,5 +221,14 @@ public class CampoBatalla extends BorderPane{
     public void actualizarTurno(){
     	this.turno.setText("Turno de " + this.juego.obtenerJugadorActualString());
     }
+    
+    public void dibujarPersonajes(){
+    	vistaGoku.dibujar();
+    	vistaGohan.dibujar();
+    	vistaPiccolo.dibujar();
+    	vistaFreezer.dibujar();
+    	vistaCell.dibujar();
+    	vistaMajinBoo.dibujar();
+    }
 }
 
