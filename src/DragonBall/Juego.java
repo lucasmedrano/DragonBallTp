@@ -26,6 +26,13 @@ public class Juego {
         return this.jugador2;
     } 
     
+    public String obtenerJugadorActualString(){
+    	if(jugador_jugando == jugador1){
+    		return("Guerreros z");
+    	}
+    	else return("Invasores de la tierra");
+    }
+    
     public void empiezaJuego(){
     	this.jugador_jugando = this.turno.obtenerJugadorSiguiente();
     	this.jugador_jugando.esTuTurno();

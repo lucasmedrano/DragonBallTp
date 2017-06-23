@@ -1,10 +1,4 @@
 package eventos;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 
 import java.util.Optional;
 
@@ -14,17 +8,22 @@ import DragonBall.IncapacidadDeAtacar;
 import DragonBall.InhabilitadoError;
 import DragonBall.Personaje;
 import DragonBall.Piccolo;
-import application.VistaPersonaje;
 import application.CampoBatalla;
+import application.VistaPersonaje;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 
-public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
-	
+public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
 	VistaPersonaje vista;
     Personaje personaje;
     private VistaPersonaje vistaEnemigo;
     private CampoBatalla campo;
     	
-	public BotonAtaqueBasicoHandler(CampoBatalla campo){
+	public BotonAtaqueEspecialHandler(CampoBatalla campo){
 		this.campo=campo;
 	}
 
@@ -74,7 +73,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	     } else {
 	     }
     	try {	
-    		personaje.ataqueBasico(vistaEnemigo.obtenerPersonaje());
+    		personaje.ataqueEspecial(vistaEnemigo.obtenerPersonaje());
     		this.vistaEnemigo.dibujar();
     	}catch(IncapacidadDeAtacar|InhabilitadoError b){
     		return;
