@@ -34,7 +34,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	     this.personaje = campo.obtenerPersonajeSeleccionado();
 	     Alert alert = new Alert(AlertType.CONFIRMATION);
 	     alert.setTitle("Personaje a Atacar");
-	     alert.setHeaderText("Elija el enemigo al que quiere aniquilar");
+	     alert.setHeaderText("Elija el enemigo que desea atacar");
 	     alert.setContentText("");
 	     
 	     String enemigo1 = "";
@@ -57,7 +57,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	     ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
 
 	     alert.getButtonTypes().setAll(buttonTypeEnemigo1, buttonTypeEnemigo2, buttonTypeEnemigo3, buttonTypeCancel);
-
+	     
 	     Optional<ButtonType> result = alert.showAndWait();
 	     if (result.get() == buttonTypeEnemigo1){
 	         if(enemigo1.equals("Freezer")){
