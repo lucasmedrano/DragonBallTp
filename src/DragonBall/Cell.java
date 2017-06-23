@@ -60,6 +60,9 @@ public class Cell extends Personaje{
 			enemigo.vida -= ataque_especial;
 			this.ki -= this.costo_ataque_especial;
 			this.vidas_absorbidas += 1;
+			if(enemigo.vida <= 0){
+   				enemigo.borrarPersonaje();
+   			}
 	    }else throw new IncapacidadDeAtacar();
 	 }
 	 

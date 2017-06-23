@@ -143,6 +143,9 @@ public abstract class Personaje {
     		int ataque_especial = this.calculadorAtaque(ataque, enemigo);
     		enemigo.vida -= ataque_especial;
     		this.ki -= this.costo_ataque_especial;
+    		if(enemigo.vida <= 0){
+   				enemigo.borrarPersonaje();
+   			}
     	}else throw new IncapacidadDeAtacar();
     }
     
@@ -232,7 +235,7 @@ public abstract class Personaje {
 		return this.rutaImgNor;
 	}
 	
-	private void borrarPersonaje() {
+	public void borrarPersonaje() {
 		int x = this.ubicacion.obtenerUbicacionHorizontal();
 		int y = this.ubicacion.obtenerUbicacionVertical();
 		this.tablero.borrarPersonaje(x, y);
