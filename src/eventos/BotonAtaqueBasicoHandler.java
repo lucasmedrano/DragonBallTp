@@ -22,10 +22,9 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	 @Override
 	  public void handle(ActionEvent actionEvent) {
 		 this.vista = campo.obtenerVistaSeleccionada();
-	      this.personaje = campo.obtenerPersonajeSeleccionado();
+	     this.personaje = campo.obtenerPersonajeSeleccionado();
     	try {	
     		personaje.ataqueBasico(vistaEnemigo.obtenerPersonaje());
-    		//Aca deberiamos setear los datos de la vista del enemigo en base a la vida disminuida//
     	}catch(IncapacidadDeAtacar|InhabilitadoError b){
     		return;
     	}
