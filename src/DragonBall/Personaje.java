@@ -124,10 +124,14 @@ public abstract class Personaje {
     		int ataque = this.obtenerPoderDePelea();
    			int ataque_basico = this.calculadorAtaque(ataque, enemigo);
    			enemigo.vida -= ataque_basico;
+   			if(enemigo.vida <= 0){
+   				enemigo.borrarPersonaje();
+   			}
    		}else throw new IncapacidadDeAtacar();
-    }
-    
-    public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
+    }  
+
+
+	public void ataqueEspecial(Personaje enemigo) throws IncapacidadDeAtacar, InhabilitadoError{
     	if(this.equipo.estaEnElEquipo(enemigo)) throw new IncapacidadDeAtacar();
     	if (this.estaInmovilizado()) throw new InhabilitadoError();
     	if (!equipo.esMiTurno()) throw new IncapacidadDeAtacar();
@@ -226,5 +230,11 @@ public abstract class Personaje {
 	
 	public String delvolverRutaNormal(){
 		return this.rutaImgNor;
+	}
+	
+	private void borrarPersonaje() {
+		int x = this.ubicacion.obtenerUbicacionHorizontal();
+		int y = this.ubicacion.obtenerUbicacionVertical();
+		this.tablero.borrarPersonaje(x, y);
 	}
 }

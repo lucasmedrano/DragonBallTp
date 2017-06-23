@@ -36,6 +36,12 @@ public abstract class VistaPersonaje {
     	int x = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
     	int y = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
     	Casillero casillero = (Casillero) this.grid.getChildren().get(10*x + y);
+    	if (this.personaje.obtenerVida() <= 0){
+    		this.imagen = new Image("file:src/imagenes/campo.jpg");
+    		casillero.setearImagen(this.imagen, 70, 70, true);
+        	casillero.setearPersonaje(null);
+        	return;
+    	}
     	casillero.setearImagen(this.imagen, 70, 70, true);
     	casillero.setearPersonaje(personaje);
     }

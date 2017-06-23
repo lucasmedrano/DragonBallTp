@@ -104,6 +104,7 @@ public class Equipo {
 		this.enMovimiento=false;
 		this.inmovilizado=false;
 		this.es_mi_turno = false;
+		this.seMovioYAtaco = false;
 		
 		personaje1.finalizarTurno();
 		personaje2.finalizarTurno();
