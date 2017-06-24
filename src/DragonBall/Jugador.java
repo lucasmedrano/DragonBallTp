@@ -2,7 +2,7 @@ package DragonBall;
 
 public class Jugador {
     private Equipo equipo;
-    
+    String nombre;
     public Jugador(){
         
     }

@@ -5,6 +5,7 @@ import DragonBall.Freezer;
 import DragonBall.Gohan;
 import DragonBall.Goku;
 import DragonBall.Juego;
+import DragonBall.Jugador;
 import DragonBall.MajinBoo;
 import DragonBall.Personaje;
 import DragonBall.Piccolo;
@@ -13,14 +14,17 @@ import eventos.BotonMoverAbajoHandler;
 import eventos.BotonMoverArribaHandler;
 import eventos.BotonMoverDerechaHandler;
 import eventos.BotonMoverIzquierdaHandler;
+import eventos.OpcionSalirAContenedorBienvenidosEventHandler;
 import eventos.SeleccionarPersonajeEventHandler;
 import eventos.Transformar1EventHandler;
 import eventos.Transformar2EventHandler;
 import eventos.BotonAtaqueBasicoHandler;
 import eventos.BotonAtaqueEspecialHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -44,10 +48,12 @@ public class CampoBatalla extends BorderPane{
 	Label ki;
 	Label turno;
 	GridPane datosYBotones;
+	Stage stage;
 	
     public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
     	this.juego = juego;
         this.fondo = new Image("file:src/imagenes/campo.jpg");
+        this.stage = stage;
         this.setMenu(stage);
         this.iniciarCampo(goku, gohan, piccolo, freezer, cell, boo);
         this.setInformacionAliados(juego);
@@ -229,6 +235,32 @@ public class CampoBatalla extends BorderPane{
     	vistaFreezer.dibujar();
     	vistaCell.dibujar();
     	vistaMajinBoo.dibujar();
+    }
+    
+    public void chequearVictoria(){
+    	Personaje personaje1 = this.juego.obtenerJugador1().obtenerEquipo().obtenerPersonaje1();
+    	Personaje personaje2 = this.juego.obtenerJugador1().obtenerEquipo().obtenerPersonaje2();
+    	Personaje personaje3 = this.juego.obtenerJugador1().obtenerEquipo().obtenerPersonaje3();
+    	if(personaje1.obtenerVida() <= 0 && personaje2.obtenerVida() <= 0 && personaje3.obtenerVida() <= 0){
+    		this.terminarJuego("enemigos de la tierra");
+    	}
+    	
+    	personaje1 = this.juego.obtenerJugador2().obtenerEquipo().obtenerPersonaje1();
+    	personaje2 = this.juego.obtenerJugador2().obtenerEquipo().obtenerPersonaje2();
+    	personaje3 = this.juego.obtenerJugador2().obtenerEquipo().obtenerPersonaje3();
+    	if(personaje1.obtenerVida() <= 0 && personaje2.obtenerVida() <= 0 && personaje3.obtenerVida() <= 0){
+    		this.terminarJuego("guerreros Z");
+    	}
+    }
+    
+    public void terminarJuego(String ganador){
+    	Alert alert = new Alert(AlertType.INFORMATION);
+	    alert.setTitle("DragonAlgoBall");
+	    alert.setHeaderText("TERMINÓ EL JUEGO");
+	    alert.setContentText("Ganaron los " + ganador);
+	    alert.show();
+	    OpcionSalirAContenedorBienvenidosEventHandler reiniciar = new OpcionSalirAContenedorBienvenidosEventHandler(this.stage);
+	    reiniciar.handle(null);
     }
 }
 

@@ -26,15 +26,16 @@ public class BotonMoverDerechaHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
     	this.vista = campo.obtenerVistaSeleccionada();
         this.personaje = campo.obtenerPersonajeSeleccionado();
-    	
-    	try {
-    		x_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
-    		y_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
-			this.personaje.moverDerecha();
-			this.vista.dibujar();
-			this.campo.dibujarFondo(x_viejo, y_viejo);
-		} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
-			return;
-		}
+    	if(this.personaje != null){
+	    	try {
+	    		x_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionHorizontal();
+	    		y_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
+				this.personaje.moverDerecha();
+				this.vista.dibujar();
+				this.campo.dibujarFondo(x_viejo, y_viejo);
+			} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
+				return;
+			}
+    	}
     }
 }

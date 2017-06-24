@@ -23,10 +23,12 @@ public class SeleccionarPersonajeEventHandler implements EventHandler<MouseEvent
 		x = casillero.obtenerX();
 		y = casillero.obtenerY();
 		this.personaje = casillero.obtenerPersonaje();
+		if(this.personaje != null){
+			campo.setearPersonajeSeleccionado(this.personaje);
+			campo.actualizarVistaSeleccionada();
+			campo.actualizarDatos();
+		}
 		
-		campo.setearPersonajeSeleccionado(this.personaje);
-		campo.actualizarVistaSeleccionada();
-		campo.actualizarDatos();
 	}
 	
 	public int obtenerX(){

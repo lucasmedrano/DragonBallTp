@@ -75,6 +75,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	     }
     	try {	
     		personaje.ataqueBasico(vistaEnemigo.obtenerPersonaje());
+    		this.campo.chequearVictoria();
     		this.vistaEnemigo.dibujar();
     	}catch(IncapacidadDeAtacar|InhabilitadoError b){
     		return;
