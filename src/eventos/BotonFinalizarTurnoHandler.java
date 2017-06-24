@@ -20,7 +20,7 @@ public class BotonFinalizarTurnoHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         this.juego.turnoSiguiente();
         this.campo.actualizarTurno();
-        //this.campo.actualizarDatos();
-        //campo.dibujarPersonajes();
+        this.campo.actualizarDatos();
+        this.campo.dibujarPersonajes();
     }
 }
