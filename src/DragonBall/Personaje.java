@@ -67,6 +67,10 @@ public abstract class Personaje {
     	return this.estado.obtenerVelocidad();
     }
     
+    public int obtenerMovimientosDisponibles(){
+    	return (this.obtenerVelocidad()-this.cantidadDeMovimientos);
+    }
+    
     public void  ubicarEn(int x, int y) throws PosicionInadecuada{
     	
     	if (this.tablero.noEstaOcupada(x,y)){

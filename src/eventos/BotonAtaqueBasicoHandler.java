@@ -32,6 +32,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	  public void handle(ActionEvent actionEvent) {
 		 this.vista = campo.obtenerVistaSeleccionada();
 	     this.personaje = campo.obtenerPersonajeSeleccionado();
+	     if(this.personaje == null) return;
 	     Alert alert = new Alert(AlertType.CONFIRMATION);
 	     alert.setTitle("Personaje a Atacar");
 	     alert.setHeaderText("Elija el enemigo que desea atacar");
@@ -75,6 +76,7 @@ public class BotonAtaqueBasicoHandler implements EventHandler<ActionEvent> {
 	     }
     	try {	
     		personaje.ataqueBasico(vistaEnemigo.obtenerPersonaje());
+    		this.campo.chequearVictoria();
     		this.vistaEnemigo.dibujar();
     	}catch(IncapacidadDeAtacar|InhabilitadoError b){
     		return;
