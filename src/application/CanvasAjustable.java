@@ -24,7 +24,6 @@ public class CanvasAjustable extends Canvas {
 			@Override
 			public void invalidated(Observable arg0) {
 				draw();
-
 			}
 		});
 
