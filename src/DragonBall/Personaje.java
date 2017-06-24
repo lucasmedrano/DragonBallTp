@@ -68,8 +68,12 @@ public abstract class Personaje {
     }
     
     public int obtenerMovimientosDisponibles(){
-    	return (this.obtenerVelocidad()-this.cantidadDeMovimientos);
-    }
+    	if (equipo.otrosCompanierosSeEstanMoviendo(this)){ 
+    			return 0;
+    	}else{
+    		return (this.obtenerVelocidad()-this.cantidadDeMovimientos);
+    	}
+	}
     
     public void  ubicarEn(int x, int y) throws PosicionInadecuada{
     	
