@@ -67,6 +67,12 @@ public abstract class Personaje {
     	return this.estado.obtenerVelocidad();
     }
     
+    public int obtenerAtaquesDisponibles(){
+    	if (equipo.ataco())
+    		return 0;
+    	else return 1;
+    }
+    
     public int obtenerMovimientosDisponibles(){
     	if (equipo.otrosCompanierosSeEstanMoviendo(this)){ 
     			return 0;

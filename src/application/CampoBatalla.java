@@ -221,7 +221,7 @@ public class CampoBatalla extends BorderPane{
         this.vida.setText("Vida: " + (Integer.toString(this.personaje_seleccionado.obtenerVida())));
         this.ki.setText(("Ki: " + Integer.toString(this.personaje_seleccionado.obtenerKi())));
         this.movimientosDisponibles.setText(("Movimientos Disponibles: " + Integer.toString(this.personaje_seleccionado.obtenerMovimientosDisponibles())));
-        this.ataquesDisponibles.setText(("Ataques Disponibles:"));
+        this.ataquesDisponibles.setText(("Ataques Disponibles:"+ Integer.toString(this.personaje_seleccionado.obtenerAtaquesDisponibles())));
         ImageView imagen_personaje_seleccionado = new ImageView();
         
         imagen_personaje_seleccionado.setImage(this.vista_seleccionada.obtenerImagenCircular());

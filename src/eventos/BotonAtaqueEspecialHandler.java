@@ -76,6 +76,7 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
     	try {	
     		personaje.ataqueEspecial(vistaEnemigo.obtenerPersonaje());
     		this.vistaEnemigo.dibujar();
+    		campo.actualizarDatos();
     		this.campo.chequearVictoria();
     	}catch(IncapacidadDeAtacar|InhabilitadoError b){
     		return;
