@@ -31,6 +31,7 @@ public class BotonMoverArribaHandler implements EventHandler<ActionEvent> {
 	    		y_viejo = this.personaje.obtenerUbicacion().obtenerUbicacionVertical();
 				this.personaje.moverAbajo();
 				this.vista.dibujar();
+				campo.actualizarDatos();
 				this.campo.dibujarFondo(x_viejo, y_viejo);
 			} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
 				return;

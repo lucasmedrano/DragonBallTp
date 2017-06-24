@@ -47,8 +47,10 @@ public class CampoBatalla extends BorderPane{
 	Label vida;
 	Label ki;
 	Label turno;
+	Label movimientosDisponibles;
 	GridPane datosYBotones;
 	Stage stage;
+	Label ataquesDisponibles;
 	
     public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
     	this.juego = juego;
@@ -65,6 +67,8 @@ public class CampoBatalla extends BorderPane{
         this.datosYBotones.setHgap(1);
         this.vida = new Label("");
         this.ki = new Label("");
+        this.movimientosDisponibles=new Label("");
+        this.ataquesDisponibles=new Label("");
         this.turno = new Label("Turno de " + this.juego.obtenerJugadorActualString());
         
         Button finalizarTurno = new Button();
@@ -112,20 +116,21 @@ public class CampoBatalla extends BorderPane{
         BotonAtaqueEspecialHandler ataqueEspecialHandler = new BotonAtaqueEspecialHandler(this);
         ataqueEspecial.setOnAction(ataqueEspecialHandler);
         
-        this.datosYBotones.add(finalizarTurno, 1, 10);
+        this.datosYBotones.add(finalizarTurno, 1, 8);
         this.datosYBotones.add(transf1, 1, 11);
         this.datosYBotones.add(transf2, 1, 12);
         this.datosYBotones.add(moverArriba, 1, 13);
         this.datosYBotones.add(moverAbajo, 1, 15);
         this.datosYBotones.add(moverIzquierda, 0, 14);
         this.datosYBotones.add(moverDerecha, 1, 14);
-        this.datosYBotones.add(ataqueBasico,1 ,5);
-        this.datosYBotones.add(ataqueEspecial, 1, 6);
+        this.datosYBotones.add(ataqueBasico,1 ,6);
+        this.datosYBotones.add(ataqueEspecial, 1, 7);
         this.datosYBotones.setPadding(new Insets(30));	
-        this.datosYBotones.add(vida, 1, 2);
-        this.datosYBotones.add(ki, 1, 3);
-        this.datosYBotones.add(turno, 1, 4);
-        
+        this.datosYBotones.add(vida, 1, 1);
+        this.datosYBotones.add(ki, 1, 2);
+        this.datosYBotones.add(turno, 1, 5);
+        this.datosYBotones.add(movimientosDisponibles, 1,3);
+        this.datosYBotones.add(ataquesDisponibles, 1,4);
         this.setLeft(datosYBotones);
     }
     
@@ -215,6 +220,8 @@ public class CampoBatalla extends BorderPane{
     public void actualizarDatos(){
         this.vida.setText("Vida: " + (Integer.toString(this.personaje_seleccionado.obtenerVida())));
         this.ki.setText(("Ki: " + Integer.toString(this.personaje_seleccionado.obtenerKi())));
+        this.movimientosDisponibles.setText(("Movimientos Disponibles: " + Integer.toString(this.personaje_seleccionado.obtenerMovimientosDisponibles())));
+        this.ataquesDisponibles.setText(("Ataques Disponibles:"));
         ImageView imagen_personaje_seleccionado = new ImageView();
         
         imagen_personaje_seleccionado.setImage(this.vista_seleccionada.obtenerImagenCircular());
