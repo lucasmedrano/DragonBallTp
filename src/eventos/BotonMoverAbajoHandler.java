@@ -33,8 +33,12 @@ public class BotonMoverAbajoHandler implements EventHandler<ActionEvent> {
 				this.vista.dibujar();
 				campo.actualizarDatos();
 				this.campo.dibujarFondo(x_viejo, y_viejo);
-			} catch (PosicionInadecuada | InhabilitadoError | IncapacidadParaMoverse e) {
-				return;
+			} catch (PosicionInadecuada a){
+				campo.setInfo("Muevase a una posicion valida");
+			}catch (InhabilitadoError b){
+				campo.setInfo("Inhabilitado");
+			}catch (IncapacidadParaMoverse e) {
+				campo.setInfo("No se puede mover");
 			}
     	}
     }

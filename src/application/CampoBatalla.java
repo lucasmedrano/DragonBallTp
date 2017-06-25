@@ -51,6 +51,7 @@ public class CampoBatalla extends BorderPane{
 	GridPane datosYBotones;
 	Stage stage;
 	Label ataquesDisponibles;
+	Label info;
 	
     public CampoBatalla(Stage stage, Juego juego, Goku goku, Gohan gohan, Piccolo piccolo, Freezer freezer, Cell cell, MajinBoo boo) {
     	this.juego = juego;
@@ -70,6 +71,7 @@ public class CampoBatalla extends BorderPane{
         this.movimientosDisponibles=new Label("");
         this.ataquesDisponibles=new Label("");
         this.turno = new Label("Turno de " + this.juego.obtenerJugadorActualString());
+        this.info=new Label("");
         
         Button finalizarTurno = new Button();
         finalizarTurno.setText("Finaliza Turno");
@@ -131,6 +133,7 @@ public class CampoBatalla extends BorderPane{
         this.datosYBotones.add(turno, 1, 5);
         this.datosYBotones.add(movimientosDisponibles, 1,3);
         this.datosYBotones.add(ataquesDisponibles, 1,4);
+        this.datosYBotones.add(info, 1,20);
         this.setLeft(datosYBotones);
     }
     
@@ -222,6 +225,7 @@ public class CampoBatalla extends BorderPane{
         this.ki.setText(("Ki: " + Integer.toString(this.personaje_seleccionado.obtenerKi())));
         this.movimientosDisponibles.setText(("Movimientos Disponibles: " + Integer.toString(this.personaje_seleccionado.obtenerMovimientosDisponibles())));
         this.ataquesDisponibles.setText(("Ataques Disponibles:"+ Integer.toString(this.personaje_seleccionado.obtenerAtaquesDisponibles())));
+        this.info.setText("");
         ImageView imagen_personaje_seleccionado = new ImageView();
         
         imagen_personaje_seleccionado.setImage(this.vista_seleccionada.obtenerImagenCircular());
@@ -268,6 +272,10 @@ public class CampoBatalla extends BorderPane{
 	    alert.show();
 	    OpcionSalirAContenedorBienvenidosEventHandler reiniciar = new OpcionSalirAContenedorBienvenidosEventHandler(this.stage);
 	    reiniciar.handle(null);
+    }
+    
+    public void setInfo(String info){
+    	this.info.setText(info);
     }
 }
 

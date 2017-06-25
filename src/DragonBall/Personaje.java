@@ -74,7 +74,7 @@ public abstract class Personaje {
     }
     
     public int obtenerMovimientosDisponibles(){
-    	if (equipo.otrosCompanierosSeEstanMoviendo(this)){ 
+    	if (equipo.otrosCompanierosSeEstanMoviendo(this)||equipo.seMovioYAtaco()){ 
     			return 0;
     	}else{
     		return (this.obtenerVelocidad()-this.cantidadDeMovimientos);

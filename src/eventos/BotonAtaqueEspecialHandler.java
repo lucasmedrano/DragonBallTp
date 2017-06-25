@@ -5,9 +5,11 @@ import java.util.Optional;
 import DragonBall.Gohan;
 import DragonBall.Goku;
 import DragonBall.IncapacidadDeAtacar;
+import DragonBall.IncapacidadParaMoverse;
 import DragonBall.InhabilitadoError;
 import DragonBall.Personaje;
 import DragonBall.Piccolo;
+import DragonBall.PosicionInadecuada;
 import application.CampoBatalla;
 import application.VistaPersonaje;
 import javafx.event.ActionEvent;
@@ -78,8 +80,10 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
     		this.vistaEnemigo.dibujar();
     		campo.actualizarDatos();
     		this.campo.chequearVictoria();
-    	}catch(IncapacidadDeAtacar|InhabilitadoError b){
-    		return;
+    	}catch(IncapacidadDeAtacar a){
+    		campo.setInfo("No puede atacar");
+    	}catch(InhabilitadoError b){
+    		campo.setInfo("Inhabilitado");
     	}
 	 }
 
